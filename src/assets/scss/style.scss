@@ -1,0 +1,114 @@
+@import "vars";
+@import "mixins";
+@import "fonts";
+@import "vendor/reset";
+
+html {
+  box-sizing: border-box;
+  // font-size: calc(100vw / 1920 * 10);
+  font-size: 10px;
+
+  // @include breakpoint($xl-bp) {
+  //   font-size: calc(100vw / 1600 * 10);
+  // }
+
+  @include breakpoint($cos-bp) {
+    font-size: calc(100vw / 1330 * 10);
+  }
+
+  // @include breakpoint($mm-bp) {
+  //   font-size: calc(100vw / 1440 * 10);
+  // }
+  
+  // @include breakpoint($xl-bp) {
+  //   font-size: calc(100vw / 1385 * 10);
+  // }
+  // @include breakpoint($lg-bp) {
+  //   font-size: calc(100vw / 830 * 10);
+  // }
+
+  @include breakpoint($xl-bp) {
+    font-size: calc(100vw / 1024 * 10);
+  }
+
+  @include breakpoint($jb-bp) {
+    font-size: calc(100vw / 850 * 10);
+  }
+
+  @include breakpoint($lb-bp) {
+    font-size: calc(100vw / 650 * 10);
+  }
+
+
+  @include breakpoint($sm-bp) {
+    font-size: calc(100vw / 375 * 10);
+  }
+
+  
+}
+
+
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-weight: 400;
+  // font-size: 1.6rem;
+  // line-height: 1.2;
+  color: $white;
+
+  background-color: $primary;
+
+  // @include breakpoint($sm-bp) {
+  //   font-size: 1.4rem;
+  // }
+}
+
+// button {
+  
+// }
+
+img {
+  image-rendering: crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+// a {
+  
+// }
+
+svg {
+  transition: all 0.1s linear;
+}
+
+// .chevron {
+  
+// }
+
+/* Vendors */
+
+
+
+/* Blocks */
+
+
+@import './blocks/swiper.scss';
+@import './blocks/main.scss';
+@import './blocks/header.scss';
+
+// @import "blocks/menu";
+
+
+
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}

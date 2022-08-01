@@ -1,0 +1,63 @@
+.header {
+    font-family: InterReg;
+    font-size: 1.8rem;
+    background-color: $black;
+    height: 9.7rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-left: $border;
+    padding-right: $border;
+    &__item {
+        color: $white;
+    }
+    &__logo {
+        color: $white;
+        font-weight: 700;
+    }
+    &__list {
+        display: flex;
+        gap: 3rem;
+    }
+
+    &__contacts {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
+    &__contactItem {
+        fill: $black;
+        stroke-width: 0.1rem;
+    }
+    &__telegramIcon {
+        width: 2.8rem;
+        height: 2.2rem;
+        stroke: $white;
+    }
+    &__whatsUpIcon {
+        width: 2.3rem;
+        height: 2.5rem;
+        // stroke: $white;
+    }
+    &__phoneIcon {
+        stroke: $white;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    &__searchIcon {
+        width: 2rem;
+        height: 2.2rem;
+    }
+    &__busketIcon {
+        stroke: $white;
+        width: 2.5rem;
+        height: 2.2rem;
+    }
+    &__burgerMenuIcon {
+        cursor: pointer;
+        width: 5.2rem;
+        height: 1.5rem;
+    }
+}
