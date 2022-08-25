@@ -8,20 +8,16 @@ const removeComments = require("gulp-strip-css-comments");
 const rename = require("gulp-rename");
 const sass = require("gulp-sass")(require("sass"));
 const cssnano = require("gulp-cssnano");
-const babel = require("gulp-babel");
-const uglify = require("gulp-uglify");
 const rigger = require("gulp-rigger");
 const plumber = require("gulp-plumber");
 const panini = require("panini");
 const imagemin = require("gulp-imagemin");
 const del = require("del");
-const notify = require("gulp-notify");
 const browserSync = require("browser-sync").create();
 
 /* Paths */
 const srcPath = "src/";
 const distPath = "dist/";
-
 const path = {
   build: {
     html: distPath,
@@ -192,6 +188,10 @@ function clean(cb) {
   cb();
 }
 
+function cleanWithoutImg(cb) {
+  return del([`!dist/**/images/**`, 'dist/**/fonts/**', 'dist/**/css/**', 'dist/**/js/**', 'dist/index.html'])
+}
+
 function watchFiles() {
   gulp.watch([path.watch.html], html);
   gulp.watch([path.watch.css], cssWatch);
@@ -202,7 +202,8 @@ function watchFiles() {
 }
 
 const build = gulp.series(clean, gulp.parallel(html, css, js, images, fonts));
-const watch = gulp.parallel(build, watchFiles, serve);
+const start = gulp.series(cleanWithoutImg, gulp.parallel(html, css, js, fonts));
+const watch = gulp.parallel(start, watchFiles, serve);
 
 /* Exports Tasks */
 exports.html = html;
@@ -214,3 +215,5 @@ exports.clean = clean;
 exports.build = build;
 exports.watch = watch;
 exports.default = watch;
+exports.cleanWithoutImg = cleanWithoutImg
+exports.start = start
