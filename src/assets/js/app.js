@@ -7,14 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
       this.menu = typeof menuElement === "string" ? document.querySelector(menuElement) : menuElement
       this.button = typeof buttonElement === "string" ? document.querySelector(buttonElement) : buttonElement
       this.overlay = document.createElement('div')
+      this.overlay.hidden = true
       this._init()
     }
 
     _init() {
       document.body.appendChild(this.overlay)
       this.overlay.classList.add('overlay')
-
-      console.log(this.menu, this.button)
 
       this.overlay.addEventListener('click', this.toggleMenu.bind(this))
       this.button.addEventListener('click', this.toggleMenu.bind(this))
@@ -23,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleMenu() {
       this.menu.classList.toggle('menu--open')
       this.button.classList.toggle('menu-button--active')
+      this.overlay.hidden = !this.overlay.hidden
 
       if (this.isMenuOpen()) {
         this.disableScroll()
