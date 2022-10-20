@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-
-//= components/
   class Menu {
     constructor(menuElement, buttonElement) {
       this.menu = typeof menuElement === "string" ? document.querySelector(menuElement) : menuElement
@@ -29,6 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         this.enableScroll()
       }
+    }
+
+    closeMenu() {
+      this.menu.classList.remove('header__nav--active')
+      this.button.classList.remove('header__menu-button--active')
+      this.overlay.hidden = true
+
+      this.enableScroll()
     }
 
     isMenuOpen() {

@@ -2,7 +2,6 @@
    v2.0-modified | 20110126
    License: none (public domain)
 */
-
 html,
 body,
 div,
@@ -197,6 +196,10 @@ html {
   font-size: 100%; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
   -ms-text-size-adjust: 100%; /* 2 */
+}
+
+body {
+  overflow: hidden;
 }
 
 /**
