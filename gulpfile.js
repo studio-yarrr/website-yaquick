@@ -204,7 +204,7 @@ function watchFiles() {
 const buildOld = gulp.series(clean, gulp.parallel(html, css, js, images, fonts));
 const start = gulp.series(cleanWithoutImg, gulp.parallel(html, css, js, fonts));
 const watch = gulp.parallel(start, watchFiles, serve);
-const build = gulp.series(buildOld, gulp.parallel(watchFiles, serve))
+const build = gulp.parallel(buildOld, watchFiles, serve);
 
 /* Exports Tasks */
 exports.html = html;
