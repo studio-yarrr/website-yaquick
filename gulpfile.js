@@ -14,6 +14,9 @@ const panini = require("panini");
 const imagemin = require("gulp-imagemin");
 const del = require("del");
 const browserSync = require("browser-sync").create();
+const purgecss = require("gulp-purgecss"); 
+const tailwindcss = require("tailwindcss");
+const postcss = require('gulp-postcss')
 
 /* Paths */
 const srcPath = "src/";
@@ -83,6 +86,55 @@ function css(cb) {
         includePaths: "./node_modules/",
       })
     )
+    .pipe(postcss([tailwindcss("./tailwind.config.js")]))
+    .pipe(
+      autoprefixer({
+        cascade: true,
+      })
+    )
+    .pipe(cssbeautify())
+    .pipe(dest(path.build.css))
+    .pipe(
+      cssnano({
+        zindex: false,
+        discardComments: {
+          removeAll: true,
+        },
+      })
+    )
+    .pipe(removeComments())
+    .pipe(
+      rename({
+        suffix: ".min",
+        extname: ".css",
+      })
+    )
+    .pipe(dest(path.build.css))
+    .pipe(browserSync.reload({ stream: true }));
+
+  cb();
+}
+
+function cleanCss(cb) {
+  return src(path.src.css, { base: srcPath + "assets/scss/" })
+    .pipe(
+      sass({
+        includePaths: "./node_modules/",
+      })
+    )
+    .pipe(postcss([tailwindcss("./tailwind.config.js")]))
+    .pipe(
+      purgecss({
+        content: ["src/**/*.{html,js,php}"],
+        safelist: ['hello'],
+        defaultExtractor: (content) => {
+          const broadMatches = content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [];
+          const innerMatches =
+            content.match(/[^<>"'`\s.()]*[^<>"'`\s.():]/g) || [];
+          return broadMatches.concat(innerMatches);
+        },
+      })
+    )
     .pipe(
       autoprefixer({
         cascade: true,
@@ -118,6 +170,7 @@ function cssWatch(cb) {
         includePaths: "./node_modules/",
       })
     )
+    .pipe(postcss([tailwindcss("./tailwind.config.js")]))
     .pipe(
       rename({
         suffix: ".min",
@@ -193,18 +246,20 @@ function cleanWithoutImg(cb) {
 }
 
 function watchFiles() {
-  gulp.watch([path.watch.html], html);
+  gulp.watch([path.watch.html], gulp.series(html, cssWatch));
   gulp.watch([path.watch.css], cssWatch);
   gulp.watch([path.watch.js], jsWatch);
   gulp.watch([path.watch.images], imagesWatch);
   // gulp.watch([path.watch.images], images);
   gulp.watch([path.watch.fonts], fonts);
+  gulp.watch(['./tailwind.config.js'], gulp.series(html, cssWatch))
 }
 
 const buildOld = gulp.series(clean, gulp.parallel(html, css, js, images, fonts));
 const start = gulp.series(cleanWithoutImg, gulp.parallel(html, css, js, fonts));
 const watch = gulp.parallel(start, watchFiles, serve);
 const build = gulp.parallel(buildOld, watchFiles, serve);
+const buildCleanCSS = gulp.series(clean, gulp.parallel(html, cleanCss, js, images, fonts));
 
 /* Exports Tasks */
 exports.html = html;
@@ -218,3 +273,4 @@ exports.watch = watch;
 exports.default = watch;
 exports.cleanWithoutImg = cleanWithoutImg
 exports.start = start
+exports.buildCleanCSS = buildCleanCSS

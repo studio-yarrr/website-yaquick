@@ -182,7 +182,7 @@ audio:not([controls]) {
  */
 
 [hidden] {
-  display: none;
+  display: none!important;
 }
 
 /**
@@ -198,18 +198,11 @@ html {
   -ms-text-size-adjust: 100%; /* 2 */
 }
 
-body {
-  overflow: hidden;
-}
-
 /**
  * Address `outline` inconsistency between Chrome and other browsers.
  */
 a {
   text-decoration: none;
-}
-a:focus {
-  outline: thin dotted;
 }
 
 /**

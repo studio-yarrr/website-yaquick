@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import "vars";
 @import "mixins";
 @import "fonts";
@@ -7,21 +11,12 @@ html {
   box-sizing: border-box;
   font-size: calc(100vw / 1920 * 10);
   @include breakpoint($cos-bp) {
-    font-size: calc(100vw / 1330 * 10);
+    font-size: calc(100vw / 1440 * 10);
   }
 
   @include breakpoint($xl-bp) {
-    font-size: calc(100vw / 1024 * 10);
+    font-size: calc(100vw / 768 * 10);
   }
-
-  @include breakpoint($jb-bp) {
-    font-size: calc(100vw / 850 * 10);
-  }
-
-  @include breakpoint($lb-bp) {
-    font-size: calc(100vw / 650 * 10);
-  }
-
 
   @include breakpoint($sm-bp) {
     font-size: calc(100vw / 375 * 10);
@@ -71,4 +66,21 @@ svg {
 
 .show {
   display: block;
+}
+
+.container {
+  padding-right: 4rem;
+  padding-left: 4rem;
+  @include breakpoint($cos-bp) {
+    padding-right: 5rem;
+    padding-left: 5rem;
+  }
+  @include breakpoint($xl-bp) {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+  @include breakpoint($sm-bp) {
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+  }
 }

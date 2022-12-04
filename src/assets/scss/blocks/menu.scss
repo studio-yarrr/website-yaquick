@@ -8,6 +8,11 @@
   width: 30%;
   background-color: lightblue;
   transition: all 1s ease;
+  display: none;
+  @include breakpoint($xl-bp) {
+    display: block;
+    height: 100vh;
+  }
 }
 
 .menu--open {
