@@ -18,6 +18,7 @@ const purgecss = require("gulp-purgecss");
 const tailwindcss = require("tailwindcss");
 const postcss = require('gulp-postcss');
 const fileInclude = require('gulp-file-include');
+const pug = require('gulp-pug');
 
 /* Paths */
 const srcPath = "src/";
@@ -36,6 +37,7 @@ const path = {
     js: srcPath + "assets/js/*.js",
     css: srcPath + "assets/scss/*.scss",
     vendorcss: srcPath + "assets/js/components/*.css",
+    pug: srcPath + "*.pug",
     images:
       srcPath +
       "assets/images/**/*.{jpg,png,svg,gif,ico,webp,webmanifest,xml,json}",
@@ -45,6 +47,7 @@ const path = {
     html: srcPath + "**/*.html",
     js: srcPath + "assets/js/**/*.js",
     css: srcPath + "assets/scss/**/*.scss",
+    pug: srcPath + "*.pug",
     images:
       srcPath +
       "assets/images/**/*.{jpg,png,svg,gif,ico,webp,webmanifest,xml,json}",
@@ -81,6 +84,15 @@ function html(cb) {
     .pipe(browserSync.reload({ stream: true }));
 
   cb();
+}
+
+function pugs(cb) {
+  return src(path.src.pug, {base: srcPath})
+  .pipe(pug())
+  .pipe(dest(path.build.html))
+  .pipe(browserSync.reload({stream: true}))
+
+  cb()
 }
 
 function css(cb) {
@@ -256,6 +268,7 @@ function cleanWithoutImg(cb) {
 
 function watchFiles() {
   gulp.watch([path.watch.html], gulp.series(html, cssWatch));
+  gulp.watch([path.watch.pug], pugs)
   gulp.watch([path.watch.css], cssWatch);
   gulp.watch([path.watch.js], jsWatch);
   gulp.watch([path.watch.images], imagesWatch);
@@ -264,8 +277,8 @@ function watchFiles() {
   gulp.watch(['./tailwind.config.js'], gulp.series(html, cssWatch))
 }
 
-const buildOld = gulp.series(clean, gulp.parallel(html, css, vendorcss, js, images, fonts));
-const start = gulp.series(cleanWithoutImg, gulp.parallel(html, css, js, fonts));
+const buildOld = gulp.series(clean, gulp.parallel(html,pugs, css, vendorcss, js, images, fonts));
+const start = gulp.series(cleanWithoutImg, gulp.parallel(html, pugs, css, js, fonts));
 const watch = gulp.parallel(start, watchFiles, serve);
 const build = gulp.parallel(buildOld, watchFiles, serve);
 const buildCleanCSS = gulp.series(clean, gulp.parallel(html, cleanCss, js, images, fonts));

@@ -34,6 +34,7 @@ module.exports = {
       matchUtilities(
         {
           text: (value) => {
+            console.log(value)
             return {fontSize: `${value}`}
           },
         },
