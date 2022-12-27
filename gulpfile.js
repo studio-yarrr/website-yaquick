@@ -17,6 +17,7 @@ const browserSync = require("browser-sync").create();
 const purgecss = require("gulp-purgecss"); 
 const tailwindcss = require("tailwindcss");
 const postcss = require('gulp-postcss')
+const fileInclude = require('gulp-file-include')
 
 /* Paths */
 const srcPath = "src/";
@@ -28,11 +29,13 @@ const path = {
     css: distPath + "assets/css/",
     images: distPath + "assets/images/",
     fonts: distPath + "assets/fonts/",
+    vendorcss: distPath + "assets/css/vendor/"
   },
   src: {
     html: srcPath + "*.html",
     js: srcPath + "assets/js/*.js",
     css: srcPath + "assets/scss/*.scss",
+    vendorcss: srcPath + "assets/js/components/*.css",
     images:
       srcPath +
       "assets/images/**/*.{jpg,png,svg,gif,ico,webp,webmanifest,xml,json}",
@@ -73,6 +76,7 @@ function html(cb) {
         data: srcPath + "data/",
       })
     )
+    .pipe(fileInclude())
     .pipe(dest(path.build.html))
     .pipe(browserSync.reload({ stream: true }));
 
@@ -113,6 +117,11 @@ function css(cb) {
     .pipe(browserSync.reload({ stream: true }));
 
   cb();
+}
+
+function vendorcss(cb) {
+  return src(path.src.vendorcss, {base: srcPath + "assets/js/components/"})
+  .pipe(dest(path.build.vendorcss))
 }
 
 function cleanCss(cb) {
@@ -255,7 +264,7 @@ function watchFiles() {
   gulp.watch(['./tailwind.config.js'], gulp.series(html, cssWatch))
 }
 
-const buildOld = gulp.series(clean, gulp.parallel(html, css, js, images, fonts));
+const buildOld = gulp.series(clean, gulp.parallel(html, css, vendorcss, js, images, fonts));
 const start = gulp.series(cleanWithoutImg, gulp.parallel(html, css, js, fonts));
 const watch = gulp.parallel(start, watchFiles, serve);
 const build = gulp.parallel(buildOld, watchFiles, serve);
