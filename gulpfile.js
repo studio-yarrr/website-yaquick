@@ -16,8 +16,8 @@ const del = require("del");
 const browserSync = require("browser-sync").create();
 const purgecss = require("gulp-purgecss"); 
 const tailwindcss = require("tailwindcss");
-const postcss = require('gulp-postcss')
-const fileInclude = require('gulp-file-include')
+const postcss = require('gulp-postcss');
+const fileInclude = require('gulp-file-include');
 
 /* Paths */
 const srcPath = "src/";
