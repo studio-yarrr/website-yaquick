@@ -268,7 +268,7 @@ function cleanWithoutImg(cb) {
 
 function watchFiles() {
   gulp.watch([path.watch.html], gulp.series(html, cssWatch));
-  gulp.watch([path.watch.pug], pugs)
+  // gulp.watch([path.watch.pug], pugs)
   gulp.watch([path.watch.css], cssWatch);
   gulp.watch([path.watch.js], jsWatch);
   gulp.watch([path.watch.images], imagesWatch);
@@ -277,8 +277,8 @@ function watchFiles() {
   gulp.watch(['./tailwind.config.js'], gulp.series(html, cssWatch))
 }
 
-const buildOld = gulp.series(clean, gulp.parallel(html,pugs, css, vendorcss, js, images, fonts));
-const start = gulp.series(cleanWithoutImg, gulp.parallel(html, pugs, css, js, fonts));
+const buildOld = gulp.series(clean, gulp.parallel(html, css, vendorcss, js, images, fonts));
+const start = gulp.series(cleanWithoutImg, gulp.parallel(html, css, js, fonts));
 const watch = gulp.parallel(start, watchFiles, serve);
 const build = gulp.parallel(buildOld, watchFiles, serve);
 const buildCleanCSS = gulp.series(clean, gulp.parallel(html, cleanCss, js, images, fonts));

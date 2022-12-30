@@ -26,7 +26,7 @@ module.exports = {
       'sm': {'max': '500px'}
     },
     colors: {
-      "primary-color": "var(--primary-color)",
+      "primary": "var(--primary-color)",
     }
   },
   plugins: [
@@ -40,7 +40,11 @@ module.exports = {
         },
         { values: theme('spacing') }
       )
-    })
+    }),
+    function ({ addVariant }) {
+      addVariant('child', '& > *');
+      addVariant('child-hover', '& > *:hover');
+    },
   ],
   experimental: {
     optimizeUniversalDefaults: true
