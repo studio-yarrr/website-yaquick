@@ -1,10 +1,11 @@
+@import "fonts";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @import "vars";
 @import "mixins";
-@import "fonts";
 @import "vendor/reset";
 
 html {
