@@ -15,14 +15,14 @@ const imagemin = require("gulp-imagemin");
 const del = require("del");
 const browserSync = require("browser-sync").create();
 const purgecss = require("gulp-purgecss"); 
-const tailwindcss = require("tailwindcss");
+// const tailwindcss = require("tailwindcss");
 const postcss = require('gulp-postcss');
 const fileInclude = require('gulp-file-include');
 const pug = require('gulp-pug');
 
 /* Paths */
 const srcPath = "src/";
-const distPath = "dist/";
+const distPath = "build/dist/";
 const path = {
   build: {
     html: distPath,
@@ -47,6 +47,7 @@ const path = {
     html: srcPath + "**/*.html",
     js: srcPath + "assets/js/**/*.js",
     css: srcPath + "assets/scss/**/*.scss",
+    vendorcss: srcPath + "assets/js/components/*.css",
     pug: srcPath + "*.pug",
     images:
       srcPath +
@@ -102,29 +103,29 @@ function css(cb) {
         includePaths: "./node_modules/",
       })
     )
-    .pipe(postcss([tailwindcss("./tailwind.config.js")]))
+    // .pipe(postcss([tailwindcss("./tailwind.config.js")]))
     .pipe(
       autoprefixer({
         cascade: true,
       })
     )
     .pipe(cssbeautify())
-    .pipe(dest(path.build.css))
-    .pipe(
-      cssnano({
-        zindex: false,
-        discardComments: {
-          removeAll: true,
-        },
-      })
-    )
+    // .pipe(
+    //   cssnano({
+    //     zindex: false,
+    //     discardComments: {
+    //       removeAll: true,
+    //     },
+    //   })
+    // )
     .pipe(removeComments())
-    .pipe(
-      rename({
-        suffix: ".min",
-        extname: ".css",
-      })
-    )
+    // .pipe(dest(path.build.css))
+    // .pipe(
+    //   rename({
+    //     suffix: ".min",
+    //     extname: ".css",
+    //   })
+    // )
     .pipe(dest(path.build.css))
     .pipe(browserSync.reload({ stream: true }));
 
@@ -143,7 +144,7 @@ function cleanCss(cb) {
         includePaths: "./node_modules/",
       })
     )
-    .pipe(postcss([tailwindcss("./tailwind.config.js")]))
+    // .pipe(postcss([tailwindcss("./tailwind.config.js")]))
     .pipe(
       purgecss({
         content: ["src/**/*.{html,js,php}"],
@@ -156,11 +157,11 @@ function cleanCss(cb) {
         },
       })
     )
-    .pipe(
-      autoprefixer({
-        cascade: true,
-      })
-    )
+    // .pipe(
+    //   autoprefixer({
+    //     cascade: true,
+    //   })
+    // )
     .pipe(cssbeautify())
     .pipe(dest(path.build.css))
     .pipe(
@@ -172,12 +173,6 @@ function cleanCss(cb) {
       })
     )
     .pipe(removeComments())
-    .pipe(
-      rename({
-        suffix: ".min",
-        extname: ".css",
-      })
-    )
     .pipe(dest(path.build.css))
     .pipe(browserSync.reload({ stream: true }));
 
@@ -191,13 +186,20 @@ function cssWatch(cb) {
         includePaths: "./node_modules/",
       })
     )
-    .pipe(postcss([tailwindcss("./tailwind.config.js")]))
-    .pipe(
-      rename({
-        suffix: ".min",
-        extname: ".css",
-      })
-    )
+    // .pipe(postcss([tailwindcss("./tailwind.config.js")]))
+    // .pipe(cssbeautify())
+    // .pipe(removeComments())
+    // .pipe(
+    //   autoprefixer({
+    //     cascade: true,
+    //   })
+    // )
+    // .pipe(
+    //   rename({
+    //     suffix: ".min",
+    //     extname: ".css",
+    //   })
+    // )
     .pipe(dest(path.build.css))
     .pipe(browserSync.reload({ stream: true }));
 
@@ -269,12 +271,13 @@ function cleanWithoutImg(cb) {
 function watchFiles() {
   gulp.watch([path.watch.html], gulp.series(html, cssWatch));
   // gulp.watch([path.watch.pug], pugs)
+  // gulp.watch([path.watch.css], vendorcss);
   gulp.watch([path.watch.css], cssWatch);
   gulp.watch([path.watch.js], jsWatch);
   gulp.watch([path.watch.images], imagesWatch);
   // gulp.watch([path.watch.images], images);
   gulp.watch([path.watch.fonts], fonts);
-  gulp.watch(['./tailwind.config.js'], gulp.series(html, cssWatch))
+  // gulp.watch(['./tailwind.config.js'], gulp.series(html, cssWatch))
 }
 
 const buildOld = gulp.series(clean, gulp.parallel(html, css, vendorcss, js, images, fonts));
