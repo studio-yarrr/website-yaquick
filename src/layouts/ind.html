@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  {{> head }}
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    ._progress {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 10rem;
+      padding-bottom: 2vh;
+    }
+
+    ._progress__inner {
+      columns: 2;
+    }
+
+    ul,
+    ol {
+      /* margin-top: 100px; */
+    }
+
+    li {
+      font-size: 1.5vmax;
+    }
+
+    ol {
+      list-style-type: decimal;
+      list-style-position: inside;
+
+    }
+
+    ol {
+      list-style: none;
+      counter-reset: my-awesome-counter;
+    }
+
+    ol li {
+      counter-increment: my-awesome-counter;
+    }
+
+    ol li::before {
+      content: counter(my-awesome-counter) ". ";
+      color: white;
+    }
+
+    ._progress__link {
+      display: inline-block;
+      font-size: 1.5vmax;
+      margin-bottom: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: white;
+      transition: opacity 0.3s;
+    }
+
+    @media(max-width: 1024px) {
+      ._progress__inner {
+        columns: 1;
+      }
+    }
+
+    @media (any-hover: hover) {
+      ._progress__link:hover {
+        opacity: 0.5;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <main>
+
+    {{> body }}
+
+  </main>
+
+  <canvas id="canvas"></canvas>
+  <!-- JS -->
+
+  <script>
+    (function () {
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = innerWidth;
+      let h = canvas.height = innerHeight;
+      const particles = [];
+      const properties = {
+        bgColor: 'rgba(17, 17, 19, 1)',
+        particleColor: 'rgba(255, 40, 40, 1)',
+        particleRadius: 3,
+        particleCount: matchMedia('(max-width: 1024px)').matches ? 60 : 100,
+        particleMaxVelocity: 0.5,
+        lineLength: matchMedia('(max-width: 1024px)').matches ? w / 5 : w / 10,
+      }
+
+      window.onresize = function () {
+        w = canvas.width = innerWidth;
+        h = canvas.height = innerHeight;
+      }
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * w;
+          this.y = Math.random() * h;
+          this.velocityX = Math.random() * (properties.particleMaxVelocity * 2) - properties.particleMaxVelocity;
+          this.velocityY = Math.random() * (properties.particleMaxVelocity * 2) - properties.particleMaxVelocity;
+          this.life = Math.random() * properties.particleLife * 60
+        }
+        position() {
+          this.x + this.velocityX > w && this.velocityX > 0 || this.x + this.velocityX < 0 && this.velocityX < 0 ? this.velocityX *= -1 : this.velocityX;
+          this.y + this.velocityY > h && this.velocityY > 0 || this.y + this.velocityY < 0 && this.velocityY < 0 ? this.velocityY *= -1 : this.velocityY;
+          this.x += this.velocityX;
+          this.y += this.velocityY;
+        }
+        reDraw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, properties.particleRadius, 0, Math.PI * 2);
+          ctx.closePath();
+          ctx.fillStyle = properties.particleColor;
+          ctx.fill();
+        }
+      }
+
+      function reDrawBackground() {
+        ctx.fillStyle = properties.bgColor;
+        ctx.fillRect(0, 0, w, h)
+      }
+
+      function drawLines() {
+        let x1, y1, x2, y2, length, opacity;
+        for (let i in particles) {
+          for (let j in particles) {
+            x1 = particles[i].x;
+            y1 = particles[i].y;
+            x2 = particles[j].x;
+            y2 = particles[j].y;
+            length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+            if (length < properties.lineLength) {
+              opacity = 1 - length / properties.lineLength;
+              ctx.lineWidth = '0,5'
+              ctx.strokeStyle = 'rgba(255, 40, 40, ' + opacity + ')'
+              ctx.beginPath();
+              ctx.moveTo(x1, y1);
+              ctx.lineTo(x2, y2);
+              ctx.closePath();
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function reDrawParticle() {
+        for (let particle of particles) {
+          particle.position();
+          particle.reDraw();
+        }
+      }
+
+      function loop() {
+        reDrawBackground();
+        reDrawParticle();
+        drawLines();
+        requestAnimationFrame(loop)
+      }
+
+      function init() {
+        for (let i = 0; i < properties.particleCount; i++) {
+          particles.push(new Particle)
+        }
+        loop();
+      }
+
+      init();
+    })()
+  </script>
+</body>
+
+</html>
