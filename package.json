@@ -41,6 +41,7 @@
     "choices.js": "^10.1.0",
     "gulp-footer": "^2.1.0",
     "gulp-purgecss": "^5.0.0",
+    "gulp-remember": "^1.0.1",
     "swiper": "^8.2.6",
     "yargs": "^17.7.2"
   }

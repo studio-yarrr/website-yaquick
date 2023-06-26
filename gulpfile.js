@@ -272,23 +272,44 @@ function cleanWithoutImg(cb) {
 
 function newFile() {
   if (argv.file?.length) {
-    return src('src/assets/empty.html')
-    .pipe(rename(()=> {
+    const arr = argv.file.split(' ');
+
+    arr.forEach(element => {
+      return src('src/assets/empty.html')
+      .pipe(rename(()=> {
+          return {
+            dirname: '.',
+            basename: element,
+            extname: '.html',
+          }
+      }))
+      .pipe(dest('src'), {overwrite: false, append: true})
+      .pipe(rename(() => {
         return {
           dirname: '.',
-          basename: argv.file,
-          extname: '.html',
+          basename: element,
+          extname: '.scss',
         }
-    }))
-    .pipe(dest('src'), {overwrite: false, append: true})
+      }))
+      .pipe(dest('src/assets/scss/blocks'), {overwrite: false, append: true})
+    });
+
+    return Promise.resolve('значение игнорируется');
+
+  } else if (argv.vendor?.length) {
+    const arr = argv.vendor.split(' ');
+    arr.forEach(element => {
+    src('src/assets/empty.html')
     .pipe(rename(() => {
       return {
         dirname: '.',
-        basename: argv.file,
+        basename: element,
         extname: '.scss',
       }
     }))
-    .pipe(dest('src/assets/scss/blocks'), {overwrite: false, append: true})
+    .pipe(dest('src/assets/scss/vendor'), {overwrite: false, append: true})
+  })
+    return Promise.resolve('значение игнорируется');
   } else {
     return Promise.resolve('значение игнорируется');
   }
@@ -296,11 +317,23 @@ function newFile() {
 
 function toEnd () {
   if (argv.file?.length) {
-  return gulp.src('src/assets/scss/importsBlocks.scss')
-    .pipe(footer(' @import \'./blocks/' + argv.file + '.scss\';'))
+    const arr = argv.file.split(' ');
+
+      gulp.src('src/assets/scss/importsBlocks.scss')
+      .pipe(footer(arr.map(el => ' @import \'./blocks/' + el + '.scss\';').join(' ')))
+      .pipe(cssbeautify())
+      .pipe(gulp.dest('src/assets/scss/'), {overwrite: true, append: false});
+
+    return Promise.resolve('значение игнорируется');
+  } else if (argv.vendor?.length) {
+    const arr = argv.vendor.split(' ');
+
+    gulp.src('src/assets/scss/importsVendors.scss')
+    .pipe(footer(arr.map(el => ' @import \'./vendor/' + el + '.scss\';').join(' ')))
     .pipe(cssbeautify())
-    .pipe(gulp.dest('src/assets/scss/'));
-  } else {
+    .pipe(gulp.dest('src/assets/scss/'), {overwrite: true, append: false});
+      return Promise.resolve('значение игнорируется');
+    } else {
       return Promise.resolve('значение игнорируется');
     }
 }
