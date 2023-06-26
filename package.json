@@ -39,7 +39,9 @@
     "@fancyapps/ui": "^4.0.27",
     "bootstrap": "^5.2.0-beta1",
     "choices.js": "^10.1.0",
+    "gulp-footer": "^2.1.0",
     "gulp-purgecss": "^5.0.0",
-    "swiper": "^8.2.6"
+    "swiper": "^8.2.6",
+    "yargs": "^17.7.2"
   }
 }

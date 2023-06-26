@@ -19,6 +19,8 @@ const purgecss = require("gulp-purgecss");
 const postcss = require('gulp-postcss');
 const fileInclude = require('gulp-file-include');
 const pug = require('gulp-pug');
+const argv = require('yargs').argv;
+const footer = require('gulp-footer');
 
 /* Paths */
 const srcPath = "src/";
@@ -268,11 +270,48 @@ function cleanWithoutImg(cb) {
   return del([`!dist/**/images/**`, 'dist/**/fonts/**', 'dist/**/css/**', 'dist/**/js/**', 'dist/index.html'])
 }
 
+function newFile() {
+  if (argv.file?.length) {
+    return src('src/assets/empty.html')
+    .pipe(rename(()=> {
+        return {
+          dirname: '.',
+          basename: argv.file,
+          extname: '.html',
+        }
+    }))
+    .pipe(dest('src'), {overwrite: false, append: true})
+    .pipe(rename(() => {
+      return {
+        dirname: '.',
+        basename: argv.file,
+        extname: '.scss',
+      }
+    }))
+    .pipe(dest('src/assets/scss/blocks'), {overwrite: false, append: true})
+  } else {
+    return Promise.resolve('значение игнорируется');
+  }
+}
+
+function toEnd () {
+  if (argv.file?.length) {
+  return gulp.src('src/assets/scss/importsBlocks.scss')
+    .pipe(footer(' @import \'./blocks/' + argv.file + '.scss\';'))
+    .pipe(cssbeautify())
+    .pipe(gulp.dest('src/assets/scss/'));
+  } else {
+      return Promise.resolve('значение игнорируется');
+    }
+}
+
+
+
 function watchFiles() {
   gulp.watch([path.watch.html], gulp.series(html, cssWatch));
   // gulp.watch([path.watch.pug], pugs)
   // gulp.watch([path.watch.css], vendorcss);
-  gulp.watch([path.watch.css], cssWatch);
+  // gulp.watch([path.watch.css], cssWatch);
   gulp.watch([path.watch.js], jsWatch);
   gulp.watch([path.watch.images], imagesWatch);
   // gulp.watch([path.watch.images], images);
@@ -285,8 +324,11 @@ const start = gulp.series(cleanWithoutImg, gulp.parallel(html, css, js, fonts));
 const watch = gulp.parallel(start, watchFiles, serve);
 const build = gulp.parallel(buildOld, watchFiles, serve);
 const buildCleanCSS = gulp.series(clean, gulp.parallel(html, cleanCss, js, images, fonts));
+const create = gulp.series(gulp.parallel(newFile, toEnd));
 
 /* Exports Tasks */
+
+exports.create = create;
 exports.html = html;
 exports.css = css;
 exports.js = js;
@@ -299,3 +341,4 @@ exports.default = watch;
 exports.cleanWithoutImg = cleanWithoutImg
 exports.start = start
 exports.buildCleanCSS = buildCleanCSS
+
