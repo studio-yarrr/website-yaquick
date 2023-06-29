@@ -323,6 +323,9 @@ function toEnd () {
       .pipe(footer(arr.map(el => ' @import \'./blocks/' + el + '.scss\';').join(' ')))
       .pipe(cssbeautify())
       .pipe(gulp.dest('src/assets/scss/'), {overwrite: true, append: false});
+      gulp.src('src/index.html')
+      .pipe(footer(arr.map(el => `\n<li><a href="${el}.html" class="_progress__link">${el}</a></li>`).join(' ')))
+      .pipe(gulp.dest('src/'), {overwrite: true, append: false});
 
     return Promise.resolve('значение игнорируется');
   } else if (argv.vendor?.length) {
