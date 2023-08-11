@@ -45,13 +45,10 @@ svg {
   transition: all 0.1s linear;
 }
 
-/* Vendors */
-@import "./importsVendors.scss";
-
 
 /* Blocks */
 
-@import "./importsBlocks.scss";
+@import "importsBlocks";
 
 
 
