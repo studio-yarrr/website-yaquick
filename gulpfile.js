@@ -322,7 +322,7 @@ function toEnd () {
   if (argv.file?.length) {
     const arr = argv.file.split(' ');
 
-      gulp.src('src/assets/scss/importsBlocks.scss')
+      gulp.src('src/assets/scss/_importsBlocks.scss')
       .pipe(footer(arr.map(el => ' @import \'./blocks/' + el + '.scss\';').join(' ')))
       .pipe(cssbeautify())
       .pipe(gulp.dest('src/assets/scss/'), {overwrite: true, append: false});
@@ -343,7 +343,6 @@ function toEnd () {
       return Promise.resolve('значение игнорируется');
     }
 }
-
 
 
 function watchFiles() {
