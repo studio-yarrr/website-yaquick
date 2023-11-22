@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "author": "DevMinrat",
+  "scripts": {
+    "build": "gulp buildNMin"
+  },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "browser-sync": "^2.26.14",

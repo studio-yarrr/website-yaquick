@@ -24,7 +24,7 @@ const footer = require('gulp-footer');
 
 /* Paths */
 const srcPath = "src/";
-const distPath = "build/dist/";
+const distPath = "dist/";
 const path = {
   build: {
     html: distPath,
@@ -357,12 +357,19 @@ function watchFiles() {
   // gulp.watch(['./tailwind.config.js'], gulp.series(html, cssWatch))
 }
 
+function imagesWithoutMin() {
+  return src(path.src.images)
+    .pipe(dest(path.build.images))
+    .pipe(browserSync.reload({ stream: true }));
+}
+
 const buildOld = gulp.series(clean, gulp.parallel(html, css, vendorcss, js, images, fonts));
 const start = gulp.series(cleanWithoutImg, gulp.parallel(html, css, js, fonts));
 const watch = gulp.parallel(start, watchFiles, serve);
 const build = gulp.parallel(buildOld, watchFiles, serve);
 const buildCleanCSS = gulp.series(clean, gulp.parallel(html, cleanCss, js, images, fonts));
 const create = gulp.series(gulp.parallel(newFile, toEnd));
+const buildNMin = gulp.series(clean, html, css, js, imagesWithoutMin, fonts);
 
 /* Exports Tasks */
 
@@ -379,4 +386,5 @@ exports.default = watch;
 exports.cleanWithoutImg = cleanWithoutImg
 exports.start = start
 exports.buildCleanCSS = buildCleanCSS
+exports.buildNMin = buildNMin
 
