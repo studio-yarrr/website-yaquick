@@ -274,8 +274,8 @@ function cleanWithoutImg(cb) {
 }
 
 function newFile() {
-  if (argv.file?.length) {
-    const arr = argv.file.split(' ');
+  if (argv.page?.length) {
+    const arr = argv.page.split(' ');
 
     arr.forEach(element => {
       return src('src/assets/empty.html')
@@ -319,8 +319,8 @@ function newFile() {
 }
 
 function toEnd () {
-  if (argv.file?.length) {
-    const arr = argv.file.split(' ');
+  if (argv.page?.length) {
+    const arr = argv.page.split(' ');
 
       gulp.src('src/assets/scss/_importsBlocks.scss')
       .pipe(footer(arr.map(el => ' @import \'./blocks/' + el + '.scss\';').join(' ')))
@@ -368,12 +368,12 @@ const start = gulp.series(cleanWithoutImg, gulp.parallel(html, css, js, fonts));
 const watch = gulp.parallel(start, watchFiles, serve);
 const build = gulp.parallel(buildOld, watchFiles, serve);
 const buildCleanCSS = gulp.series(clean, gulp.parallel(html, cleanCss, js, images, fonts));
-const create = gulp.series(gulp.parallel(newFile, toEnd));
+const make = gulp.series(gulp.parallel(newFile, toEnd));
 const buildNMin = gulp.series(clean, html, css, js, imagesWithoutMin, fonts);
 
 /* Exports Tasks */
 
-exports.create = create;
+exports.make = make;
 exports.html = html;
 exports.css = css;
 exports.js = js;
