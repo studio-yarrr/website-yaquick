@@ -28,6 +28,7 @@ const distPath = "dist/";
 const path = {
   build: {
     html: distPath,
+    php: distPath,
     js: distPath + "assets/js/",
     css: distPath + "assets/css/",
     images: distPath + "assets/images/",
@@ -36,6 +37,7 @@ const path = {
   },
   src: {
     html: srcPath + "*.html",
+    php: srcPath + "*.php",
     js: srcPath + "assets/js/*.js",
     css: srcPath + "assets/scss/*.scss",
     vendorcss: srcPath + "assets/js/components/*.css",
@@ -47,6 +49,7 @@ const path = {
   },
   watch: {
     html: srcPath + "**/*.html",
+    php: srcPath + "**/*.php",
     js: srcPath + "assets/js/**/*.js",
     css: srcPath + "assets/scss/**/*.scss",
     vendorcss: srcPath + "assets/js/components/*.css",
@@ -90,6 +93,12 @@ function html(cb) {
     .pipe(browserSync.reload({ stream: true }));
 
   cb();
+}
+
+function php(cb) {
+  return src(path.src.php, { base: srcPath })
+    .pipe(dest(path.build.php))
+    .pipe(browserSync.reload({ stream: true }));
 }
 
 function pugs(cb) {
@@ -349,6 +358,7 @@ function watchFiles() {
   gulp.watch([path.watch.html], gulp.series(html, cssWatch));
   // gulp.watch([path.watch.pug], pugs)
   // gulp.watch([path.watch.css], vendorcss);
+  gulp.watch([path.watch.php], php)
   gulp.watch([path.watch.css], cssWatch);
   gulp.watch([path.watch.js], jsWatch);
   gulp.watch([path.watch.images], imagesWatch);
@@ -363,8 +373,8 @@ function imagesWithoutMin() {
     .pipe(browserSync.reload({ stream: true }));
 }
 
-const buildOld = gulp.series(clean, gulp.parallel(html, css, vendorcss, js, images, fonts));
-const start = gulp.series(cleanWithoutImg, gulp.parallel(html, css, js, fonts));
+const buildOld = gulp.series(clean, gulp.parallel(html,php, css, vendorcss, js, images, fonts));
+const start = gulp.series(cleanWithoutImg, gulp.parallel(html,php, css, js, fonts));
 const watch = gulp.parallel(start, watchFiles, serve);
 const build = gulp.parallel(buildOld, watchFiles, serve);
 const buildCleanCSS = gulp.series(clean, gulp.parallel(html, cleanCss, js, images, fonts));
@@ -375,6 +385,7 @@ const buildNMin = gulp.series(clean, html, css, js, imagesWithoutMin, fonts);
 
 exports.make = make;
 exports.html = html;
+exports.php = php;
 exports.css = css;
 exports.js = js;
 exports.images = images;
