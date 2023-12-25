@@ -21,6 +21,7 @@ const fileInclude = require('gulp-file-include');
 const pug = require('gulp-pug');
 const argv = require('yargs').argv;
 const footer = require('gulp-footer');
+const svgSprite = require('gulp-svg-sprite')
 
 /* Paths */
 const srcPath = "src/";
@@ -33,7 +34,8 @@ const path = {
     css: distPath + "assets/css/",
     images: distPath + "assets/images/",
     fonts: distPath + "assets/fonts/",
-    vendorcss: distPath + "assets/css/vendor/"
+    vendorcss: distPath + "assets/css/vendor/",
+    sprites: distPath + "assets/images/"
   },
   src: {
     html: srcPath + "*.html",
@@ -43,9 +45,12 @@ const path = {
     vendorcss: srcPath + "assets/js/components/*.css",
     pug: srcPath + "*.pug",
     images:
-      srcPath +
+      [srcPath +
       "assets/images/**/*.{jpg,png,svg,gif,ico,webp,webmanifest,xml,json}",
+      '!' + srcPath + 'assets/sprite/*.svg', 
+    ],
     fonts: srcPath + "assets/fonts/**/*.{eot,woff,woff2,ttf,svg}",
+    sprites: srcPath + 'assets/images/sprites/*.svg',
   },
   watch: {
     html: srcPath + "**/*.html",
@@ -70,6 +75,20 @@ function serve() {
       baseDir: "./" + distPath,
     },
   });
+}
+
+function sprites() {
+  return src(path.src.sprites)
+      .pipe(svgSprite({
+              mode: {
+                  stack: {
+                      sprite: "../sprite.svg"
+                  }
+              },
+          }
+      ))
+      .pipe(dest(path.build.sprites))
+      .pipe(browserSync.stream())
 }
 
 function html(cb) {
@@ -396,6 +415,7 @@ function watchFiles() {
   // gulp.watch([path.watch.images], images);
   gulp.watch([path.watch.fonts], fonts);
   // gulp.watch(['./tailwind.config.js'], gulp.series(html, cssWatch))
+  gulp.watch([path.src.sprites], sprites);
 }
 
 function imagesWithoutMin() {
@@ -405,7 +425,7 @@ function imagesWithoutMin() {
 }
 
 const buildOld = gulp.series(clean, gulp.parallel(html,php, css, vendorcss, js, images, fonts));
-const start = gulp.series(cleanWithoutImg, gulp.parallel(html,php, css, js, fonts));
+const start = gulp.series(cleanWithoutImg, gulp.parallel(html,php, css, js, fonts, sprites));
 const watch = gulp.parallel(start, watchFiles, serve);
 const build = gulp.parallel(buildOld, watchFiles, serve);
 const buildCleanCSS = gulp.series(clean, gulp.parallel(html, cleanCss, js, images, fonts));
@@ -429,4 +449,5 @@ exports.cleanWithoutImg = cleanWithoutImg
 exports.start = start
 exports.buildCleanCSS = buildCleanCSS
 exports.buildNMin = buildNMin
+exports.sprites = sprites;
 
