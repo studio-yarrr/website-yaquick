@@ -288,69 +288,100 @@ function newFile() {
 
     arr.forEach(element => {
       return src('src/assets/empty.html')
-      .pipe(rename(()=> {
+        .pipe(rename(() => {
           return {
             dirname: '.',
             basename: element,
             extname: '.html',
           }
-      }))
-      .pipe(dest('src'), {overwrite: false, append: true})
-      .pipe(rename(() => {
-        return {
-          dirname: '.',
-          basename: element,
-          extname: '.scss',
-        }
-      }))
-      .pipe(dest('src/assets/scss/blocks'), {overwrite: false, append: true})
+        }))
+        .pipe(dest('src'), { overwrite: false, append: true })
+        .pipe(rename(() => {
+          return {
+            dirname: '.',
+            basename: element,
+            extname: '.scss',
+          }
+        }))
+        .pipe(dest('src/assets/scss/blocks'), { overwrite: false, append: true })
     });
 
     return Promise.resolve('значение игнорируется');
 
   } else if (argv.vendor?.length) {
+
     const arr = argv.vendor.split(' ');
     arr.forEach(element => {
-    src('src/assets/empty.html')
-    .pipe(rename(() => {
-      return {
-        dirname: '.',
-        basename: element,
-        extname: '.scss',
-      }
-    }))
-    .pipe(dest('src/assets/scss/vendor'), {overwrite: false, append: true})
-  })
+      return src('src/assets/empty.html')
+        .pipe(rename(() => {
+          return {
+            dirname: '.',
+            basename: element,
+            extname: '.scss',
+          }
+        }))
+        .pipe(dest('src/assets/scss/blocks'), { overwrite: false, append: true })
+    })
+    return Promise.resolve('значение игнорируется');
+  } else if (argv.partial?.length) {
+    const arr = argv.partial.split(' ');
+
+    arr.forEach(element => {
+      return src('src/assets/empty.html')
+        .pipe(rename(() => {
+          return {
+            dirname: '.',
+            basename: element,
+            extname: '.html',
+          }
+        }))
+        .pipe(dest('src/partials'), { overwrite: false, append: true })
+        .pipe(rename(() => {
+          return {
+            dirname: '.',
+            basename: element,
+            extname: '.scss',
+          }
+        }))
+        .pipe(dest('src/assets/scss/blocks'), { overwrite: false, append: true })
+    });
+
     return Promise.resolve('значение игнорируется');
   } else {
     return Promise.resolve('значение игнорируется');
   }
 }
 
-function toEnd () {
+function toEnd() {
   if (argv.page?.length) {
     const arr = argv.page.split(' ');
 
-      gulp.src('src/assets/scss/_importsBlocks.scss')
+    gulp.src('src/assets/scss/_importsBlocks.scss')
       .pipe(footer(arr.map(el => ' @import \'./blocks/' + el + '.scss\';').join(' ')))
       .pipe(cssbeautify())
-      .pipe(gulp.dest('src/assets/scss/'), {overwrite: true, append: false});
-      gulp.src('src/index.html')
+      .pipe(gulp.dest('src/assets/scss/'), { overwrite: true, append: false });
+    gulp.src('src/index.html')
       .pipe(footer(arr.map(el => `\n<li><a href="${el}.html" class="_progress__link">${el}</a></li>`).join(' ')))
-      .pipe(gulp.dest('src/'), {overwrite: true, append: false});
+      .pipe(gulp.dest('src/'), { overwrite: true, append: false });
 
     return Promise.resolve('значение игнорируется');
   } else if (argv.vendor?.length) {
     const arr = argv.vendor.split(' ');
-
-    gulp.src('src/assets/scss/importsVendors.scss')
-    .pipe(footer(arr.map(el => ' @import \'./vendor/' + el + '.scss\';').join(' ')))
-    .pipe(cssbeautify())
-    .pipe(gulp.dest('src/assets/scss/'), {overwrite: true, append: false});
-      return Promise.resolve('значение игнорируется');
-    } else {
-      return Promise.resolve('значение игнорируется');
-    }
+    gulp.src('src/assets/scss/_importsBlocks.scss')
+      .pipe(footer(arr.map(el => ' @import \'./blocks/' + el + '.scss\';').join(' ')))
+      .pipe(cssbeautify())
+      .pipe(gulp.dest('src/assets/scss/'), { overwrite: true, append: false });
+    return Promise.resolve('значение игнорируется');
+  } else if (argv.partial?.length) {
+    const arr = argv.partial.split(' ');
+    gulp.src('src/assets/scss/_importsBlocks.scss')
+      .pipe(footer(arr.map(el => ' @import \'./blocks/' + el + '.scss\';').join(' ')))
+      .pipe(cssbeautify())
+      .pipe(gulp.dest('src/assets/scss/'), { overwrite: true, append: false });
+    return Promise.resolve('значение игнорируется');
+  } else {
+    return Promise.resolve('значение игнорируется');
+  }
 }
 
 
