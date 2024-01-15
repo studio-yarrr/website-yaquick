@@ -1,6 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   const xl = matchMedia('(max-width: 1024px)');
+  initLetters()
+
+  if (document && document.fonts) {
+    setTimeout(function () {
+      document.fonts.ready.then(function () {
+        document.documentElement.classList.add('fontsloaded')
+      });
+    }, 0);
+  } else {
+    document.documentElement.classList.add('fontsloaded')
+  }
+
+  window.addEventListener('load', function () {
+    setTimeout(() => {
+      const letters1 = document.getElementById('letters')
+
+      if (letters1) {
+        letters1.classList.add('loaded')
+      }
+    }, 500)
+  })
 
   class Menu {
     constructor(menuElement, buttonElement) {
@@ -184,64 +205,50 @@ document.addEventListener("DOMContentLoaded", () => {
     return wrapper;
   }
 
-  // gsap.registerPlugin(MotionPathPlugin)
-  // console.log(SplitText)
-  // gsap.to('#letter1',
-  //   {
-  //     duration: 5,
-  //     motionPath: {
-  //       path: '#path',
-  //       autoRotate: true,
-  //     },
-  //     repeat: -1,
-  //     ease: 'none'
-  //   })
+  function initLetters() {
+    const letters1 = document.getElementById('letters')
 
-  // gsap.registerPlugin(SplitText, MotionPathPlugin);
+    if (letters1) {
+      const inner = letters1.innerHTML
+      letters1.innerHTML = ''
+      inner.split('').forEach(el => {
+        const div = document.createElement('div')
+        div.innerHTML = el
+        letters1.appendChild(div)
+      })
 
-  const letters1 = document.getElementById('letters')
-
-  if (letters1) {
-    letters1.innerHTML.split('').forEach(el => {
-      const div = document.createElement('div')
-      div.innerHTML = el
-      letters1.appendChild(div)
-    })
-
-    console.log(letters1.children)
-
-    letterAnim = gsap.timeline({
-      repeat: -1,
-    }),
-      dur = 20,
-      each = dur * 0.01
+      letterAnim = gsap.timeline({
+        repeat: -1,
+      }),
+        dur = 20,
+        each = dur * 0.01
 
 
-    function letters() {
-      [...letters1.children].forEach((char, i) => {
-        let timeOffset = i * each / 1.43,
-          startTime = dur / 2 + timeOffset,
-          pathOffset = startTime / dur;
+      function letters() {
+        [...letters1.children].forEach((char, i) => {
+          let timeOffset = i * each / 1.43,
+            startTime = dur / 2 + timeOffset,
+            pathOffset = startTime / dur;
 
-        letterAnim.to(char, {
-          motionPath: {
-            path: '#m',
-            align: '#m',
-            alignOrigin: [0.5, 0.5],
-            autoRotate: true,
-            start: pathOffset,
-            end: 1 + pathOffset
-          },
-          immediateRender: true,
-          duration: 10,
-          ease: "none",
-        }, 0);
-      });
+          letterAnim.to(char, {
+            motionPath: {
+              path: '#m',
+              align: '#m',
+              alignOrigin: [0.5, 0.5],
+              autoRotate: true,
+              start: pathOffset,
+              end: 1 + pathOffset
+            },
+            immediateRender: false,
+            lazy: true,
+            duration: 15,
+            ease: "none",
+          }, 0);
+        });
+      }
+      window.addEventListener("resize", letters);
+      letters();
     }
-
-
-    window.addEventListener("resize", letters);
-    letters();
   }
 
 

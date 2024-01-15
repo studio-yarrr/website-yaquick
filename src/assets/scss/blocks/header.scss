@@ -1,16 +1,47 @@
 .header {
-  position: fixed;
+  position: sticky;
   width: 100%;
   transition: transform .3s;
   will-change: transform;
   top: 0;
   left: 0;
   z-index: 20;
-
-  @include breakpoint($xl-bp) {
-  }
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: var(--white);
 }
 
 .out {
   transform: translate3d(0, calc(-100% - 1rem), 0);
+}
+
+.header-right {
+  display: flex;
+}
+
+.header-logo-1 {
+  width: 6.93rem;
+  height: 4rem;
+  margin-right: 2rem;
+}
+
+.header-logo-2 {
+  width: 14.3rem;
+  height: 3.6rem;
+  margin-right: 4rem;
+  margin-top: 0.4rem;
+}
+
+.bag {
+  width: 4rem;
+  height: 4rem;
+  display: block;
+  stroke: var(--black);
+  @media (hover: hover) and (pointer: fine) {
+  &:hover {
+    stroke: var(--orange);
+  }
+  }
 }
