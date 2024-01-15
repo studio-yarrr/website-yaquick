@@ -95,3 +95,35 @@ svg {
     object-fit: cover;
   }
 }
+
+.letter {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+}
+
+#letters {
+  div {
+    display: inline-block;
+  }
+}
+
+// #m {
+//     position: absolute;
+//     left: 50%;
+//     top: 50%;
+//     transform: translate(-50%, -50%);
+//     width: 10rem;
+//     max-width: 50vw;
+//     height: 10rem;
+// }
+
+.svg-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10rem;
+  max-width: 50vw;
+  height: 10rem;
+}

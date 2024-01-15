@@ -44,18 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     disableScroll() {
-        // Get the current page scroll position;
-        const scrollTop = window.pageYOffset  || document.documentElement.scrollTop;
-        const scrollLeft = window.pageXOffset  || document.documentElement.scrollLeft;
-      
-            // if any scroll is attempted, set this to the previous value;
-            window.onscroll = function() {
-                window.scrollTo(scrollLeft, scrollTop);
-            };
+      // Get the current page scroll position;
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+      // if any scroll is attempted, set this to the previous value;
+      window.onscroll = function () {
+        window.scrollTo(scrollLeft, scrollTop);
+      };
     }
 
     enableScroll() {
-      window.onscroll = function() {};
+      window.onscroll = function () { };
     }
   }
 
@@ -183,6 +183,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return wrapper;
   }
+
+  // gsap.registerPlugin(MotionPathPlugin)
+  // console.log(SplitText)
+  // gsap.to('#letter1',
+  //   {
+  //     duration: 5,
+  //     motionPath: {
+  //       path: '#path',
+  //       autoRotate: true,
+  //     },
+  //     repeat: -1,
+  //     ease: 'none'
+  //   })
+
+  // gsap.registerPlugin(SplitText, MotionPathPlugin);
+
+  const letters1 = document.getElementById('letters')
+
+  if (letters1) {
+    letters1.innerHTML.split('').forEach(el => {
+      const div = document.createElement('div')
+      div.innerHTML = el
+      letters1.appendChild(div)
+    })
+
+    console.log(letters1.children)
+
+    letterAnim = gsap.timeline({
+      repeat: -1,
+    }),
+      dur = 20,
+      each = dur * 0.01
+
+
+    function letters() {
+      [...letters1.children].forEach((char, i) => {
+        let timeOffset = i * each / 1.43,
+          startTime = dur / 2 + timeOffset,
+          pathOffset = startTime / dur;
+
+        letterAnim.to(char, {
+          motionPath: {
+            path: '#m',
+            align: '#m',
+            alignOrigin: [0.5, 0.5],
+            autoRotate: true,
+            start: pathOffset,
+            end: 1 + pathOffset
+          },
+          immediateRender: true,
+          duration: 10,
+          ease: "none",
+        }, 0);
+      });
+    }
+
+
+    window.addEventListener("resize", letters);
+    letters();
+  }
+
+
+
 });
 
 
