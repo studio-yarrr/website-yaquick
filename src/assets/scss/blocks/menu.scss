@@ -79,7 +79,6 @@
     background-color: var(--white);
     border-radius: 4rem;
     border: 0.1rem solid rgba(36, 32, 33, 0.30);
-    pointer-events: none;
   }
   a {
     display: block;
@@ -92,6 +91,23 @@
       }
       }
   }
+}
+
+.out {
+  .menu-sublist {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .menu-item {
+    &:hover {
+      .menu-sublist {
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  }
+
 }
 
 .menu--open {

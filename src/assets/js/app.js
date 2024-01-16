@@ -1,16 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   const xl = matchMedia('(max-width: 1024px)');
-  initLetters()
 
   if (document && document.fonts) {
     setTimeout(function () {
       document.fonts.ready.then(function () {
         document.documentElement.classList.add('fontsloaded')
+        initLetters()
+        initTitle()
       });
     }, 0);
   } else {
     document.documentElement.classList.add('fontsloaded')
+    initLetters()
+    initTitle()
   }
 
   window.addEventListener('load', function () {
@@ -205,28 +208,33 @@ document.addEventListener("DOMContentLoaded", () => {
     return wrapper;
   }
 
+  // gsap.ticker.lagSmoothing(1000, 16);
+  // gsap.ticker.fps(30);
+
   function initLetters() {
     const letters1 = document.getElementById('letters')
 
     if (letters1) {
       const inner = letters1.innerHTML
       letters1.innerHTML = ''
-      inner.split('').forEach(el => {
+      inner.trim().split('').forEach(el => {
         const div = document.createElement('div')
         div.innerHTML = el
         letters1.appendChild(div)
       })
 
+      
       letterAnim = gsap.timeline({
         repeat: -1,
       }),
+      
         dur = 20,
         each = dur * 0.01
 
 
       function letters() {
         [...letters1.children].forEach((char, i) => {
-          let timeOffset = i * each / 1.43,
+          let timeOffset = i * each / 1.44,
             startTime = dur / 2 + timeOffset,
             pathOffset = startTime / dur;
 
@@ -239,9 +247,10 @@ document.addEventListener("DOMContentLoaded", () => {
               start: pathOffset,
               end: 1 + pathOffset
             },
+            stagger: 0.01,
             immediateRender: false,
             lazy: true,
-            duration: 15,
+            duration: 20,
             ease: "none",
           }, 0);
         });
@@ -251,8 +260,126 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function initTitle() {
+    const title = document.getElementById('title')
+    if (title) {
+      const tl = gsap.timeline();
+  
+      tl.to(".main-title .line span", {
+        attr: {style: "transform: translate3d(0, 0, 0)"},
+        stagger: {
+          amount: 0.3
+        }
+      })
+      .to('.main-btn', {
+        onComplete: function () {
+          if (this._targets.length) {
+            this._targets.forEach(el => {
+              el.classList.add('loaded')
+            })
+          }
+        }
+      })
+    }
+  }
 
+  const smenuSwiper = document.querySelectorAll('.smenu-swiper-wrapper')
+  if (smenuSwiper.length) {
+    smenuSwiper.forEach(el => {
+      const swiper = el.querySelector('.swiper')
+      if (swiper) {
+        new Swiper(swiper, {
+          slidesPerView: 'auto',
+          effect: 'creative',
+          spaceBetween: 60,
+          creativeEffect: {
+            limitProgress: 4,
+            perspective: false,
+            prev: {
+              translate: ['-100%', 0, 0],
+            },
+            next: {
+              translate: ['100%', 0, -400],
+            },
+          },
+        })
+      }
+    })
+  }
 
+  const smenuMainSwiper = document.querySelectorAll('.smenu-mainSwiper-wrapper')
+  if (smenuMainSwiper.length) {
+    smenuMainSwiper.forEach(el => {
+      const swiper = el.querySelector('.swiper')
+      if (swiper) {
+        new Swiper(swiper, {
+          slidesPerView: 'auto',
+        })
+      }
+    })
+  }
+
+  const items = document.querySelectorAll('.smenu-item')
+
+  if (items.length) {
+    items.forEach(el => {
+      const inp = el.querySelector('.plusminus-input');
+      const price = el.querySelector('[data-price]')
+      const initialPrice = price?.innerHTML || 1; 
+      if (inp && price) {
+        inp.addEventListener('input', inputHandler);
+        inp.addEventListener('change', inputHandler);
+  
+        inp.addEventListener('blur', function () {
+          if (+inp.value <= +inp.dataset?.min) {
+            inp.value = inp.dataset.min;
+          }
+          this.dispatchEvent(new Event('change'));
+        })
+  
+        inputHandler.apply(inp);
+      }
+  
+      function inputHandler() {
+        inp.value = Math.abs(inp.value.replace(/[^0-9]/g, '')) || ''
+        if (+inp.value >= +inp.dataset?.max) {
+          inp.value = inp.dataset.max;
+        }
+        price.innerHTML = initialPrice * (inp.value || 1)
+      }
+
+      const plus = el.querySelector('[data-plus]')
+      if (plus) {
+        plus.onclick = function () {
+  
+          if (inp) {
+            if (+inp.value >= +inp.dataset?.max) {
+              inp.value = inp.dataset.max;
+              inp.dispatchEvent(new Event('change'));
+              return;
+            }
+  
+            inp.value = Number(inp.value) + +inp.dataset?.step || 1;
+            inp.dispatchEvent(new Event('change'));
+          }
+        }
+      }
+      const minus = el.querySelector('[data-minus]')
+      if (minus) {
+        minus.onclick = function () {
+          if (inp) {
+            if (+inp.value <= +inp.dataset?.min) {
+              inp.value = inp.dataset.min;
+              inp.dispatchEvent(new Event('change'));
+              return;
+            }
+            inp.value -= inp.dataset?.step || 1;
+            inp.dispatchEvent(new Event('change'));
+          }
+        }
+      }
+    })
+  }
 });
 
 
