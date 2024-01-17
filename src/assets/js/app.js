@@ -223,11 +223,11 @@ document.addEventListener("DOMContentLoaded", () => {
         letters1.appendChild(div)
       })
 
-      
+
       letterAnim = gsap.timeline({
         repeat: -1,
       }),
-      
+
         dur = 20,
         each = dur * 0.01
 
@@ -264,45 +264,103 @@ document.addEventListener("DOMContentLoaded", () => {
     const title = document.getElementById('title')
     if (title) {
       const tl = gsap.timeline();
-  
+
       tl.to(".main-title .line span", {
-        attr: {style: "transform: translate3d(0, 0, 0)"},
+        attr: { style: "transform: translate3d(0, 0, 0)" },
         stagger: {
           amount: 0.3
         }
       })
-      .to('.main-btn', {
-        onComplete: function () {
-          if (this._targets.length) {
-            this._targets.forEach(el => {
-              el.classList.add('loaded')
-            })
+        .to('.main-btn', {
+          onComplete: function () {
+            if (this._targets.length) {
+              this._targets.forEach(el => {
+                el.classList.add('loaded')
+              })
+            }
           }
-        }
-      })
+        })
     }
   }
 
-  const smenuSwiper = document.querySelectorAll('.smenu-swiper-wrapper')
-  if (smenuSwiper.length) {
-    smenuSwiper.forEach(el => {
-      const swiper = el.querySelector('.swiper')
-      if (swiper) {
-        new Swiper(swiper, {
-          slidesPerView: 'auto',
-          effect: 'creative',
-          spaceBetween: 60,
-          creativeEffect: {
-            limitProgress: 4,
-            perspective: false,
-            prev: {
-              translate: ['-100%', 0, 0],
-            },
-            next: {
-              translate: ['100%', 0, -400],
-            },
-          },
-        })
+  function pad(num, size) {
+    var s = "000000000" + num;
+    return s.substr(s.length - size);
+  }
+
+  const smenus = document.querySelectorAll('.smenu')
+
+  if (smenus.length) {
+    smenus.forEach(smenu => {
+
+      const outerSwipers = smenu.querySelector('.smenu-outer-swiper')
+      let outer = null
+      thumbs = null
+      if (outerSwipers) {
+
+        const smenuSwiper = document.querySelector('.smenu-swiper-wrapper')
+        if (smenuSwiper) {
+          const swiper = smenuSwiper.querySelector('.swiper')
+          const wrapper = smenuSwiper.querySelector('.swiper-wrapper')
+          const outerCategory = outerSwipers.querySelectorAll('.smeny-copy-category')
+          if (outerCategory.length) {
+            outerCategory.forEach(category => {
+              const slide = document.createElement('div')
+              slide.classList.add('swiper-slide')
+              slide.innerHTML = category.innerHTML
+              wrapper.appendChild(slide)
+            })
+          }
+          const next = smenuSwiper.querySelector('.next')
+          const prev = smenuSwiper.querySelector('.prev')
+          const numberOfSlides = smenuSwiper.querySelectorAll('.swiper-slide') || []
+          if (swiper) {
+            outer = new Swiper(outerSwipers, {
+              loop: false,
+              slidesPerView: 'auto',
+              spaceBetween: 0,
+            })
+            thumbs = new Swiper(swiper, {
+              slidesPerView: 4,
+              loop: numberOfSlides.length >= 4,
+              slideToClickedSlide: true,
+              spaceBetween: 0,
+              grabCursor: true,
+              navigation: {
+                nextEl: next,
+                prevEl: prev,
+              },
+              on: {
+                slideChange: function () {
+                  const index = this.slides[this.activeIndex].dataset.swiperSlideIndex
+                  outer.enable()
+                  outer.slideTo(index, 500)
+                  outer.disable()
+                }
+              }
+            })
+
+            if (numberOfSlides.length < 4 && outer) {
+              numberOfSlides.forEach((el, i) => {
+                el.addEventListener('click', function () {
+                  outer.enable()
+                  outer.slideTo(i, 500)
+                  outer.disable()
+                  numberOfSlides.forEach(slide => {
+                    slide.classList.remove('swiper-slide-active')
+                  })
+                  this.classList.add('swiper-slide-active')
+                })
+              })
+            }
+            setTimeout(() => {
+              swiper.classList.add('loaded')
+            }, 100)
+          }
+        }
+        if (outer && thumbs) {
+          outer.disable()
+        }
       }
     })
   }
@@ -311,13 +369,64 @@ document.addEventListener("DOMContentLoaded", () => {
   if (smenuMainSwiper.length) {
     smenuMainSwiper.forEach(el => {
       const swiper = el.querySelector('.swiper')
+      const numberOfSlides = el.querySelectorAll('.swiper-slide') || []
+      const allNumbers = el.querySelector('.smenu-main-number');
+      const allnumb = el.querySelector('.smenu-all-number');
+      const prev = el.querySelector('.prev')
+      const next = el.querySelector('.next')
+      let reachEnd = false
+      let reachBeginning = true
       if (swiper) {
         new Swiper(swiper, {
           slidesPerView: 'auto',
+          grabCursor: true,
+          navigation: {
+            prevEl: prev,
+            nextEl: next,
+          },
+          on: {
+            init: function (sw) {
+              if (allNumbers && allnumb) {
+                allNumbers.classList.add('reached')
+                reachBeginning = false
+                allNumbers.innerHTML = pad(sw.realIndex + 1, 2);
+                allnumb.innerHTML = pad(numberOfSlides.length - 1, 2)
+              }
+            },
+            slideChange: function (sw) {
+              if (allNumbers && allnumb) {
+                if (reachBeginning) {
+                  allNumbers.classList.add('reached')
+                } else {
+                  allNumbers.classList.remove('reached')
+                }
+
+                if (reachEnd) {
+                  allnumb.classList.add('reached')
+                } else {
+                  allnumb.classList.remove('reached')
+                }
+
+                allNumbers.innerHTML = pad(sw.realIndex + 1, 2);
+                allnumb.innerHTML = pad(numberOfSlides.length - 1, 2)
+
+                reachBeginning = false
+                reachEnd = false
+              }
+            },
+            reachBeginning: function () {
+              reachBeginning = true
+            },
+            reachEnd: function () {
+              reachEnd = true
+            }
+          },
         })
       }
     })
   }
+
+
 
   const items = document.querySelectorAll('.smenu-item')
 
@@ -325,21 +434,21 @@ document.addEventListener("DOMContentLoaded", () => {
     items.forEach(el => {
       const inp = el.querySelector('.plusminus-input');
       const price = el.querySelector('[data-price]')
-      const initialPrice = price?.innerHTML || 1; 
+      const initialPrice = price?.innerHTML || 1;
       if (inp && price) {
         inp.addEventListener('input', inputHandler);
         inp.addEventListener('change', inputHandler);
-  
+
         inp.addEventListener('blur', function () {
           if (+inp.value <= +inp.dataset?.min) {
             inp.value = inp.dataset.min;
           }
           this.dispatchEvent(new Event('change'));
         })
-  
+
         inputHandler.apply(inp);
       }
-  
+
       function inputHandler() {
         inp.value = Math.abs(inp.value.replace(/[^0-9]/g, '')) || ''
         if (+inp.value >= +inp.dataset?.max) {
@@ -351,14 +460,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const plus = el.querySelector('[data-plus]')
       if (plus) {
         plus.onclick = function () {
-  
+
           if (inp) {
             if (+inp.value >= +inp.dataset?.max) {
               inp.value = inp.dataset.max;
               inp.dispatchEvent(new Event('change'));
               return;
             }
-  
+
             inp.value = Number(inp.value) + +inp.dataset?.step || 1;
             inp.dispatchEvent(new Event('change'));
           }
@@ -380,6 +489,77 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
   }
+
+  const callback = (entries) => {
+
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('loaded')
+      } else {
+        entry.target.classList.remove('loaded')
+      }
+    })
+
+  };
+
+
+  const observer = new IntersectionObserver(callback, { rootMargin: '-50px' });
+
+  setTimeout(() => {
+
+    const target = document.querySelectorAll('[data-animonscroll]');
+    if (target.length) {
+      target.forEach(el => {
+        if (xl.matches) {
+          el.classList.add('loaded')
+        } else {
+          observer.observe(el);
+        }
+      })
+    }
+  }, 0)
+
+  setTimeout(() => {
+    const galleryWrapper = document.querySelector('.mgallery-wrapper')
+    if (galleryWrapper) {
+      const mob = document.querySelector('.mgallery-swiper-mob')
+      const desc = document.querySelector('.mgallery-swiper-desc')
+
+      const slides = mob.querySelectorAll('.swiper-slide')
+      if (desc) {
+        const wrapper = document.createElement('div')
+        wrapper.classList.add('swiper-wrapper')
+        desc.appendChild(wrapper)
+        let count = 1;
+        let arr = []
+
+        slides.forEach(slide => {
+          const imgWrapper = document.createElement('div')
+          imgWrapper.classList.add('img-cover')
+          imgWrapper.innerHTML = slide.innerHTML
+          arr.push(slide)
+          if (count === 1) {
+            const swiperSlide = document.createElement('div')
+            swiperSlide.classList.add('swiper-slide')
+            wrapper.appendChild(swiperSlide)
+            console.log(arr)
+            arr = []
+            count = 1
+          }
+          count++
+        })
+      }
+      if (mob && xl.matches) {
+        new Swiper(mob, {
+        })
+      } 
+      if (desc && !xl.matches) {
+        new Swiper(desc, {
+        })
+      }
+    }
+  }, 0)
+
 });
 
 

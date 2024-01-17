@@ -2,9 +2,22 @@
 
 @import "vars";
 
-@import './blocks/menu.scss';
-
 @import './blocks/swiper.scss';
+
+.container {
+  padding-right: 24rem;
+  padding-left: 24rem;
+  @include breakpoint($xl-bp) {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+  @include breakpoint($sm-bp) {
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+  }
+}
+
+@import './blocks/menu.scss';
 
 @import './blocks/main.scss';
 
