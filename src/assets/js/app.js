@@ -384,6 +384,8 @@ document.addEventListener("DOMContentLoaded", () => {
             prevEl: prev,
             nextEl: next,
           },
+          preloadImages: false,
+          lazy: true,
           on: {
             init: function (sw) {
               if (allNumbers && allnumb) {
@@ -542,7 +544,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const swiperSlide = document.createElement('div')
             swiperSlide.classList.add('swiper-slide')
             wrapper.appendChild(swiperSlide)
-            console.log(arr)
             arr = []
             count = 1
           }
