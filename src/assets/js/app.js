@@ -208,9 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return wrapper;
   }
 
-  // gsap.ticker.lagSmoothing(1000, 16);
-  // gsap.ticker.fps(30);
-
   function initLetters() {
     const letters1 = document.getElementById('letters')
 
@@ -304,12 +301,26 @@ document.addEventListener("DOMContentLoaded", () => {
           const wrapper = smenuSwiper.querySelector('.swiper-wrapper')
           const outerCategory = outerSwipers.querySelectorAll('.smeny-copy-category')
           if (outerCategory.length) {
-            outerCategory.forEach(category => {
+            let isLooped = false
+            outerCategory.forEach((category, i) => {
               const slide = document.createElement('div')
               slide.classList.add('swiper-slide')
               slide.innerHTML = category.innerHTML
+              slide.dataset.slideid=i
               wrapper.appendChild(slide)
+              if (i === 3) {
+                isLooped = true
+              }
             })
+            if (isLooped === true) {
+              outerCategory.forEach((category, i) => {
+                const slide = document.createElement('div')
+                slide.classList.add('swiper-slide')
+                slide.innerHTML = category.innerHTML
+                slide.dataset.slideid=i
+                wrapper.appendChild(slide)
+              })
+            }
           }
           const next = smenuSwiper.querySelector('.next')
           const prev = smenuSwiper.querySelector('.prev')
@@ -319,6 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
               loop: false,
               slidesPerView: 'auto',
               spaceBetween: 0,
+              speed: 500,
             })
             thumbs = new Swiper(swiper, {
               slidesPerView: 4,
@@ -326,15 +338,16 @@ document.addEventListener("DOMContentLoaded", () => {
               slideToClickedSlide: true,
               spaceBetween: 0,
               grabCursor: true,
+              speed: 500,
               navigation: {
                 nextEl: next,
                 prevEl: prev,
               },
               on: {
                 slideChange: function () {
-                  const index = this.slides[this.activeIndex].dataset.swiperSlideIndex
+                  const index = this.slides[this.activeIndex].dataset.slideid
                   outer.enable()
-                  outer.slideTo(index, 500)
+                  outer.slideTo(index, 700)
                   outer.disable()
                 }
               }
@@ -380,6 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
         new Swiper(swiper, {
           slidesPerView: 'auto',
           grabCursor: true,
+          speed: 500,
           navigation: {
             prevEl: prev,
             nextEl: next,
@@ -498,7 +512,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (entry.isIntersecting) {
         entry.target.classList.add('loaded')
       } else {
-        entry.target.classList.remove('loaded')
+        // entry.target.classList.remove('loaded')
       }
     })
 
@@ -532,30 +546,78 @@ document.addEventListener("DOMContentLoaded", () => {
         const wrapper = document.createElement('div')
         wrapper.classList.add('swiper-wrapper')
         desc.appendChild(wrapper)
-        let count = 1;
-        let arr = []
-
+        let count = 0;
+        let swiperSlide = null
         slides.forEach(slide => {
-          const imgWrapper = document.createElement('div')
-          imgWrapper.classList.add('img-cover')
-          imgWrapper.innerHTML = slide.innerHTML
-          arr.push(slide)
-          if (count === 1) {
-            const swiperSlide = document.createElement('div')
+          if (count % 5 === 0) {
+            swiperSlide = document.createElement('div')
             swiperSlide.classList.add('swiper-slide')
             wrapper.appendChild(swiperSlide)
-            arr = []
-            count = 1
           }
+          const imgWrap = document.createElement('div')
+          imgWrap.classList.add('img-cover', 'img-wrap')
+          imgWrap.innerHTML = slide.innerHTML
+          swiperSlide.appendChild(imgWrap)
           count++
         })
       }
       if (mob && xl.matches) {
         new Swiper(mob, {
         })
-      } 
+      }
       if (desc && !xl.matches) {
+        const numberOfSlides = galleryWrapper.querySelectorAll('.mgallery-swiper-wrapper .swiper-slide') || []
+        const allNumbers = galleryWrapper.querySelector('.mgallery-swiper-wrapper .smenu-main-number');
+        const allnumb = galleryWrapper.querySelector('.mgallery-swiper-wrapper .smenu-all-number');
+        const prev = galleryWrapper.querySelector('.mgallery-swiper-wrapper .prev')
+        const next = galleryWrapper.querySelector('.mgallery-swiper-wrapper .next')
+        let reachEnd = false
+        let reachBeginning = true
         new Swiper(desc, {
+          speed: 500,
+          slidesPerView: 'auto',
+          grabCursor: true,
+          navigation: {
+            nextEl: next,
+            prevEl: prev,
+          },
+          on: {
+            init: function (sw) {
+              if (allNumbers && allnumb) {
+                allNumbers.classList.add('reached')
+                reachBeginning = false
+                allNumbers.innerHTML = pad(sw.realIndex + 1, 2);
+                allnumb.innerHTML = pad(numberOfSlides.length, 2)
+              }
+            },
+            slideChange: function (sw) {
+              if (allNumbers && allnumb) {
+                if (reachBeginning) {
+                  allNumbers.classList.add('reached')
+                } else {
+                  allNumbers.classList.remove('reached')
+                }
+
+                if (reachEnd) {
+                  allnumb.classList.add('reached')
+                } else {
+                  allnumb.classList.remove('reached')
+                }
+
+                allNumbers.innerHTML = pad(sw.realIndex + 1, 2);
+                allnumb.innerHTML = pad(numberOfSlides.length, 2)
+
+                reachBeginning = false
+                reachEnd = false
+              }
+            },
+            reachBeginning: function () {
+              reachBeginning = true
+            },
+            reachEnd: function () {
+              reachEnd = true
+            }
+          },
         })
       }
     }

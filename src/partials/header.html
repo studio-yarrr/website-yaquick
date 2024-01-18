@@ -1,23 +1,25 @@
 <header class="header container">
+  <button class="menu-button" aria-label="open menu">
+    <span class="burger-button-close">
+      <span id="first-line-burger"></span>
+      <span id="second-line-burger"></span>
+      <span id="third-line-burger"></span>
+    </span>
+  </button>
+
   {{> menu}}
 
   <div class="header-right">
     <a href="main.html" class="header-logo-1 img-contain">
       <img src="./assets/images/logo/1.svg" alt="яква">
     </a>
-  
+
     <a href="main.html" class="header-logo-2 img-contain">
       <img src="./assets/images/logo/2.svg" alt="я quick">
     </a>
-  
-    <a href="basket.html" class="bag" aria-label="open basket"><svg><use xlink:href='./assets/images/sprite.svg#bag'></use></svg></a>
-  </div>
 
-  <button class="menu-button" aria-label="open menu">
-    <span class="burger-button-close">
-      <span id="first-line-burger"></span>
-      <span id="second-line-burger"></span>
-      <span id="third-line-burger"></span>
-  </span>
-  </button>
+    <a href="basket.html" class="bag" aria-label="open basket"><svg>
+        <use xlink:href='./assets/images/sprite.svg#bag'></use>
+      </svg></a>
+  </div>
 </header>

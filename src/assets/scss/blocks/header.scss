@@ -46,6 +46,7 @@
   height: 4rem;
   display: block;
   stroke: var(--black);
+  fill: transparent;
   @media (hover: hover) and (pointer: fine) {
   &:hover {
     stroke: var(--orange);

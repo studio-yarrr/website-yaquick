@@ -5,6 +5,10 @@
   row-gap: 0;
   padding-right: 0;
   margin-top: 12.1rem;
+  @include breakpoint($xl-bp) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .main-block {
@@ -38,7 +42,10 @@
   font-weight: 300;
   line-height: 11rem;
   margin-top: 2.6rem;
-
+  @include breakpoint($xl-bp) {
+    font-size: 6.4rem;
+    line-height: normal;
+  }
   .line {
     position: relative;
     overflow: hidden;
@@ -286,8 +293,8 @@ input[type=number] {
 .smenu {
   position: relative;
   overflow: hidden;
-  padding-top: 18rem;
-  margin-top: 11rem;
+  padding-top: 15.5rem;
+  margin-top: 13.5rem;
 }
 
 .smenu-swiper-wrapper {
@@ -297,7 +304,7 @@ input[type=number] {
   padding-left: 12rem;
   padding-right: 22rem;
   width: 106rem;
-
+  height: 28.6rem;
   &::before {
     content: '';
     width: 92.3rem;
@@ -321,7 +328,7 @@ input[type=number] {
 
 .smenu-mimg {
   width: 100%;
-  height: 28.6rem;
+  height: 23.6rem;
   transform: scale3d(0.8, 0.8, 0.8);
   transition: transform .3s;
 }
@@ -356,7 +363,7 @@ input[type=number] {
       }
 
       .smenu-type {
-        transform: translate3d(0, -3.5rem, 0);
+        transform: translate3d(0, -0.5rem, 0);
       }
     }
   }
@@ -370,7 +377,7 @@ input[type=number] {
   font-weight: 300;
   line-height: normal;
   position: relative;
-  transform: translate3d(0, -10rem, 0);
+  transform: translate3d(0, -6rem, 0);
   transition: transform .3s;
 }
 
@@ -383,6 +390,7 @@ input[type=number] {
   line-height: normal;
   opacity: 0.3;
   text-align: center;
+  margin-left: 22rem;
 }
 
 .swiper-arrow {
@@ -460,7 +468,7 @@ input[type=number] {
   }
 }
 
-.smenu-navigation {
+.swiper-navigation {
   color: var(--black, #242021);
   font-size: 2rem;
   font-style: normal;
@@ -470,6 +478,9 @@ input[type=number] {
   align-items: center;
   justify-content: center;
   gap: 2rem;
+}
+
+.smenu-navigation {
   margin-top: 4rem;
 }
 
@@ -486,6 +497,9 @@ input[type=number] {
   font-style: normal;
   font-weight: 800;
   line-height: normal;
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
 }
 
 .smenu-line {
@@ -631,12 +645,17 @@ img.lazyload {
   gap: 3.8rem;
   align-items: center;
   margin-top: 4rem;
+  @include breakpoint($xl-bp) {
+    flex-direction: column;
+  }
 }
 
 .mabout-left {
   height: 36rem;
   width: 66.5rem;
   border-radius: 20rem;
+  background-color: #EE2128;
+  max-width: 100%;
 }
 
 .mabout-center {
@@ -656,6 +675,7 @@ img.lazyload {
 .mabout-right {
   height: 36rem;
   width: 36rem;
+  max-width: 100%;
 }
 
 .mabout-bot {
@@ -663,6 +683,10 @@ img.lazyload {
   justify-content: space-between;
   gap: 4rem;
   margin-top: 8rem;
+  @include breakpoint($xl-bp) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .mabout-logos {
@@ -686,6 +710,9 @@ img.lazyload {
 .mabout-texts {
   display: flex;
   gap: 12.6rem;
+  @include breakpoint($xl-bp) {
+    flex-direction: column;
+  }
 }
 
 .mabout-text {
@@ -707,18 +734,20 @@ img.lazyload {
     padding: 4rem;
     height: auto;
 
-    &:first-child {
+    &:nth-child(5n + 1) {
       grid-column: 4 span;
     }
-
-    &:nth-child(2) {
+    &:nth-child(5n + 2) {
       grid-column: 4 span;
     }
-    &:nth-child(3) {
+    &:nth-child(5n + 3) {
       grid-column: 3 span;
     }
-    &:nth-child(4) {
+    &:nth-child(5n + 4) {
       grid-column: 3 span;
+    }
+    &:nth-child(5n + 5) {
+      grid-column: 2 span;
     }
   }
 }
@@ -726,6 +755,7 @@ img.lazyload {
 .last-img {
   grid-column: 2 span;
   border-radius: 18.5rem;
+  background-color: #F8F8F8;
 }
 
 .mrent-subtitle {
@@ -743,4 +773,174 @@ img.lazyload {
 
 .mgallery-swiper-mob {
   display: none;
+  @include breakpoint($xl-bp) {
+    display: block;
+  }
+}
+
+.mgallery-swiper-desc {
+  margin-top: 4rem;
+  min-height: 67.9rem;
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
+  .swiper-slide {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2rem;
+    width: 100%;
+    margin-right: 24rem;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.img-wrap {
+  border-radius: 4rem;
+  background-color: #F8F8F8;
+  height: 31.7rem;
+  &:nth-child(5n + 1) {
+    grid-column: 4 span;
+    height: 34.2rem;
+  }
+  &:nth-child(5n + 2) {
+    grid-column: 4 span;
+    height: 34.2rem;
+  }
+  &:nth-child(5n + 3) {
+    grid-column: 3 span;
+  }
+  &:nth-child(5n + 4) {
+    grid-column: 3 span;
+  }
+  &:nth-child(5n + 5) {
+    grid-column: 2 span;
+  }
+}
+
+.mgallery-desc-navigation {
+  margin-top: 8rem;
+}
+
+.map {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4rem;
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+.mcontacts-map {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  height: 47.8rem;
+  background-color: var(--grey);
+}
+
+.mcontacts-block {
+  display: grid;
+  grid-template-columns: 40rem 1fr;
+  gap: 4rem;
+  margin-top: 4rem;
+  @include breakpoint($xl-bp) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.mcontacts-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: 5rem;
+}
+
+.mcontacts-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.mcontacts-name {
+  font-size: 2.4rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.mcontacts-socials {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 4rem;
+}
+
+.mcontacts-social {
+  a {
+    width: 4rem;
+    height: 4rem;
+    display: block;
+    @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      svg {
+        stroke: var(--orange);
+      }
+    }
+    }
+  }
+  svg {
+    fill: transparent;
+    stroke: var(--black);
+  }
+
+  &.telegram {
+    a {
+      @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        svg {
+          fill: var(--orange);
+          stroke: transparent;
+        }
+      }
+      }
+    }
+    svg {
+      fill: var(--black);
+      stroke: transparent;
+    }
+  }
+
+  &.whatsapp {
+    a {
+      @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        svg {
+          fill: transparent;
+          stroke: var(--orange);
+        }
+      }
+      }
+    }
+    svg {
+      fill: transparent;
+      stroke: var(--black); 
+    }
+  }
+}
+
+.mt-80 {
+  margin-top: 8rem;
+}
+
+a.mcontacts-link {
+  transition: color .3s;
+  @media (hover: hover) and (pointer: fine) {
+  &:hover {
+    color: var(--orange);
+  }
+  }
 }

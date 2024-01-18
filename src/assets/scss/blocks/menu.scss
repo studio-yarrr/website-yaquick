@@ -1,5 +1,8 @@
 .menu {
   padding-top: 0.7rem;
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
 }
 
 .menu-list {
