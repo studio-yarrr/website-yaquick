@@ -8,6 +8,7 @@
   @include breakpoint($xl-bp) {
     display: flex;
     flex-direction: column;
+    margin-top: 0;
   }
 }
 
@@ -50,6 +51,8 @@
   overflow: hidden;
   @include breakpoint($xl-bp) {
     padding-left: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }
 
@@ -64,6 +67,7 @@
   @include breakpoint($xl-bp) {
     font-size: 6.4rem;
     line-height: normal;
+    margin-top: 0;
   }
   .line {
     position: relative;
@@ -131,7 +135,10 @@
   transform: translate3d(-50%, -50%, 0);
   height: 100%;
   @include breakpoint($xl-bp) {
-    width: 200%;
+    width: 100rem;
+    height: calc(100% - 1rem);
+    top: calc(50% + 0.1rem);
+    left: calc(50% + 9rem);
   }
 }
 
@@ -696,7 +703,6 @@ img.lazyload {
   height: 36rem;
   width: 66.5rem;
   border-radius: 20rem;
-  background-color: #EE2128;
   max-width: 100%;
 }
 
@@ -718,6 +724,11 @@ img.lazyload {
   height: 36rem;
   width: 36rem;
   max-width: 100%;
+  border-radius: 100%;
+  img {
+    width: 102%;
+    height: 102%;
+  }
 }
 
 .mabout-bot {
