@@ -1,7 +1,16 @@
 .menu {
   padding-top: 0.7rem;
   @include breakpoint($xl-bp) {
-    display: none;
+    transform: translate3d(-100%, 0, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: var(--white);
+    transition: transform .3s;
+    width: 100%;
+    padding-top: 6.4rem;
+    padding-left: 2rem;
   }
 }
 
@@ -13,6 +22,12 @@
   font-style: normal;
   font-weight: 800;
   line-height: normal;
+  @include breakpoint($xl-bp) {
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
+    gap: 2rem;
+  }
 }
 
 .menu-subbtn {
@@ -114,19 +129,23 @@
 }
 
 .menu--open {
-  transform: translateX(0);
+  transform: translate3d(0, 0, 0);
 }
 
 .menu-button {
-  width: 4rem;
-  height: 3.4rem;
   background-color: transparent;
   border: 0;
 
   z-index: 4;
   display: none;
   position: relative;
-
+  @include breakpoint($xl-bp) {
+    display: block;
+    height: 1.6rem;
+    width: 1.9rem;
+    margin-top: 0.4rem;
+    margin-left: 0.3rem;
+  }
   .burger-button-close {
 
     #first-line-burger,
@@ -148,22 +167,14 @@
       top: 0%;
     }
 
+    #second-line-burger {
+      transform: translate3d(-50%, -50%, 0);
+    }
+
     #third-line-burger {
       top: unset;
       bottom: 0%;
     }
-  }
-
-  @include breakpoint($xl-bp) {
-    display: block;
-    margin-left: 3rem;
-  }
-
-  @include breakpoint($sm-bp) {
-    margin-left: 0;
-    width: 2rem;
-    height: 2rem;
-    margin-right: 0.5rem;
   }
 }
 

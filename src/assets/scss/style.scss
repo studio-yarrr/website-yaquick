@@ -38,6 +38,9 @@ body {
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+  @include breakpoint($xl-bp) {
+    font-size: 1.6rem;
+  }
 }
 
 img {
@@ -113,6 +116,10 @@ svg {
   gap: 1rem;
   width: max-content;
   max-width: 100%;
+  @include breakpoint($xl-bp) {
+    font-size: 1.6rem;
+    padding: 1rem 3.15rem;
+  }
   @media (hover: hover) and (pointer: fine) {
   &:hover {
     &::after {
@@ -147,6 +154,7 @@ h2, .h2 {
   letter-spacing: -0.234rem;
   @include breakpoint($xl-bp) {
     font-size: 3.8rem;
+    letter-spacing: -0.114rem;
   }
 }
 

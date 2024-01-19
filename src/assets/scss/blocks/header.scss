@@ -11,10 +11,16 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   background-color: var(--white);
+  @include breakpoint($xl-bp) {
+    will-change: auto; 
+  }
 }
 
 .out {
   transform: translate3d(0, calc(-100% - 1rem), 0);
+  @include breakpoint($xl-bp) {
+    transform: none;
+  }
 }
 
 .header--active {
@@ -26,12 +32,27 @@
 
 .header-right {
   display: flex;
+  @include breakpoint($xl-bp) {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.header-logoes {
+  display: flex;
+  @include breakpoint($xl-bp) {
+    margin-top: -0.2rem;
+  }
 }
 
 .header-logo-1 {
   width: 6.93rem;
   height: 4rem;
   margin-right: 2rem;
+  @include breakpoint($xl-bp) {
+    height: 2.2rem;
+    width: 3.8rem;
+  }
 }
 
 .header-logo-2 {
@@ -39,6 +60,12 @@
   height: 3.6rem;
   margin-right: 4rem;
   margin-top: 0.4rem;
+  @include breakpoint($xl-bp) {
+    width: 7.9rem;
+    height: 2rem;
+    margin-top: 0.1rem;
+    margin-right: 0;
+  }
 }
 
 .bag {
@@ -47,6 +74,39 @@
   display: block;
   stroke: var(--black);
   fill: transparent;
+  position: relative;
+  @include breakpoint($xl-bp) {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+  &:before {
+    content: attr(data-count);
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: var(--white, #FFF);
+    font-family: Gilroy;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    background-color: var(--orange);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border: 0.2rem solid var(--white);
+    @include breakpoint($xl-bp) {
+      font-size: 1.2rem;
+      font-weight: 500;
+      width: 2rem;
+      height: 2rem;
+      top: -0.5rem;
+      right: -1rem;
+    }
+  }
   @media (hover: hover) and (pointer: fine) {
   &:hover {
     stroke: var(--orange);

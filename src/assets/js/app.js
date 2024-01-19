@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener('load', function () {
     setTimeout(() => {
-      const letters1 = document.getElementById('letters')
+      const letters1 = xl.matches ? document.getElementById('letters-mob') : document.getElementById('letters')
 
       if (letters1) {
         letters1.classList.add('loaded')
@@ -209,11 +209,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function initLetters() {
-    const letters1 = document.getElementById('letters')
+    const letters1 = xl.matches ? document.getElementById('letters-mob') : document.getElementById('letters')
 
     if (letters1) {
       const inner = letters1.innerHTML
       letters1.innerHTML = ''
+      const factor = xl.matches ? 0.013 : 0.01
       inner.trim().split('').forEach(el => {
         const div = document.createElement('div')
         div.innerHTML = el
@@ -225,31 +226,31 @@ document.addEventListener("DOMContentLoaded", () => {
         repeat: -1,
       }),
 
-        dur = 20,
-        each = dur * 0.01
+        dur = 1,
+        each = dur * factor
 
 
       function letters() {
         [...letters1.children].forEach((char, i) => {
-          let timeOffset = i * each / 1.44,
+          let timeOffset = i * each / 1.45,
             startTime = dur / 2 + timeOffset,
             pathOffset = startTime / dur;
+              letterAnim.to(char, {
+                motionPath: {
+                  path: '#m',
+                  align: '#m',
+                  alignOrigin: [0.5, 0.5],
+                  autoRotate: true,
+                  start: pathOffset,
+                  end: 1 + pathOffset
+                },
+                stagger: 0.01,
+                immediateRender: false,
+                lazy: true,
+                duration: 20,
+                ease: "none",
+              }, 0);
 
-          letterAnim.to(char, {
-            motionPath: {
-              path: '#m',
-              align: '#m',
-              alignOrigin: [0.5, 0.5],
-              autoRotate: true,
-              start: pathOffset,
-              end: 1 + pathOffset
-            },
-            stagger: 0.01,
-            immediateRender: false,
-            lazy: true,
-            duration: 20,
-            ease: "none",
-          }, 0);
         });
       }
       window.addEventListener("resize", letters);
@@ -333,12 +334,18 @@ document.addEventListener("DOMContentLoaded", () => {
               speed: 500,
             })
             thumbs = new Swiper(swiper, {
-              slidesPerView: 4,
+              slidesPerView: 3,
               loop: numberOfSlides.length >= 4,
               slideToClickedSlide: true,
               spaceBetween: 0,
               grabCursor: true,
               speed: 500,
+              breakpoints: {
+                // when window width is >= 320px
+                501: {
+                  slidesPerView: 4,
+                },
+              },
               navigation: {
                 nextEl: next,
                 prevEl: prev,
@@ -562,7 +569,54 @@ document.addEventListener("DOMContentLoaded", () => {
         })
       }
       if (mob && xl.matches) {
+        const numberOfSlides = mob.querySelectorAll('.swiper-slide') || []
+        const allNumbers = mob.querySelector('.smenu-main-number');
+        const allnumb = mob.querySelector('.smenu-all-number');
+        const prev = mob.querySelector('.prev')
+        const next = mob.querySelector('.next')
         new Swiper(mob, {
+          slidesPerView: 'auto',
+          navigation: {
+            prevEl: prev,
+            nextEl: next,
+          },
+          on: {
+            init: function (sw) {
+              if (allNumbers && allnumb) {
+                allNumbers.classList.add('reached')
+                reachBeginning = false
+                allNumbers.innerHTML = pad(sw.realIndex + 1, 2);
+                allnumb.innerHTML = pad(numberOfSlides.length, 2)
+              }
+            },
+            slideChange: function (sw) {
+              if (allNumbers && allnumb) {
+                if (reachBeginning) {
+                  allNumbers.classList.add('reached')
+                } else {
+                  allNumbers.classList.remove('reached')
+                }
+
+                if (reachEnd) {
+                  allnumb.classList.add('reached')
+                } else {
+                  allnumb.classList.remove('reached')
+                }
+
+                allNumbers.innerHTML = pad(sw.realIndex + 1, 2);
+                allnumb.innerHTML = pad(numberOfSlides.length, 2)
+
+                reachBeginning = false
+                reachEnd = false
+              }
+            },
+            reachBeginning: function () {
+              reachBeginning = true
+            },
+            reachEnd: function () {
+              reachEnd = true
+            }
+          },
         })
       }
       if (desc && !xl.matches) {
@@ -626,17 +680,58 @@ document.addEventListener("DOMContentLoaded", () => {
   var init = false;
   var swiper;
   function swiperCard() {
+    let reachEnd = false
+    let reachBeginning = true
     if (xl.matches) {
+      const numberOfSlides = document.querySelectorAll('.mrent-swiper .swiper-slide') || []
+      const allNumbers = document.querySelector('.mrent-swiper .smenu-main-number');
+      const allnumb = document.querySelector('.mrent-swiper .smenu-all-number');
+      const prev = document.querySelector('.mrent-swiper .prev')
+      const next = document.querySelector('.mrent-swiper .next')
       if (!init) {
         init = true;
         swiper = new Swiper(".mrent-swiper", {
-          direction: "horizontal",
           slidesPerView: "auto",
-          centeredSlides: true,
-          spaceBetween: 32,
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
+          navigation: {
+            prevEl: prev,
+            nextEl: next,
+          },
+          on: {
+            init: function (sw) {
+              if (allNumbers && allnumb) {
+                allNumbers.classList.add('reached')
+                reachBeginning = false
+                allNumbers.innerHTML = pad(sw.realIndex + 1, 2);
+                allnumb.innerHTML = pad(numberOfSlides.length - 1, 2)
+              }
+            },
+            slideChange: function (sw) {
+              if (allNumbers && allnumb) {
+                if (reachBeginning) {
+                  allNumbers.classList.add('reached')
+                } else {
+                  allNumbers.classList.remove('reached')
+                }
+
+                if (reachEnd) {
+                  allnumb.classList.add('reached')
+                } else {
+                  allnumb.classList.remove('reached')
+                }
+
+                allNumbers.innerHTML = pad(sw.realIndex + 1, 2);
+                allnumb.innerHTML = pad(numberOfSlides.length - 1, 2)
+
+                reachBeginning = false
+                reachEnd = false
+              }
+            },
+            reachBeginning: function () {
+              reachBeginning = true
+            },
+            reachEnd: function () {
+              reachEnd = true
+            }
           },
         });
       }
@@ -649,7 +744,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", swiperCard);
 
 
-  
+
   const scrolledObj = document.querySelectorAll('[data-scroll]');
 
   if (scrolledObj.length) {

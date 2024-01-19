@@ -16,11 +16,18 @@ title: Главная
       обеды фастфуд — обеды классик — обеды фастфуд — обеды классик — обеды фастфуд — обеды классик — обеды фастфуд — обеды классик — обеды фастфуд —
     </div>
 
+    <div id="letters-mob">
+      обеды фастфуд — обеды классик — обеды фастфуд — обеды классик — обеды фастфуд — обеды классик — обеды фастфуд —
+    </div>
+
     <svg class="svg-path" viewBox="0 0 1058 475" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path stroke="none" id="m" d="M1057.5 474H229.5C229.5 474 0.5 452.5 0.5 235C0.5 17.5 208.5 0.5 208.5 0.5H1057.5" />
     </svg>
     <div class="main-block img-cover">
-      <img src="./assets/images/main/bg.png" alt="bg">
+      <picture>
+        <source srcset="./assets/images/main/bg-sm.png" media="(max-width:500px)">
+        <img src="./assets/images/main/bg.png" alt="bg">
+      </picture>
     </div>
   </div>
 
@@ -136,6 +143,10 @@ title: Главная
 <section class="mrent container mt-160">
   <h2 class="h2 mrent-title" data-animonscroll="bottom">Аренда помещений</h2>
 
+  <div class="mrent-mobile img-cover">
+    <img class="lazyload" data-src="./assets/images/mrent/2.jpg" alt="mrent">
+  </div>
+
   <div class="swiper mrent-swiper">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -165,6 +176,11 @@ title: Главная
         <img class="lazyload" data-src="./assets/images/mrent/1.jpg" alt="mrent">
       </div>
     </div>
+
+    <div class="swiper-navigation mrent-navigation">
+      <button class="smenu-prev-button prev">Предыдущая</button>
+      <button class="smenu-next-button next">Следующая</button>
+    </div>
   </div>
 </section>
 
@@ -174,20 +190,22 @@ title: Главная
   <div class="mgallery-wrapper">
     <div class="swiper mgallery-swiper-mob container">
       <div class="swiper-wrapper">
-        @for(let i=1;i<=5;i++) { <div class="swiper-slide img-cover">
+        @for(let i=1;i<=5;i++) { 
+        <div class="swiper-slide img-cover">
           <img class="lazyload" data-src="./assets/images/mgallery/`+i+`.jpg" alt="mgallery">
+        </div>
+        }
+        @for(let i=1;i<=5;i++) { 
+        <div class="swiper-slide img-cover">
+          <img class="lazyload" data-src="./assets/images/mgallery/`+i+`.jpg" alt="mgallery">
+        </div>
+        }
       </div>
-      }
-      @for(let i=1;i<=5;i++) { <div class="swiper-slide img-cover">
-        <img class="lazyload" data-src="./assets/images/mgallery/`+i+`.jpg" alt="mgallery">
+      <div class="swiper-navigation mgallery-mob-navigation">
+        <button class="smenu-prev-button prev">Предыдущая</button>
+        <button class="smenu-next-button next">Следующая</button>
+      </div>
     </div>
-    }
-    <div class="swiper-navigation mgallery-mob-navigation">
-      <button class="smenu-prev-button prev">Предыдущая</button>
-      <button class="smenu-next-button next">Следующая</button>
-    </div>
-  </div>
-  </div>
   <div class="mgallery-swiper-wrapper">
     <div class="swiper mgallery-swiper-desc container">
     </div>
@@ -205,11 +223,18 @@ title: Главная
 </section>
 
 <section class="mcontacts container mt-160">
-  <h2 class="h2 mcontacts-title">Мы Здесь</h2>
+  <h2 class="h2 mcontacts-title">Мы <span class="first-letter">З</span>десь</h2>
 
   <div class="mcontacts-block">
     <div class="map mcontacts-map">
-      <a href="https://yandex.by/maps/org/yakva/1708608310/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Яква</a><a href="https://yandex.by/maps/36/stavropol/category/canteen/184106396/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Столовая в Ставрополе</a><a href="https://yandex.by/maps/36/stavropol/category/cafe/184106390/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:28px;">Кафе в Ставрополе</a><iframe src="https://yandex.by/map-widget/v1/?ll=41.954582%2C45.035112&mode=poi&poi%5Bpoint%5D=41.952071%2C45.035158&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D1708608310&z=17" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+      <a href="https://yandex.by/maps/org/yakva/1708608310/?utm_medium=mapframe&utm_source=maps"
+        style="color:#eee;font-size:12px;position:absolute;top:0px;">Яква</a><a
+        href="https://yandex.by/maps/36/stavropol/category/canteen/184106396/?utm_medium=mapframe&utm_source=maps"
+        style="color:#eee;font-size:12px;position:absolute;top:14px;">Столовая в Ставрополе</a><a
+        href="https://yandex.by/maps/36/stavropol/category/cafe/184106390/?utm_medium=mapframe&utm_source=maps"
+        style="color:#eee;font-size:12px;position:absolute;top:28px;">Кафе в Ставрополе</a><iframe
+        src="https://yandex.by/map-widget/v1/?ll=41.954582%2C45.035112&mode=poi&poi%5Bpoint%5D=41.952071%2C45.035158&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D1708608310&z=17"
+        frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
     </div>
 
     <div class="mcontacts-left">
@@ -227,26 +252,34 @@ title: Главная
           <a href="mailto:яква@yandex.ru" class="mcontacts-link">яква@yandex.ru</a>
         </li>
       </ul>
-  
+
       <ul class="mcontacts-socials">
         <li class="mcontacts-social whatsapp">
           <a href="#">
-            <svg><use xlink:href='./assets/images/sprite.svg#whatsapp'></use></svg> 
+            <svg>
+              <use xlink:href='./assets/images/sprite.svg#whatsapp'></use>
+            </svg>
           </a>
         </li>
         <li class="mcontacts-social telegram">
           <a href="#">
-            <svg><use xlink:href='./assets/images/sprite.svg#telegram'></use></svg>
+            <svg>
+              <use xlink:href='./assets/images/sprite.svg#telegram'></use>
+            </svg>
           </a>
         </li>
         <li class="mcontacts-social mailru">
           <a href="#">
-            <svg><use xlink:href='./assets/images/sprite.svg#mailru'></use></svg>
+            <svg>
+              <use xlink:href='./assets/images/sprite.svg#mailru'></use>
+            </svg>
           </a>
         </li>
         <li class="mcontacts-social youtube">
           <a href="#">
-            <svg><use xlink:href='./assets/images/sprite.svg#youtube'></use></svg>
+            <svg>
+              <use xlink:href='./assets/images/sprite.svg#youtube'></use>
+            </svg>
           </a>
         </li>
       </ul>
