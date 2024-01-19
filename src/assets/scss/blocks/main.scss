@@ -10,6 +10,7 @@
     width: 103.8rem;
     height: 24.6rem;
   }
+
   @include breakpoint($sm-bp) {
     left: calc(50% + 34rem);
   }
@@ -34,12 +35,13 @@
 .main-block {
   border-radius: 21.0431rem;
   background: linear-gradient(77deg, #EE2128 17.83%, #FF7048 48.21%);
-  background-size: 200% 200%;
+  // background-size: 200% 200%;
+  // background-color: #FFEFE0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   height: 42.2rem;
   position: relative;
-  animation: gradient 7s linear infinite;
+  // animation: gradient 7s linear infinite;
 
   @include breakpoint($xl-bp) {
     height: 20rem;
@@ -51,10 +53,178 @@
     width: 100%;
   }
 
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: rgba($color: #EE2128, $alpha: 0.1);
+    backdrop-filter: blur(3rem);
+    transform: translate3d(-50%, -50%, 0);
+    will-change: transform;
+    // border-radius: inherit; 
+    overflow: hidden;
+    // border-top-right-radius: inherit;
+    // border-bottom-right-radius: inherit;
+  }
+
   img {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 2;
+  }
+}
+
+.shape {
+  // box-shadow: 0 0 10rem 4rem var(--color);
+  --direction: alternate;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-name:
+    border-radius,
+    translateX,
+    translateY,
+    scaleX,
+    scaleY,
+    rotate;
+  animation-duration:
+    15s,
+    15s,
+    16s,
+    15s,
+    16s,
+    15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction:
+    var(--border-radius-direction, var(--direction)),
+    var(--translateX-direction, var(--direction)),
+    var(--translateY-direction, var(--direction)),
+    var(--scaleX-direction, var(--direction)),
+    var(--scaleY-direction, var(--direction)),
+    var(--rotate-direction, var(--direction));
+  animation-fill-mode: both;
+  animation-delay: var(--delay, 0s);
+  background: var(--color);
+  bottom: 0;
+  content: "";
+  height: calc(var(--width) * 0.75);
+  left: 10%;
+  margin: auto;
+  // opacity: 0.5;
+  position: absolute;
+  right: 10%;
+  top: 10%;
+  transform:
+    translate3D(calc(var(--translateX) * var(--width)),
+      calc(var(--translateY) * var(--height)),
+      0) scale(var(--scaleX),
+      var(--scaleY)) rotate(calc(var(--rotate) * 1deg));
+      width: calc(var(--width) * 0.75);
+}
+
+.custom-shape {
+  position: absolute;
+  top: 0;
+  left: 80%;
+  width: 20rem;
+  height: 100%;
+  background-color: var(--orange);
+  animation: toggle 5s infinite;
+}
+.custom-shape-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20rem;
+  height: 100%;
+  background-color: var(--red);
+  animation: toggle 10s infinite;
+}
+
+@keyframes toggle {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(100%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes border-radius {
+  0% {
+    border-radius: 100%;
+  }
+
+  100% {
+    border-radius: 20%;
+  }
+}
+
+@keyframes duration {
+  0% {
+    --duration: 5;
+  }
+
+  100% {
+    --duration: 30;
+  }
+}
+
+@keyframes translateX {
+  0% {
+    --translateX: -0.5;
+  }
+
+  100% {
+    --translateX: 0.5;
+  }
+}
+
+@keyframes translateY {
+  0% {
+    --translateY: -0.5;
+  }
+
+  100% {
+    --translateY: 0.5;
+  }
+}
+
+@keyframes scaleX {
+  0% {
+    --scaleX: 0.5;
+  }
+
+  100% {
+    --scaleX: 1.5;
+  }
+}
+
+@keyframes scaleY {
+  0% {
+    --scaleY: 0.5;
+  }
+
+  100% {
+    --scaleY: 1.5;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    --rotate: 0;
+  }
+
+  100% {
+    --rotate: 360;
   }
 }
 
