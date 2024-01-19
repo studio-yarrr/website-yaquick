@@ -1,3 +1,20 @@
+.words {
+  display: none;
+
+  @include breakpoint($xl-bp) {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 41rem);
+    transform: translate3d(-50%, -50%, 0);
+    width: 103.8rem;
+    height: 24.6rem;
+  }
+  @include breakpoint($sm-bp) {
+    left: calc(50% + 34rem);
+  }
+}
+
 .main {
   display: grid;
   grid-template-columns: 47.2rem 1fr;
@@ -5,6 +22,7 @@
   row-gap: 0;
   padding-right: 0;
   margin-top: 12.1rem;
+
   @include breakpoint($xl-bp) {
     display: flex;
     flex-direction: column;
@@ -22,14 +40,17 @@
   height: 42.2rem;
   position: relative;
   animation: gradient 7s linear infinite;
+
   @include breakpoint($xl-bp) {
     height: 20rem;
     width: 45rem;
     margin-left: auto;
   }
+
   @include breakpoint($sm-bp) {
     width: 100%;
   }
+
   img {
     position: absolute;
     top: 0;
@@ -38,15 +59,17 @@
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 50% 25%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 50% 25%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .main-wrapper {
@@ -55,6 +78,7 @@
   padding-left: 4rem;
   position: relative;
   overflow: hidden;
+
   @include breakpoint($xl-bp) {
     padding-left: 3rem;
     padding-top: 2rem;
@@ -71,16 +95,19 @@
   font-weight: 300;
   line-height: 11rem;
   margin-top: 2.6rem;
+
   @include breakpoint($xl-bp) {
     font-size: 6.4rem;
     line-height: 7.4rem;
     margin-top: 0;
     order: 0;
   }
+
   .line {
     position: relative;
     overflow: hidden;
     display: block;
+
     span {
       display: block;
       transform: translate3d(0, 100%, 0);
@@ -92,20 +119,26 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: shine 5s linear infinite;
+
+      @include breakpoint($xl-bp) {
+        transform: translate3d(0, 0, 0);
+      }
     }
   }
 }
 
 @keyframes shine {
   0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 80% 25%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 80% 25%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 #letters-mob.loaded,
@@ -126,14 +159,17 @@
   transition: opacity .3s;
   will-change: opacity;
   transform: translate3d(0, 0, 0);
+
   @include breakpoint($xl-bp) {
     font-size: 1.6rem;
   }
+
   div {
     display: inline-block;
     will-change: transform;
     transform: translate3d(0, 0, 0);
     letter-spacing: -0.4rem;
+
     @include breakpoint($xl-bp) {
       letter-spacing: normal;
     }
@@ -148,6 +184,7 @@
 
 #letters-mob {
   display: none;
+
   @include breakpoint($xl-bp) {
     display: block;
   }
@@ -159,12 +196,14 @@
   left: calc(50% + 0.5rem);
   transform: translate3d(-50%, -50%, 0);
   height: 100%;
+
   @include breakpoint($xl-bp) {
     width: 100rem;
     height: calc(100% - 1rem);
     top: calc(50% + 0.1rem);
     left: calc(50% + 16rem);
   }
+
   @include breakpoint($sm-bp) {
     left: calc(50% + 9rem);
   }
@@ -181,9 +220,11 @@
   font-style: normal;
   font-weight: 800;
   line-height: normal;
+
   @include breakpoint($xl-bp) {
     font-size: 1.6rem;
   }
+
   &::after {
     content: '';
     background-image: url("data:image/svg+xml,%3Csvg width='30' height='31' viewBox='0 0 30 31' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cmask id='mask0_301_529' style='mask-type:luminance' maskUnits='userSpaceOnUse' x='1' y='2' width='28' height='27'%3E%3Cpath d='M15 28C21.9037 28 27.5 22.4037 27.5 15.5C27.5 8.59625 21.9037 3 15 3C8.09625 3 2.5 8.59625 2.5 15.5C2.5 22.4037 8.09625 28 15 28Z' fill='white' stroke='white' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M20.625 13.625L15 19.25L9.375 13.625' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/mask%3E%3Cg mask='url(%23mask0_301_529)'%3E%3Cpath d='M0 0.5H30V30.5H0V0.5Z' fill='%23FF7048'/%3E%3C/g%3E%3C/svg%3E%0A");
@@ -192,6 +233,7 @@
     width: 3rem;
     height: 3rem;
     transition: transform .3s;
+
     @include breakpoint($xl-bp) {
       width: 2rem;
       height: 2rem;
@@ -214,6 +256,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 17.7rem;
+
   @include breakpoint($xl-bp) {
     order: 1;
     margin-top: 5.7rem;
@@ -234,6 +277,7 @@
 
 .smenu-btn {
   margin-top: 1rem;
+
   @include breakpoint($xl-bp) {
     margin-top: 2rem;
   }
@@ -242,6 +286,7 @@
 .smenu-info {
   display: flex;
   flex-direction: column;
+
   @include breakpoint($xl-bp) {
     margin-top: auto;
   }
@@ -254,6 +299,7 @@
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+
   @include breakpoint($xl-bp) {
     font-size: 2.6rem;
   }
@@ -267,6 +313,7 @@
   font-weight: 300;
   line-height: normal;
   margin-top: 1rem;
+
   @include breakpoint($xl-bp) {
     font-size: 1.6rem;
   }
@@ -280,6 +327,7 @@
   font-weight: 800;
   line-height: normal;
   margin-top: 4rem;
+
   @include breakpoint($xl-bp) {
     margin-top: 0;
   }
@@ -345,11 +393,13 @@ input[type=number] {
   min-height: 5.5rem;
   width: 29.5rem;
   transition: background-color .3s, border-color .3s;
+
   @include breakpoint($xl-bp) {
     width: 100%;
     font-size: 1.6rem;
     min-height: 4.8rem;
   }
+
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       border-color: var(--orange);
@@ -388,6 +438,7 @@ input[type=number] {
   align-items: flex-end;
   justify-content: space-between;
   gap: 1rem;
+
   @include breakpoint($xl-bp) {
     flex-direction: column;
     align-items: flex-start;
@@ -401,6 +452,7 @@ input[type=number] {
   flex-direction: column;
   gap: 3rem;
   padding-bottom: 1.3rem;
+
   @include breakpoint($xl-bp) {
     padding-bottom: 0;
     flex-direction: row;
@@ -416,6 +468,7 @@ input[type=number] {
     width: 67.4rem;
     margin-right: 9rem;
     padding-top: 4.6rem;
+
     @include breakpoint($xl-bp) {
       display: flex;
       flex-direction: column;
@@ -423,6 +476,7 @@ input[type=number] {
       padding-top: 0;
       margin-right: 4rem;
     }
+
     &:last-child {
       margin-right: 0;
     }
@@ -434,6 +488,7 @@ input[type=number] {
   overflow: hidden;
   padding-top: 15.5rem;
   margin-top: 13.5rem;
+
   @include breakpoint($xl-bp) {
     margin-top: 8.5rem;
     padding-top: 0;
@@ -449,6 +504,7 @@ input[type=number] {
   padding-right: 22rem;
   width: 106rem;
   height: 28.6rem;
+
   @include breakpoint($xl-bp) {
     position: relative;
     width: 100%;
@@ -468,6 +524,7 @@ input[type=number] {
     left: 20rem;
     transform: translate3d(0, -50%, 0);
     background-color: #F8F8F8;
+
     @include breakpoint($xl-bp) {
       width: 9rem;
       height: 0.6rem;
@@ -476,6 +533,7 @@ input[type=number] {
       top: auto;
       background-color: rgba($color: #242021, $alpha: 0.3);
     }
+
     @include breakpoint($sm-bp) {
       left: 3rem;
     }
@@ -493,6 +551,7 @@ input[type=number] {
   height: 27rem;
   margin-bottom: 2rem;
   flex: 0 0 auto;
+
   @include breakpoint($xl-bp) {
     height: 20rem;
     margin-bottom: 0;
@@ -504,6 +563,7 @@ input[type=number] {
   height: 23.6rem;
   transform: scale3d(0.8, 0.8, 0.8);
   transition: transform .3s;
+
   @include breakpoint($xl-bp) {
     height: 14.8rem;
   }
@@ -511,11 +571,13 @@ input[type=number] {
 
 .smenu-swiper {
   width: 100%;
+
   @include breakpoint($xl-bp) {
     padding-right: 2rem;
     padding-left: 2rem;
     margin-top: 7.5rem;
   }
+
   &.loaded {
     .swiper-slide {
       opacity: 1;
@@ -532,22 +594,27 @@ input[type=number] {
     // margin-right: 6rem;
     opacity: 0;
     cursor: pointer;
+
     @include breakpoint($xl-bp) {
       padding-right: 2rem;
     }
+
     &.swiper-slide-active {
       margin-right: 6rem;
       padding-right: 0;
       width: 23rem;
+
       @include breakpoint($xl-bp) {
         margin-right: 2rem;
       }
+
       .smenu-mimg {
         transform: scale3d(1, 1, 1);
       }
 
       .smenu-type {
         transform: translate3d(0, -0.5rem, 0);
+
         @include breakpoint($xl-bp) {
           transform: translate3d(0, 0, 0);
         }
@@ -566,10 +633,12 @@ input[type=number] {
   position: relative;
   transform: translate3d(0, -6rem, 0);
   transition: transform .3s;
+
   @include breakpoint($xl-bp) {
     font-size: 1.6rem;
     transform: translate3d(0, -0.5rem, 0);
   }
+
   @include breakpoint($sm-bp) {
     transform: translate3d(0, -3rem, 0);
   }
@@ -585,6 +654,7 @@ input[type=number] {
   opacity: 0.3;
   text-align: center;
   margin-left: 22rem;
+
   @include breakpoint($xl-bp) {
     display: none;
   }
@@ -675,6 +745,7 @@ input[type=number] {
   align-items: center;
   justify-content: center;
   gap: 2rem;
+
   @include breakpoint($xl-bp) {
     font-size: 1.6rem;
     justify-content: space-between;
@@ -684,6 +755,7 @@ input[type=number] {
 
 .smenu-navigation {
   margin-top: 8rem;
+
   @include breakpoint($xl-bp) {
     margin-top: 4rem;
   }
@@ -702,6 +774,7 @@ input[type=number] {
   font-style: normal;
   font-weight: 800;
   line-height: normal;
+
   @include breakpoint($xl-bp) {
     display: none;
   }
@@ -839,6 +912,7 @@ img.lazyload {
 
 .mt-160 {
   margin-top: 16rem;
+
   @include breakpoint($xl-bp) {
     margin-top: 8rem;
   }
@@ -853,6 +927,7 @@ img.lazyload {
   gap: 3.8rem;
   align-items: center;
   margin-top: 4rem;
+
   @include breakpoint($xl-bp) {
     flex-direction: column;
     margin-top: 2rem;
@@ -864,6 +939,7 @@ img.lazyload {
   width: 66.5rem;
   border-radius: 20rem;
   max-width: 100%;
+
   @include breakpoint($xl-bp) {
     width: 30rem;
     height: 30rem;
@@ -879,10 +955,12 @@ img.lazyload {
   line-height: normal;
   max-width: 29.2rem;
   margin-top: 1rem;
+
   @include breakpoint($xl-bp) {
     font-size: 1.6rem;
     margin-top: 0;
   }
+
   strong {
     font-weight: 800;
   }
@@ -894,10 +972,12 @@ img.lazyload {
   max-width: 100%;
   border-radius: 100%;
   flex: 0 0 auto;
+
   @include breakpoint($xl-bp) {
     width: 30rem;
     height: 30rem;
   }
+
   img {
     width: 102%;
     height: 102%;
@@ -909,6 +989,7 @@ img.lazyload {
   justify-content: space-between;
   gap: 4rem;
   margin-top: 8rem;
+
   @include breakpoint($xl-bp) {
     display: flex;
     flex-direction: column-reverse;
@@ -921,6 +1002,7 @@ img.lazyload {
   align-items: center;
   gap: 4rem;
   padding-left: 2rem;
+
   @include breakpoint($xl-bp) {
     padding-left: 0;
     flex-direction: column;
@@ -931,6 +1013,7 @@ img.lazyload {
   width: 23.3rem;
   height: 11.3rem;
   margin-bottom: 3rem;
+
   @include breakpoint($xl-bp) {
     margin-bottom: 0;
   }
@@ -944,6 +1027,7 @@ img.lazyload {
 .mabout-texts {
   display: flex;
   gap: 12.6rem;
+
   @include breakpoint($xl-bp) {
     flex-direction: column;
     gap: 2rem;
@@ -953,6 +1037,7 @@ img.lazyload {
 .mabout-text {
   max-width: 29.2rem;
   line-height: 1.15;
+
   @include breakpoint($xl-bp) {
     max-width: 100%;
   }
@@ -960,21 +1045,25 @@ img.lazyload {
 
 .mrent-navigation {
   display: none;
+
   @include breakpoint($xl-bp) {
     display: flex;
-    margin-top: 4rem; 
+    margin-top: 4rem;
   }
 }
 
 .mrent-swiper {
   margin-top: 4rem;
+
   @include breakpoint($xl-bp) {
     margin-top: 2rem;
   }
+
   .swiper-wrapper {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 2rem;
+
     @include breakpoint($xl-bp) {
       display: flex;
       gap: 0;
@@ -986,22 +1075,28 @@ img.lazyload {
     background: #F8F8F8;
     padding: 4rem;
     height: auto;
+
     @include breakpoint($xl-bp) {
       padding: 2rem;
       padding-bottom: 4rem;
     }
+
     &:nth-child(5n + 1) {
       grid-column: 4 span;
     }
+
     &:nth-child(5n + 2) {
       grid-column: 4 span;
     }
+
     &:nth-child(5n + 3) {
       grid-column: 3 span;
     }
+
     &:nth-child(5n + 4) {
       grid-column: 3 span;
     }
+
     &:nth-child(5n + 5) {
       grid-column: 2 span;
     }
@@ -1016,6 +1111,7 @@ img.lazyload {
 
 .mrent-mobile {
   display: none;
+
   @include breakpoint($xl-bp) {
     display: block;
     width: 100%;
@@ -1030,6 +1126,7 @@ img.lazyload {
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+
   @include breakpoint($xl-bp) {
     font-size: 2.6rem;
   }
@@ -1038,6 +1135,7 @@ img.lazyload {
 .mrent-desc {
   max-width: 46.9rem;
   margin-top: 2rem;
+
   @include breakpoint($xl-bp) {
     line-height: 1.15;
   }
@@ -1045,15 +1143,18 @@ img.lazyload {
 
 .mgallery-swiper-mob {
   display: none;
+
   @include breakpoint($xl-bp) {
     display: block;
     margin-top: 2rem;
-    .swiper-slide { 
+
+    .swiper-slide {
       height: 26rem;
       border-radius: 4rem;
       width: 100%;
       margin-right: 2rem;
-      &:last-child{
+
+      &:last-child {
         margin-right: 0;
       }
     }
@@ -1063,15 +1164,18 @@ img.lazyload {
 .mgallery-swiper-desc {
   margin-top: 4rem;
   min-height: 67.9rem;
+
   @include breakpoint($xl-bp) {
     display: none;
   }
+
   .swiper-slide {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 2rem;
     width: 100%;
     margin-right: 24rem;
+
     &:last-child {
       margin-right: 0;
     }
@@ -1082,20 +1186,25 @@ img.lazyload {
   border-radius: 4rem;
   background-color: #F8F8F8;
   height: 31.7rem;
+
   &:nth-child(5n + 1) {
     grid-column: 4 span;
     height: 34.2rem;
   }
+
   &:nth-child(5n + 2) {
     grid-column: 4 span;
     height: 34.2rem;
   }
+
   &:nth-child(5n + 3) {
     grid-column: 3 span;
   }
+
   &:nth-child(5n + 4) {
     grid-column: 3 span;
   }
+
   &:nth-child(5n + 5) {
     grid-column: 2 span;
   }
@@ -1103,6 +1212,7 @@ img.lazyload {
 
 .mgallery-desc-navigation {
   margin-top: 8rem;
+
   @include breakpoint($xl-bp) {
     display: none;
   }
@@ -1112,6 +1222,7 @@ img.lazyload {
   position: relative;
   overflow: hidden;
   border-radius: 4rem;
+
   iframe {
     width: 100%;
     height: 100%;
@@ -1124,11 +1235,13 @@ img.lazyload {
     justify-content: space-between;
   }
 }
+
 .mcontacts-map {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
   height: 47.8rem;
   background-color: var(--grey);
+
   @include breakpoint($xl-bp) {
     height: 26rem;
   }
@@ -1139,6 +1252,7 @@ img.lazyload {
   grid-template-columns: 40rem 1fr;
   gap: 4rem;
   margin-top: 4rem;
+
   @include breakpoint($xl-bp) {
     display: flex;
     flex-direction: column;
@@ -1151,6 +1265,7 @@ img.lazyload {
   flex-direction: column;
   gap: 4rem;
   margin-top: 5rem;
+
   @include breakpoint($xl-bp) {
     margin-top: 0;
     gap: 2rem;
@@ -1161,6 +1276,7 @@ img.lazyload {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
   @include breakpoint($xl-bp) {
     gap: 1rem;
   }
@@ -1171,6 +1287,7 @@ img.lazyload {
   font-style: normal;
   font-weight: 800;
   line-height: normal;
+
   @include breakpoint($xl-bp) {
     font-size: 2rem;
   }
@@ -1187,6 +1304,7 @@ img.lazyload {
   gap: 2rem;
   flex-wrap: wrap;
   margin-top: 4rem;
+
   @include breakpoint($xl-bp) {
     flex-direction: column;
     margin-top: 0;
@@ -1199,14 +1317,16 @@ img.lazyload {
     width: 4rem;
     height: 4rem;
     display: block;
+
     @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      svg {
-        stroke: var(--orange);
+      &:hover {
+        svg {
+          stroke: var(--orange);
+        }
       }
     }
-    }
   }
+
   svg {
     fill: transparent;
     stroke: var(--black);
@@ -1215,14 +1335,15 @@ img.lazyload {
   &.telegram {
     a {
       @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        svg {
-          fill: var(--orange);
-          stroke: transparent;
+        &:hover {
+          svg {
+            fill: var(--orange);
+            stroke: transparent;
+          }
         }
       }
-      }
     }
+
     svg {
       fill: var(--black);
       stroke: transparent;
@@ -1232,40 +1353,43 @@ img.lazyload {
   &.whatsapp {
     a {
       @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        svg {
-          fill: transparent;
-          stroke: var(--orange);
+        &:hover {
+          svg {
+            fill: transparent;
+            stroke: var(--orange);
+          }
         }
       }
-      }
     }
+
     svg {
       fill: transparent;
-      stroke: var(--black); 
+      stroke: var(--black);
     }
   }
 
   &.youtube {
     a {
       @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        svg {
-          fill: var(--orange);
-          stroke: transparent;
+        &:hover {
+          svg {
+            fill: var(--orange);
+            stroke: transparent;
+          }
         }
       }
-      }
     }
+
     svg {
       fill: var(--black);
-      stroke: transparent; 
+      stroke: transparent;
     }
   }
 }
 
 .mt-80 {
   margin-top: 8rem;
+
   @include breakpoint($xl-bp) {
     margin-top: 4rem;
   }
@@ -1273,9 +1397,10 @@ img.lazyload {
 
 a.mcontacts-link {
   transition: color .3s;
+
   @media (hover: hover) and (pointer: fine) {
-  &:hover {
-    color: var(--orange);
-  }
+    &:hover {
+      color: var(--orange);
+    }
   }
 }

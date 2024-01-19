@@ -6,13 +6,13 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(function () {
       document.fonts.ready.then(function () {
         document.documentElement.classList.add('fontsloaded')
-        initLetters()
+        xl.matches ? '' : initLetters()
         initTitle()
       });
     }, 0);
   } else {
     document.documentElement.classList.add('fontsloaded')
-    initLetters()
+    xl.matches ? '' : initLetters() 
     initTitle()
   }
 
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       const letters1 = xl.matches ? document.getElementById('letters-mob') : document.getElementById('letters')
 
-      if (letters1) {
+      if (!xl.matches) {
         letters1.classList.add('loaded')
       }
     }, 500)
