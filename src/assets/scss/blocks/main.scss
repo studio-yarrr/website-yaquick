@@ -14,11 +14,15 @@
 .main-block {
   border-radius: 21.0431rem;
   background: linear-gradient(77deg, #EE2128 17.83%, #FF7048 48.21%);
+  background-size: 200% 200%;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  height: 42rem;
+  height: 42.2rem;
   position: relative;
-
+  animation: gradient 7s linear infinite;
+  @include breakpoint($xl-bp) {
+    height: 20rem;
+  }
   img {
     position: absolute;
     top: 0;
@@ -26,12 +30,27 @@
   }
 }
 
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 50% 25%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 .main-wrapper {
-  padding-top: 3.5rem;
+  padding-top: 4rem;
   padding-bottom: 4rem;
   padding-left: 4rem;
   position: relative;
   overflow: hidden;
+  @include breakpoint($xl-bp) {
+    padding-left: 3rem;
+  }
 }
 
 .main-title {
@@ -50,14 +69,32 @@
     position: relative;
     overflow: hidden;
     display: block;
-
     span {
       display: block;
       transform: translate3d(0, 100%, 0);
       transition: transform .7s ease-in-out;
       will-change: transform;
+      background: linear-gradient(77deg, #EE2128 17.83%, #FF7048 48.21%);
+      background-size: 400% 400%;
+      background-clip: text;
+      text-fill-color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shine 5s linear infinite;
     }
   }
+}
+
+@keyframes shine {
+  0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 80% 25%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 #letters.loaded {
@@ -76,7 +113,9 @@
   transition: opacity .3s;
   will-change: opacity;
   transform: translate3d(0, 0, 0);
-
+  @include breakpoint($xl-bp) {
+    font-size: 1.6rem;
+  }
   div {
     display: inline-block;
     will-change: transform;
@@ -91,6 +130,9 @@
   left: calc(50% + 0.5rem);
   transform: translate3d(-50%, -50%, 0);
   height: 100%;
+  @include breakpoint($xl-bp) {
+    width: 200%;
+  }
 }
 
 .arrow-btn {
@@ -726,6 +768,10 @@ img.lazyload {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 2rem;
+    @include breakpoint($xl-bp) {
+      display: flex;
+      gap: 0;
+    }
   }
 
   .swiper-slide {
@@ -928,6 +974,23 @@ img.lazyload {
     svg {
       fill: transparent;
       stroke: var(--black); 
+    }
+  }
+
+  &.youtube {
+    a {
+      @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        svg {
+          fill: var(--orange);
+          stroke: transparent;
+        }
+      }
+      }
+    }
+    svg {
+      fill: var(--black);
+      stroke: transparent; 
     }
   }
 }

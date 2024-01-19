@@ -24,10 +24,10 @@ title: Главная
     </div>
   </div>
 
-  <div class="container main-bot"><button class="main-btn arrow-btn" aria-label="Смотреть меню">Смотреть меню</button></div>
+  <div class="container main-bot"><button class="main-btn arrow-btn" aria-label="Смотреть меню" data-scroll="#smenu">Смотреть меню</button></div>
 </section>
 
-<section class="smenu ">
+<section class="smenu" id="smenu">
   <div class="container">
     <h2 class="h2 smenu-title" data-animonscroll="bottom">Сегодня в меню</h2>
     <a href="menu.html" class="btn smenu-btn">Полное меню блюд</a>
@@ -174,11 +174,11 @@ title: Главная
   <div class="mgallery-wrapper">
     <div class="swiper mgallery-swiper-mob container">
       <div class="swiper-wrapper">
-        @for(let i=1;i<=5;i++) { <div class="swiper-slide">
+        @for(let i=1;i<=5;i++) { <div class="swiper-slide img-cover">
           <img class="lazyload" data-src="./assets/images/mgallery/`+i+`.jpg" alt="mgallery">
       </div>
       }
-      @for(let i=1;i<=5;i++) { <div class="swiper-slide">
+      @for(let i=1;i<=5;i++) { <div class="swiper-slide img-cover">
         <img class="lazyload" data-src="./assets/images/mgallery/`+i+`.jpg" alt="mgallery">
     </div>
     }
@@ -242,6 +242,11 @@ title: Главная
         <li class="mcontacts-social mailru">
           <a href="#">
             <svg><use xlink:href='./assets/images/sprite.svg#mailru'></use></svg>
+          </a>
+        </li>
+        <li class="mcontacts-social youtube">
+          <a href="#">
+            <svg><use xlink:href='./assets/images/sprite.svg#youtube'></use></svg>
           </a>
         </li>
       </ul>

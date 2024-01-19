@@ -306,7 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
               const slide = document.createElement('div')
               slide.classList.add('swiper-slide')
               slide.innerHTML = category.innerHTML
-              slide.dataset.slideid=i
+              slide.dataset.slideid = i
               wrapper.appendChild(slide)
               if (i === 3) {
                 isLooped = true
@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const slide = document.createElement('div')
                 slide.classList.add('swiper-slide')
                 slide.innerHTML = category.innerHTML
-                slide.dataset.slideid=i
+                slide.dataset.slideid = i
                 wrapper.appendChild(slide)
               })
             }
@@ -623,6 +623,56 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 0)
 
+  var init = false;
+  var swiper;
+  function swiperCard() {
+    if (xl.matches) {
+      if (!init) {
+        init = true;
+        swiper = new Swiper(".mrent-swiper", {
+          direction: "horizontal",
+          slidesPerView: "auto",
+          centeredSlides: true,
+          spaceBetween: 32,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+        });
+      }
+    } else if (init) {
+      swiper.destroy();
+      init = false;
+    }
+  }
+  swiperCard();
+  window.addEventListener("resize", swiperCard);
+
+
+  
+  const scrolledObj = document.querySelectorAll('[data-scroll]');
+
+  if (scrolledObj.length) {
+    scrolledObj.forEach(el => {
+      el.addEventListener('click', function () {
+        event.preventDefault()
+        const sc = document.querySelector(this.dataset.scroll)
+        if (sc) {
+          const header = document.querySelector('header');
+          let headerH = null;
+          if (header) {
+            headerH = header.getBoundingClientRect().height;
+          }
+          // const yOffset = headerH ? -headerH : -200;
+          const yOffset = 0
+          const onMedia = xl.matches ? 0 : 50;
+          const y = sc.getBoundingClientRect().top + window.pageYOffset + yOffset - onMedia;
+
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      })
+    })
+  }
 });
 
 
