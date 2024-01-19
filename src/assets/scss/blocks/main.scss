@@ -35,18 +35,18 @@
 .main-block {
   border-radius: 21.0431rem;
   background: linear-gradient(77deg, #EE2128 17.83%, #FF7048 48.21%);
-  // background-size: 200% 200%;
-  // background-color: #FFEFE0;
+  background-size: 200% 200%;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   height: 42.2rem;
   position: relative;
-  // animation: gradient 7s linear infinite;
+
 
   @include breakpoint($xl-bp) {
     height: 20rem;
     width: 45rem;
     margin-left: auto;
+    animation: gradient 7s linear infinite;
   }
 
   @include breakpoint($sm-bp) {
@@ -67,8 +67,12 @@
     will-change: transform;
     // border-radius: inherit; 
     overflow: hidden;
+
     // border-top-right-radius: inherit;
     // border-bottom-right-radius: inherit;
+    @include breakpoint($xl-bp) {
+      display: none;
+    }
   }
 
   img {
@@ -80,33 +84,35 @@
 }
 
 .shape {
+
   // box-shadow: 0 0 10rem 4rem var(--color);
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
+
   --direction: alternate;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  animation-name:
-    border-radius,
-    translateX,
-    translateY,
-    scaleX,
-    scaleY,
-    rotate;
-  animation-duration:
-    15s,
-    15s,
-    16s,
-    15s,
-    16s,
-    15s;
+  animation-name: border-radius,
+  translateX,
+  translateY,
+  scaleX,
+  scaleY,
+  rotate;
+  animation-duration: 15s,
+  15s,
+  16s,
+  15s,
+  16s,
+  15s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  animation-direction:
-    var(--border-radius-direction, var(--direction)),
-    var(--translateX-direction, var(--direction)),
-    var(--translateY-direction, var(--direction)),
-    var(--scaleX-direction, var(--direction)),
-    var(--scaleY-direction, var(--direction)),
-    var(--rotate-direction, var(--direction));
+  animation-direction: var(--border-radius-direction, var(--direction)),
+  var(--translateX-direction, var(--direction)),
+  var(--translateY-direction, var(--direction)),
+  var(--scaleX-direction, var(--direction)),
+  var(--scaleY-direction, var(--direction)),
+  var(--rotate-direction, var(--direction));
   animation-fill-mode: both;
   animation-delay: var(--delay, 0s);
   background: var(--color);
@@ -119,12 +125,11 @@
   position: absolute;
   right: 10%;
   top: 10%;
-  transform:
-    translate3D(calc(var(--translateX) * var(--width)),
-      calc(var(--translateY) * var(--height)),
-      0) scale(var(--scaleX),
-      var(--scaleY)) rotate(calc(var(--rotate) * 1deg));
-      width: calc(var(--width) * 0.75);
+  transform: translate3D(calc(var(--translateX) * var(--width)),
+    calc(var(--translateY) * var(--height)),
+    0) scale(var(--scaleX),
+    var(--scaleY)) rotate(calc(var(--rotate) * 1deg));
+  width: calc(var(--width) * 0.75);
 }
 
 .custom-shape {
@@ -135,7 +140,11 @@
   height: 100%;
   background-color: var(--orange);
   animation: toggle 5s infinite;
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
 }
+
 .custom-shape-2 {
   position: absolute;
   top: 0;
@@ -144,15 +153,20 @@
   height: 100%;
   background-color: var(--red);
   animation: toggle 10s infinite;
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
 }
 
 @keyframes toggle {
   0% {
     transform: translate3d(0, 0, 0);
   }
+
   50% {
     transform: translate3d(100%, 0, 0);
   }
+
   100% {
     transform: translate3d(0, 0, 0);
   }
