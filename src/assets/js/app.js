@@ -677,6 +677,65 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 0)
 
+  const gallery = document.querySelector('.gallery-wrapper')
+
+  if (gallery) {
+    const numberOfSlides = gallery.querySelectorAll('.swiper-slide') || []
+    const allNumbers = gallery.querySelector('.smenu-main-number');
+    const allnumb = gallery.querySelector('.smenu-all-number');
+    const prev = gallery.querySelector('.prev')
+    const next = gallery.querySelector('.next')
+    const swiper = gallery.querySelector('.swiper')
+    let reachEnd = false
+    let reachBeginning = true
+    new Swiper(swiper, {
+      speed: 500,
+      slidesPerView: 'auto',
+      grabCursor: true,
+      navigation: {
+        nextEl: next,
+        prevEl: prev,
+      },
+      on: {
+        init: function (sw) {
+          if (allNumbers && allnumb) {
+            allNumbers.classList.add('reached')
+            reachBeginning = false
+            allNumbers.innerHTML = pad(sw.realIndex + 1, 2);
+            allnumb.innerHTML = pad(numberOfSlides.length - 1, 2)
+          }
+        },
+        slideChange: function (sw) {
+          if (allNumbers && allnumb) {
+            if (reachBeginning) {
+              allNumbers.classList.add('reached')
+            } else {
+              allNumbers.classList.remove('reached')
+            }
+  
+            if (reachEnd) {
+              allnumb.classList.add('reached')
+            } else {
+              allnumb.classList.remove('reached')
+            }
+  
+            allNumbers.innerHTML = pad(sw.realIndex + 1, 2);
+            allnumb.innerHTML = pad(numberOfSlides.length - 1, 2)
+  
+            reachBeginning = false
+            reachEnd = false
+          }
+        },
+        reachBeginning: function () {
+          reachBeginning = true
+        },
+        reachEnd: function () {
+          reachEnd = true
+        }
+      },
+    })
+  }
+
   var init = false;
   var swiper;
   function swiperCard() {

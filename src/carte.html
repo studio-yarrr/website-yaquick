@@ -1,0 +1,86 @@
+<section class="carte container">
+  <div class="carte-top">
+    <h1 class="main-title carte-title" id="title">
+      <span class="line"><span>Меню</span></span>
+      <span class="line"><span>блюд</span></span>
+    </h1>
+
+    <form action="#" class="carte-search search">
+      <button class="search-btn" aria-label="Поиск по меню"><svg><use xlink:href='./assets/images/sprite.svg#search'></use></svg></button>
+      <input type="text" name="search" placeholder="Поиск по меню" class="input carte-input">
+    </form>
+  </div>
+</section>
+
+<div class="smenu" id="smenu">
+  <div class="container">
+    <button class="smenu-btn arrow-btn" aria-label="Смотреть меню" data-scroll="#smenu">Смотреть меню</button> 
+  </div>
+
+  <div class="smenu-swiper-wrapper">
+    <div class="smenu-sel">Ввыберите категорию</div>
+    <div class="swiper smenu-swiper">
+      <div class="swiper-wrapper">
+      </div>
+    </div>
+    <button class="swiper-arrow prev"></button>
+    <button class="swiper-arrow next"></button>
+  </div>
+
+  <div class="swiper smenu-outer-swiper container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+
+        <div class="smeny-copy-category">
+          <div class="smenu-mimg img-contain">
+            <img src="./assets/images/smenu/1.png" alt="Первое">
+          </div>
+          <div class="smenu-type">Первое</div>
+        </div>
+
+        {{> menuOuterSlide}}
+      </div>
+      <div class="swiper-slide">
+
+        <div class="smeny-copy-category">
+          <div class="smenu-mimg img-contain">
+            <img src="./assets/images/smenu/2.png" alt="Второе">
+          </div>
+          <div class="smenu-type">Второе</div>
+        </div>
+
+        {{> menuOuterSlide}}
+      </div>
+
+      <div class="swiper-slide">
+
+        <div class="smeny-copy-category">
+          <div class="smenu-mimg img-contain">
+            <img src="./assets/images/smenu/3.png" alt="Салаты">
+          </div>
+          <div class="smenu-type">Салаты</div>
+        </div>
+
+        {{> menuOuterSlide}}
+      </div>
+
+      <div class="swiper-slide">
+
+        <div class="smeny-copy-category">
+          <div class="smenu-mimg img-contain">
+            <img src="./assets/images/smenu/4.png" alt="Напитки">
+          </div>
+          <div class="smenu-type">Напитки</div>
+        </div>
+
+        {{> menuOuterSlide}}
+      </div>
+    </div>
+  </div>
+</div>
+
+{{> mgallery}}
+
+{{> mcontacts}}
+
+<div class="mt-80"></div>

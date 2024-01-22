@@ -1,0 +1,31 @@
+.first-margin {
+  margin-top: 14rem;
+  @include breakpoint($xl-bp) {
+    margin-top: 2rem;
+  }
+}
+
+.gallery-wrapper {
+  margin-top: 4rem;
+  @include breakpoint($xl-bp) {
+    margin-top: 2rem;
+  }
+}
+
+.gallery-swiper {
+  .swiper-slide {
+    width: 71rem;
+    margin-right: 2rem;
+    border-radius: 4rem;
+    @include breakpoint($xl-bp) {
+      width: 100%;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.gallery-navigation {
+  margin-top: 8rem;
+}

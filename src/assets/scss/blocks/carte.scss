@@ -1,0 +1,48 @@
+.carte {
+  margin-top: 12.1rem;
+  @include breakpoint($xl-bp) {
+    margin-top: 2rem;
+  }
+}
+
+.carte-top {
+  display: grid;
+  grid-template-columns: 27rem 1fr;
+  gap: 20rem;
+  align-items: center;
+  @include breakpoint($xl-bp) {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.search {
+  height: min-content;
+  position: relative;
+}
+
+.search-btn {
+  width: 2.8rem;
+  height: 2.8rem;
+  position: absolute;
+  top: 50%;
+  left: 5rem;
+  transform: translate3d(0, -50%, 0);
+  svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--black);
+    opacity: 0.3;
+    @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 1;
+    }
+    }
+  }
+}
+
+.carte-input {
+  padding-left: 8.8rem;
+  width: 100%;
+}
