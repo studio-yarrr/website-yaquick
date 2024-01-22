@@ -160,6 +160,11 @@ svg {
   &::placeholder {
     opacity: 0.3;
   }
+  @include breakpoint($xl-bp) {
+    font-size: 1.6rem;
+    height: 5.8rem;
+    padding: 2rem;
+  }
 }
 
 h2, .h2 {

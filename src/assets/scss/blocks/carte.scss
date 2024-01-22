@@ -5,6 +5,20 @@
   }
 }
 
+.carte-head {
+  @include breakpoint($xl-bp) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.carte-menu {
+  @include breakpoint($xl-bp) {
+    margin-top: 5rem;
+  }
+}
+
 .carte-top {
   display: grid;
   grid-template-columns: 27rem 1fr;
@@ -14,12 +28,16 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    align-items: flex-start;
   }
 }
 
 .search {
   height: min-content;
   position: relative;
+  @include breakpoint($xl-bp) {
+    width: 100%;
+  }
 }
 
 .search-btn {
@@ -29,6 +47,9 @@
   top: 50%;
   left: 5rem;
   transform: translate3d(0, -50%, 0);
+  @include breakpoint($xl-bp) {
+    left: 2rem;
+  }
   svg {
     width: 100%;
     height: 100%;
@@ -45,4 +66,7 @@
 .carte-input {
   padding-left: 8.8rem;
   width: 100%;
+  @include breakpoint($xl-bp) {
+    padding-left: 5.5rem;
+  }
 }

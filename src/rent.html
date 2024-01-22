@@ -10,9 +10,76 @@
     <div class="rent-desc">Мы поможем вам подобрать подходящий вариант аренды помещения</div>
   </div>
   <div class="rent-right">
-    <form action="#">
-      
+    <form action="#" class="rent-form">
+      <input type="number" placeholder="Введите количество гостей" name="numberofguests" class="input rent-input">
+      <div class="custom-select w-full rent-select">
+        <select name="type">
+          <option value="none">Выберите формат мероприятия</option>
+          <option value="Банкет">Банкет</option>
+          <option value="Фуршет">Фуршет</option>
+          <option value="Кофе-брейк">Кофе-брейк</option>
+        </select>
+      </div>
+      <button type="submit" class="btn rent-btn">Подобрать</button>
     </form>
+  </div>
+
+  <div class="container rent-bot"><button class="rent-botbtn arrow-btn" aria-label="Смотреть предложения" data-scroll="#pred">Смотреть
+      предложения</button></div>
+
+
+  <div class="rent-wrapper" id="pred">
+    <div class="rent-block">
+      <div class="rent-img img-cover">
+        <img src="./assets/images/rent/1.jpg" alt="Банкет с обслуживанием">
+      </div>
+      <div class="rent-col">
+        <h2 class="rent-subtitle">Банкет с обслуживанием</h2>
+        <div class="rent-desc --1">Для официальных и торжественных мероприятий предлагаем организовать банкет с размещением. В столовой Яква банкеты
+          проводятся в будни после 16:00 и до полуночи, в выходные - в любое время.Банкет с обслуживанием. Наши официанты будут следить за переменами
+          блюд, разливать напитки, приносить необходимую посуду и приборы, встречать и провожать гостей.</div>
+      </div>
+    </div>
+
+    <div class="rent-block-2">
+      <div class="rent-col">
+        <h2 class="rent-subtitle">Организация корпоративного питания</h2>
+        <div class="rent-desc --2">Мы поможем организовать как частный банкет, так и корпоративное застолье любого формата. Предлагаем зал
+          вместимостью (от 15 до 100 человек) в пешей доступности. Наши помещения можно арендовать до полуночи. Алкоголь можно приносить свой без
+          “пробочного взноса”.</div>
+      </div>
+      <div class="rent-numbers">
+        <div class="rent-numb">15-100</div>
+        <div class="rent-op">человек</div>
+      </div>
+    </div>
+
+    <div class="rent-block-2 --reverse">
+      <div class="rent-col">
+        <h2 class="rent-subtitle">Фуршет</h2>
+        <div class="rent-desc --2">Мы предлагаем организацию фуршетов для компаний или частных лиц в наших уютных залах, которые вмещают до 200
+          человек. Формат фуршета предполагает отдельную зону, где выставляются блюда, а гости сами подходят и выбирают понравившиеся салаты, канапе и
+          выпечку. Все блюда выставляются сразу.</div>
+      </div>
+      <div class="rent-numbers">
+        <div class="rent-op">до</div>
+        <div class="rent-numb">200</div>
+        <div class="rent-op">человек</div>
+      </div>
+    </div>
+
+    <div class="rent-orange">
+      <div class="rent-img-2 img-cover  ">
+        <img src="./assets/images/rent/2.jpg" alt="Кофе-брейк">
+      </div>
+
+      <div class="rent-col">
+        <h2 class="rent-subtitle">Кофе-брейк</h2>
+
+        <div class="rent-desc">Формат кофе-брейка предполагает свободную рассадку гостей и самостоятельный подход к столам с блюдами. В отличие от
+          фуршета, это менее официальное и небольшое по длительности мероприятие, а потому для него не предусмотрено большое разнообразие блюд.</div>
+      </div>
+    </div>
   </div>
 </section>
 

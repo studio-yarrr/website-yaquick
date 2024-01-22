@@ -1,0 +1,301 @@
+.rent {
+  display: grid;
+  grid-template-columns: 59rem 1fr;
+  gap: 20rem;
+  row-gap: 0;
+  @include breakpoint($xl-bp) {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+}
+
+.rent-left {
+  .rent-desc {
+    @include breakpoint($xl-bp) {
+      max-width: 25rem;
+    }
+  }
+}
+
+.rent-title {
+  margin-top: 0;
+}
+
+.rent-desc {
+  max-width: 40.4rem;
+  margin-top: 2rem;
+  margin-left: auto;
+  
+}
+
+.w-full {
+  width: 100%;
+}
+
+/* The container must be positioned relative: */
+.custom-select {
+  position: relative;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg width='25' height='26' viewBox='0 0 25 26' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.3'%3E%3Cpath d='M18.75 10.9167L17.2813 9.448L12.5 14.2188L7.71875 9.448L6.25 10.9167L12.5 17.1667L18.75 10.9167Z' fill='%23242021'/%3E%3C/g%3E%3C/svg%3E%0A");  transition: transform .3s;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  @include breakpoint($xl-bp) {
+    right: 2rem;
+  }
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  // border-color: transparent transparent #fff transparent;
+  transform: translateY(-50%) rotate(180deg);
+}
+.select-arrow-active {
+  
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: var(--black, #242021);
+  font-family: Gilroy;
+  font-size: 2.4rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  padding: 2.7rem 5rem;
+  padding-right: 13rem;
+  // border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  background-color: var(--grey);
+  @include breakpoint($xl-bp) {
+    padding: 2rem;
+    font-size: 1.6rem;
+    padding-right: 4rem;
+  }
+
+}
+
+.select-selected {
+  border-radius: 9.5rem;
+  color: rgba($color: #242021, $alpha: 0.3);
+}
+
+.select-items > div {
+  color: var(--black);
+  padding: 2.7rem 5rem;
+  @include breakpoint($xl-bp) {
+    padding: 2rem;
+  }
+}
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: var(--grey);
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  border-radius: 4rem;
+  overflow: hidden;
+  box-shadow: 0px 0.5rem 1rem rgba(19, 33, 42, 0.15);
+  border-top: 0;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: var(--white);
+}
+.select-selected--active {
+  color: var(--black);
+}
+
+.rent-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 11rem;
+  max-width: 54.7rem;
+  @include breakpoint($xl-bp) {
+    margin-top: 0;
+  }
+}
+
+.rent-select {
+  margin-top: 2rem;
+}
+.rent-btn {
+  margin-top: 4rem;
+  @include breakpoint($sm-bp) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.rent-bot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 2 span;
+  margin-top: 17.5rem;
+  @include breakpoint($xl-bp) {
+    margin-top: 0;
+  }
+}
+
+.rent-wrapper {
+  grid-column: 2 span;
+  margin-top: 17.5rem;
+  @include breakpoint($xl-bp) {
+    margin-top: 4rem;
+  }
+}
+.rent-block {
+  display: grid;
+  grid-template-columns: 71rem 43.8rem;
+  gap: 4rem;
+  @include breakpoint($xl-bp) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.rent-img {
+  width: 100%;
+  height: 36rem;
+  max-width: 71rem;
+  border-radius: 21.3rem;
+}
+.rent-col {
+}
+
+.rent-subtitle {
+  color: var(--black, #242021);
+font-family: Gilroy;
+font-size: 4.2rem;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+.rent-desc {
+  color: var(--black, #242021);
+font-family: Gilroy;
+font-size: 2rem;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+max-width: 44.8rem;
+@include breakpoint($xl-bp) {
+  font-size: 1.6rem;
+}
+&.--2 {
+  margin-left: 0;
+  max-width: 46.9rem;
+}
+}
+.--1 {
+}
+.rent-block-2 {
+  display: flex;
+  justify-content: space-between; 
+  margin-top: 8rem;
+  align-items: center;
+  flex-wrap: wrap;
+  @include breakpoint($xl-bp) {
+    flex-direction: column;
+  }
+  .rent-col {
+    &:first-child {
+      max-width: 65rem;
+    }
+  }
+
+  &.--reverse {
+    flex-direction: row-reverse;
+    .rent-col {
+      &:first-child {
+        width: 70rem;
+        max-width: 70rem;
+        @include breakpoint($xl-bp) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+.--2 {
+}
+.rent-numbers {
+  display: flex;
+  align-items: baseline;
+  gap: 1.8rem;
+}
+.rent-numb {
+  color: var(--orange, #FF7048);
+  font-family: Gilroy;
+  font-size: 9.6rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+.rent-op {
+  color: var(--black, #242021);
+  font-family: Gilroy;
+  font-size: 4.2rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+}
+.--reverse {
+}
+.rent-orange {
+  margin-top: 8rem;
+  background-color: var(--orange);
+  padding: 2rem;
+  border-radius: 20rem;
+  display: grid;
+  grid-template-columns: 69rem 1fr;
+  align-content: center;
+  gap: 4rem;
+  @include breakpoint($xl-bp) {
+    display: flex;
+    flex-direction: column;
+  }
+  .rent-col{
+    height: min-content;
+    margin-top: 4rem;
+  }
+  .rent-desc {
+    margin-left: 0;
+  }
+}
+.rent-img-2 {
+  height: 36rem;
+  width: 100%;
+  max-width: 69rem;
+  border-radius: 21.3rem;
+}
+
+.rent-input {
+  @include breakpoint($xl-bp) {
+    padding: 2rem;
+  }
+}
