@@ -16,8 +16,10 @@
 }
 
 .menu-nav {
-  max-height: 100%;
-  overflow: auto;
+  @include breakpoint($xl-bp) {
+    max-height: 100%;
+    overflow: auto;
+  }
   .mcontacts-left {
     display: none;
     @include breakpoint($xl-bp) {
@@ -135,7 +137,7 @@
     max-height: 0;
     overflow: hidden;
     padding-top: 0;
-    transition: max-height .3s;
+    transition: max-height .3s; 
     & > * {
       &:first-child {
         margin-top: 2rem;
