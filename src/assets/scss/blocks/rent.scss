@@ -255,6 +255,9 @@ max-width: 44.8rem;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+  @include breakpoint($xl-bp) {
+    font-size: 6rem;
+  }
 }
 .rent-op {
   color: var(--black, #242021);
@@ -263,6 +266,9 @@ max-width: 44.8rem;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+  @include breakpoint($xl-bp) {
+    font-size: 2.6rem;
+  }
 }
 .--reverse {
 }
@@ -278,10 +284,14 @@ max-width: 44.8rem;
   @include breakpoint($xl-bp) {
     display: flex;
     flex-direction: column;
+    padding-bottom: 12rem;
   }
   .rent-col{
     height: min-content;
     margin-top: 4rem;
+    @include breakpoint($xl-bp) {
+      margin-top: 0;
+    }
   }
   .rent-desc {
     margin-left: 0;
@@ -292,6 +302,9 @@ max-width: 44.8rem;
   width: 100%;
   max-width: 69rem;
   border-radius: 21.3rem;
+  @include breakpoint($xl-bp) {
+    height: 30rem;
+  }
 }
 
 .rent-input {

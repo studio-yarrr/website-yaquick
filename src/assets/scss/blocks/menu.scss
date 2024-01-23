@@ -1,5 +1,6 @@
 .menu {
   padding-top: 0.7rem;
+
   @include breakpoint($xl-bp) {
     transform: translate3d(-100%, 0, 0);
     position: fixed;
@@ -20,10 +21,12 @@
     max-height: 100%;
     overflow: auto;
   }
+
   .mcontacts-left {
     display: none;
+
     @include breakpoint($xl-bp) {
-      display: flex; 
+      display: flex;
       margin-top: 8rem;
       margin-bottom: 4rem;
     }
@@ -38,6 +41,7 @@
   font-style: normal;
   font-weight: 800;
   line-height: normal;
+
   @include breakpoint($xl-bp) {
     flex-direction: column;
     height: 100%;
@@ -54,29 +58,37 @@
   gap: 1rem;
   position: relative;
   z-index: 1;
+
   @include breakpoint($xl-bp) {
     align-items: center;
-    &.opened:hover {
+
+    &:hover {
       &:after {
-        transform: rotate(0);
+        transform: rotate(0deg);
       }
     }
+
     &.opened {
+      opacity: 1;
+
       &::after {
         transform: rotate(0);
       }
     }
-    &.opened:hover +.menu-sublist {
+
+    &.opened:hover+.menu-sublist {
       max-height: 200vh;
       opacity: 1;
       pointer-events: all;
     }
-    &.opened + .menu-sublist {
+
+    &.opened+.menu-sublist {
       max-height: 200vh;
       opacity: 1;
       pointer-events: all;
     }
   }
+
   &::after {
     content: '';
     background-image: url("data:image/svg+xml,%3Csvg width='25' height='25' viewBox='0 0 25 25' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.25 14.5833L7.71875 16.052L12.5 11.2812L17.2812 16.052L18.75 14.5833L12.5 8.33325L6.25 14.5833Z' fill='%23242021'/%3E%3C/svg%3E%0A");
@@ -92,19 +104,71 @@
 
 .menu-item {
   position: relative;
+
   &:hover {
     .menu-subbtn {
       opacity: 1;
+
       &::after {
         transform: rotate(0);
+
         @include breakpoint($xl-bp) {
           transform: rotate(0);
         }
       }
     }
+
     .menu-sublist {
       opacity: 1;
       pointer-events: all;
+    }
+  }
+
+  @include breakpoint($xl-bp) {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+    &::after {
+      content: '';
+      width: 100%;
+      height: calc(100% + 4rem);
+      background-color: transparent;
+      border: 1px solid rgba(36, 32, 33, 0.30);
+      position: absolute;
+      top: -2rem;
+      left: 0;
+      border-radius: 4rem;
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+    }
+
+    &.opened {
+      &::after {
+        opacity: 1;
+      }
+
+      .menu-sublist {
+        max-height: 200vh;
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .menu-subbtn {
+        opacity: 1;
+
+        &:hover {
+          &::after {
+            transform: rotate(180);
+          }
+        }
+
+        &::after {
+          transform: rotate(0) !important;
+        }
+      }
     }
   }
 }
@@ -132,18 +196,22 @@
   transition: opacity .3s;
   padding-top: 2rem;
   width: 100%;
+
   @include breakpoint($xl-bp) {
     position: relative;
     max-height: 0;
     overflow: hidden;
     padding-top: 0;
-    transition: max-height .3s; 
-    & > * {
+    transition: max-height .3s;
+    align-items: center;
+
+    &>* {
       &:first-child {
         margin-top: 2rem;
       }
     }
   }
+
   &:before {
     content: '';
     width: calc(100% + 6rem);
@@ -154,17 +222,23 @@
     background-color: var(--white);
     border-radius: 4rem;
     border: 0.1rem solid rgba(36, 32, 33, 0.30);
+
+    @include breakpoint($xl-bp) {
+      opacity: 0;
+    }
   }
+
   a {
     display: block;
     opacity: 0.3;
     transition: opacity .3s;
     position: relative;
+
     @media (hover: hover) and (pointer: fine) {
       &:hover {
         opacity: 1;
       }
-      }
+    }
   }
 }
 
@@ -172,6 +246,7 @@
   .menu-sublist {
     opacity: 0;
     pointer-events: none;
+
     @include breakpoint($xl-bp) {
       opacity: 1;
       pointer-events: all;
@@ -183,6 +258,7 @@
       .menu-sublist {
         opacity: 0;
         pointer-events: none;
+
         @include breakpoint($xl-bp) {
           opacity: 1;
           pointer-events: all;
@@ -204,6 +280,7 @@
   z-index: 4;
   display: none;
   position: relative;
+
   @include breakpoint($xl-bp) {
     display: block;
     height: 1.6rem;
@@ -211,6 +288,7 @@
     margin-top: 0.4rem;
     margin-left: 0.3rem;
   }
+
   .burger-button-close {
 
     #first-line-burger,

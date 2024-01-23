@@ -917,7 +917,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (xl.matches) {
           event.preventDefault()
         }
-        this.classList.toggle('opened')
+        this.parentNode.classList.toggle('opened')
       })
     })
   }
