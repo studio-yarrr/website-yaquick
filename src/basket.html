@@ -1,1 +1,98 @@
+<section class="basket first-margin container">
+  <h1 class="main-title carte-title" id="title">
+    <span class="line"><span>Корзина</span></span>
+  </h1>
+
+  <div class="basket-block">
+    <ul class="basket-list">
+      <li class="basket-item">
+        {{> basketItem}}
+      </li>
+
+      <li class="basket-item">
+        {{> basketItem2}}
+      </li>
+    </ul>
+
+    <!-- Tabs -->
+    <div class="basket-tabs">
+      <ul class="product-tabs">
+        <li>
+          Оформление заказа:
+        </li>
+        <li class="product-tab">
+          <button class="product-tabbtn">Доставка</button>
+          <div class="product-inner">
+            <form action="#" class="basket-order">
+              <div class="basket-subtitle">Доставка</div>
+              <div class="basket-addres">Адрес доставки</div>
+              <input type="tel" name="text" placeholder="Введите ваш адрес" class="basket-input" required>
+              <div class="basket-text">г. Ставрополь</div>
+              <div class="basket-addres">Информация</div>
+              <input type="tel" name="tel" placeholder="Введите ваш номер телефона" class="basket-input" required>
+              <div class="basket-addres">Оплата</div>
+              <div class="basket-text">Картой (на сайте)</div>
+              <div class="basket-wrapper">
+                <div class="basket-total">Итого</div>
+                <div class="basket-count">1 100₽</div>
+              </div>
+              <div class="basket-checkboxes">
+                <label class="checkbox-label">
+                  <input type="checkbox" required="true">
+                  <span class="checkbox"></span>
+                  Принять условия публичной оферты
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" required="true">
+                  <span class="checkbox"></span>
+                  Принять условия положения об обработке и защите персональных данных
+                </label>
+                <button class="basket-submit" type="submit">Заказать</button>
+              </div>
+            </form>
+          </div>
+        </li>
+        <li class="product-tab">
+          <button class="product-tabbtn">Самовывоз</button>
+          <div class="product-inner">
+            <form action="#" class="basket-order">
+              <div class="basket-subtitle">Самовывоз</div>
+              <div class="basket-addres">Адрес кафе</div>
+              <div class="basket-text">г. Ставрополь, ул. Мира, 332</div>
+              <div class="basket-addres">Информация</div>
+              <input type="tel" name="tel" placeholder="Введите ваш номер телефона" class="basket-input" required>
+              <div class="basket-addres">Оплата</div>
+              <div class="basket-text">Картой (на сайте)</div>
+              <div class="basket-wrapper">
+                <div class="basket-total">Итого</div>
+                <div class="basket-count">1 100₽</div>
+              </div>
+              <div class="basket-checkboxes">
+                <label class="checkbox-label">
+                  <input type="checkbox" required="true">
+                  <span class="checkbox"></span>
+                  Принять условия публичной оферты
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" required="true">
+                  <span class="checkbox"></span>
+                  Принять условия положения об обработке и защите персональных данных
+                </label>
+                <button class="basket-submit" type="submit">Заказать</button>
+              </div>
+            </form>
+          </div>
+        </li>
+      </ul>
+  
+      <div class="product-content" id="productContent">
+        <!-- Copied content -->
+      </div>
+    </div>
+    <!-- Tabs -->
+  </div>
+</section>
+
+{{> mcontacts}}
+
 <div class="mt-80"></div>

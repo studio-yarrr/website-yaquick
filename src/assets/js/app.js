@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       const letters1 = xl.matches ? document.getElementById('letters-mob') : document.getElementById('letters')
 
-      if (!xl.matches) {
+      if (!xl.matches && letters1) {
         letters1.classList.add('loaded')
       }
     }, 500)
@@ -263,21 +263,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (title) {
       const tl = gsap.timeline();
 
-      tl.to(".main-title .line span", {
-        attr: { style: "transform: translate3d(0, 0, 0)" },
-        stagger: {
-          amount: 0.3
-        }
-      })
-        .to('.main-btn', {
-          onComplete: function () {
-            if (this._targets.length) {
-              this._targets.forEach(el => {
-                el.classList.add('loaded')
-              })
-            }
+      const span = document.querySelector('.main-title .line span')
+      if (span) {
+        tl.to(".main-title .line span", {
+          attr: { style: "transform: translate3d(0, 0, 0)" },
+          stagger: {
+            amount: 0.3
           }
         })
+        const mainbtn = document.querySelector('.main-btn')
+        if (mainbtn)
+          tl.to(mainbtn, {
+            onComplete: function () {
+              if (this._targets.length) {
+                this._targets.forEach(el => {
+                  el.classList.add('loaded')
+                })
+              }
+            }
+          })
+      }
+
+
     }
   }
 
@@ -308,6 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
               slide.classList.add('swiper-slide')
               slide.innerHTML = category.innerHTML
               slide.dataset.slideid = i
+              slide.dataset.category = category.dataset.copycategory
               wrapper.appendChild(slide)
               if (i === 3) {
                 isLooped = true
@@ -333,6 +341,16 @@ document.addEventListener("DOMContentLoaded", () => {
               spaceBetween: 0,
               speed: 500,
             })
+            const params = new URL(document.location).searchParams;
+            const category = params.get("category");
+            let slideId = 0
+            if (category) {
+              const buttonCategory = document.querySelector(`[data-category="${category}"]`);
+              if (buttonCategory) {
+                slideId = buttonCategory.dataset.slideid
+              }
+            }
+            console.log(slideId)
             thumbs = new Swiper(swiper, {
               slidesPerView: 3,
               loop: numberOfSlides.length >= 4,
@@ -340,6 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
               spaceBetween: 0,
               grabCursor: true,
               speed: 500,
+              initialSlide: +slideId,
               breakpoints: {
                 // when window width is >= 320px
                 501: {
@@ -373,6 +392,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
               })
             }
+            
             setTimeout(() => {
               swiper.classList.add('loaded')
             }, 100)
@@ -921,6 +941,87 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     })
   }
+
+  const kgtTab = document.querySelectorAll('.product-tabs');
+  if (kgtTab.length) {
+    kgtTab.forEach((el, ind) => {
+      const content = el.nextElementSibling;
+      if (content) {
+        const buttons = el.querySelectorAll('.product-tabbtn');
+          if (buttons.length) {
+          buttons.forEach((btn, i) => {
+            btn.dataset.id = ind + i;
+            btn.addEventListener('click', function () {
+              const next = this.nextElementSibling;
+              if (next) {
+                if (content.dataset.foreign !== undefined) {
+                  const button = document.querySelector(`.product-tabbtn[data-id="${content.dataset.foreign}"]`);
+                  if (button) {
+                    const foreignNext = button.nextElementSibling;
+                    if (foreignNext) {
+                      foreignNext.append(...content.children)
+                    }
+                  }
+                }
+                content.dataset.foreign = this.dataset.id;
+  
+                content.append(...next.children)
+
+                buttons.forEach(button => {
+                  button.classList.remove('active');
+                })
+                this.classList.add('active');
+  
+              }
+            })
+          })
+        }
+  
+        buttons[0].click()
+      }
+    })
+  }
+
+  function addMask() {
+    [].forEach.call(document.querySelectorAll('input[type="tel"]'), function (input) {
+      let keyCode;
+      function mask(event) {
+        event.keyCode && (keyCode = event.keyCode);
+        let pos = this.selectionStart;
+        if (pos < 3) event.preventDefault();
+        let matrix = "+7 (___) ___-__-__",
+          i = 0,
+          def = matrix.replace(/\D/g, ""),
+          val = this.value.replace(/\D/g, ""),
+          new_value = matrix.replace(/[_\d]/g, function (a) {
+            return i < val.length ? val.charAt(i++) || def.charAt(i) : a
+          });
+        i = new_value.indexOf("_");
+        if (i != -1) {
+          i < 5 && (i = 3);
+          new_value = new_value.slice(0, i);
+        }
+        let reg = matrix.substr(0, this.value.length).replace(/_+/g,
+          function (a) {
+            return "\\d{1," + a.length + "}"
+          }).replace(/[+()]/g, "\\$&");
+        reg = new RegExp("^" + reg + "$");
+        this.parentElement.classList.remove('error');
+        if (!reg.test(this.value) || this.value.length < 5 || keyCode > 47 && keyCode < 58) this.value = new_value;
+        if (event.type == "blur" && this.value.length < 5) this.value = ""
+      }
+
+      input.addEventListener("input", mask, false);
+      input.addEventListener("focus", mask, false);
+      input.addEventListener("blur", mask, false);
+      input.addEventListener("keydown", mask, false);
+
+    });
+
+  }
+  addMask();
+
+
 });
 
 

@@ -312,3 +312,64 @@ max-width: 44.8rem;
     padding: 2rem;
   }
 }
+
+.rent-block {
+
+}
+
+.order {
+  display: grid;
+  grid-template-columns: 1fr 44.8rem ;
+  gap: 2rem;
+  @include breakpoint($xl-bp) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.order-title {
+  grid-column: 2 span;
+}
+
+.order-checkbox {
+  margin-top: 4rem;
+}
+
+.order-form {
+
+  display: flex;
+  flex-direction: column;
+}
+
+.order-block {
+  border-radius: 4rem;
+  padding: 4rem;
+  background-color: var(--grey);
+  @include breakpoint($xl-bp) {
+    padding: 2rem;
+  }
+}
+
+.order-btn {
+  margin-top: 4rem;
+}
+
+.order-subtitle {
+  color: var(--black, #242021);
+font-family: Gilroy;
+font-size: 4.2rem;
+font-style: normal;
+font-weight: 300;
+line-height: normal;
+}
+
+.order-img {
+  width: 100%;
+  height: 50.7rem;
+  border-radius: 21.3rem;
+}
+
+.order-input {
+  width: 100%;
+  max-width: 69rem;
+}

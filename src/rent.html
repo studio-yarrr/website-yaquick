@@ -10,7 +10,7 @@
     <div class="rent-desc">Мы поможем вам подобрать подходящий вариант аренды помещения</div>
   </div>
   <div class="rent-right">
-    <form action="#" class="rent-form">
+    <!-- <form action="#" class="rent-form">
       <input type="number" placeholder="Введите количество гостей" name="numberofguests" class="input rent-input">
       <div class="custom-select w-full rent-select">
         <select name="type">
@@ -21,11 +21,10 @@
         </select>
       </div>
       <button type="submit" class="btn rent-btn">Подобрать</button>
-    </form>
-  </div>
-
-  <div class="container rent-bot"><button class="rent-botbtn arrow-btn" aria-label="Смотреть предложения" data-scroll="#pred">Смотреть
+    </form> -->
+    <div class="rent-bot"><button class="rent-botbtn arrow-btn" aria-label="Смотреть предложения" data-scroll="#pred">Смотреть
       предложения</button></div>
+  </div>
 
 
   <div class="rent-wrapper" id="pred">
@@ -80,6 +79,31 @@
           фуршета, это менее официальное и небольшое по длительности мероприятие, а потому для него не предусмотрено большое разнообразие блюд.</div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="mt-160 order container">
+  <h2 class="h2 order-title">Нужно помещение?</h2>
+
+  <div class="order-block">
+    <h3 class="order-subtitle">Оставьте вашу заявку и мы свяжемся с вами!</h3>
+
+    <form action="#" class="order-form">
+      <input type="text" name="name"  class="basket-input order-input" required placeholder="Введите ваше имя">
+      <input type="tel" name="tel"  class="basket-input order-input" required placeholder="Введите ваш номер телефона">
+
+      <label class="checkbox-label order-checkbox">
+        <input type="checkbox" required="true">
+        <span class="checkbox"></span>
+        Принять условия положения об обработке и защите персональных данных
+      </label>
+
+      <button type="submit" class="btn order-btn">Оставить заявку</button>
+    </form>
+  </div>
+
+  <div class="order-img img-cover">
+    <img src="./assets/images/rent/3.jpg" alt="rent">
   </div>
 </section>
 
