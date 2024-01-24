@@ -350,7 +350,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 slideId = buttonCategory.dataset.slideid
               }
             }
-            console.log(slideId)
             thumbs = new Swiper(swiper, {
               slidesPerView: 3,
               loop: numberOfSlides.length >= 4,

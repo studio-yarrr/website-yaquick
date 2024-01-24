@@ -33,14 +33,54 @@
   }
 }
 
+.circle {
+  width: 100rem;
+  height: 100rem;
+  position: absolute;
+
+  border-radius: 100%;
+  animation: pulse 10s infinite alternate ease-in-out;
+  filter: blur(6rem);
+  transform: translate3d(0, 0, 0) scale(1);
+
+  &.red {
+    background-color: var(--red);
+    top: -50rem;
+    left: -50rem;
+  }
+
+  &.orange {
+    background-color: var(--orange);
+    top: -40rem;
+    right: -40rem;
+  }
+}
+
+.round {
+
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(2.7) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+
 .main-block {
   border-radius: 21.0431rem;
-  background: linear-gradient(77deg, #EE2128 17.83%, #FF7048 48.21%);
+  // background: linear-gradient(77deg, #EE2128 17.83%, #FF7048 48.21%);
   background-size: 200% 200%;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   height: 42.2rem;
   position: relative;
+  background-color: #FFEFE0;
 
 
   @include breakpoint($xl-bp) {
@@ -63,9 +103,9 @@
     z-index: 1;
     width: 100%;
     height: 100%;
-    background: rgba($color: #EE2128, $alpha: 0.1);
-    backdrop-filter: blur(4rem);
-    transform: translate3d(-50%, -50%, 0);
+    // background: rgba($color: #EE2128, $alpha: 0.1);
+    // filter: blur(5rem);
+    // transform: translate3d(-50%, -50%, 0) scale(2);
     will-change: transform;
     // border-radius: inherit; 
     overflow: hidden;
@@ -74,7 +114,7 @@
     // border-bottom-right-radius: inherit;
     @include breakpoint($xl-bp) {
       display: none;
-      backdrop-filter: none;
+      filter: none;
     }
   }
 
@@ -300,7 +340,7 @@
       transform: translate3d(0, 100%, 0);
       transition: transform .7s ease-in-out;
       will-change: transform;
-      background: linear-gradient(77deg, #EE2128 17.83%, #FF7048 48.21%);
+      background: linear-gradient(77deg, #FF7048 17.83%, #EE2128 48.21%);
       background-size: 400% 400%;
       background-clip: text;
       -webkit-background-clip: text;
