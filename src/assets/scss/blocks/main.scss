@@ -43,6 +43,10 @@
   filter: blur(6rem);
   transform: translate3d(0, 0, 0) scale(1);
 
+  @include breakpoint($xl-bp) {
+    display: none;
+  }
+
   &.red {
     background-color: var(--red);
     top: -50rem;
@@ -56,17 +60,17 @@
   }
 }
 
-.round {
-
-}
+.round {}
 
 @keyframes pulse {
   0% {
     transform: scale(1) translate3d(0, 0, 0);
   }
+
   50% {
     transform: scale(2.7) translate3d(0, 0, 0);
   }
+
   100% {
     transform: scale(1) translate3d(0, 0, 0);
   }
@@ -80,14 +84,16 @@
   border-bottom-right-radius: 0;
   height: 42.2rem;
   position: relative;
-  background-color: #FFEFE0;
+  background: #FFEFE0;
 
 
   @include breakpoint($xl-bp) {
     height: 20rem;
     width: 45rem;
     margin-left: auto;
+    background: linear-gradient(77deg, #EE2128 17.83%, #FF7048 48.21%);
     animation: gradient 7s linear infinite;
+    background-size: 200% 200%;
   }
 
   @include breakpoint($sm-bp) {
@@ -183,6 +189,7 @@
   height: 100%;
   background-color: var(--orange);
   animation: toggle 5s infinite;
+
   @include breakpoint($xl-bp) {
     display: none;
   }
@@ -196,6 +203,7 @@
   height: 100%;
   background-color: var(--red);
   animation: toggle 10s infinite;
+
   @include breakpoint($xl-bp) {
     display: none;
   }
