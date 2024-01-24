@@ -26,6 +26,7 @@
   padding: 2rem;
   position: relative;
 .smenu-item {
+  min-height: 31rem;
   @include breakpoint($xl-bp) {
     flex-direction: column;
   }
