@@ -391,7 +391,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
               })
             }
-            
+
             setTimeout(() => {
               swiper.classList.add('loaded')
             }, 100)
@@ -498,17 +498,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         price.innerHTML = initialPrice * (inp.value || 1)
 
-        const total = document.querySelectorAll('[data-total]');
-        if (total.length) {
-          const prices = document.querySelectorAll('[data-price]')
-          total.forEach(el => {
-            let total = 0;
-            prices.forEach(el => {
-              total +=+el.innerHTML
-            })
-            el.innerHTML = total
-          })
-        }
+        // const total = document.querySelectorAll('[data-total]');
+        // if (total.length) {
+        //   const prices = document.querySelectorAll('[data-price]')
+        //   total.forEach(el => {
+        //     let total = 0;
+        //     prices.forEach(el => {
+        //       total += +el.innerHTML
+        //     })
+        //     el.innerHTML = numberWithSpaces(total)
+        //   })
+        // }
+      }
+
+      function numberWithSpaces(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
       }
 
       const plus = el.querySelector('[data-plus]')
@@ -935,7 +939,7 @@ document.addEventListener("DOMContentLoaded", () => {
         x[i].classList.add("select-hide");
       }
     }
-  } 
+  }
 
   /* If the user clicks anywhere outside the select box,
   then close all select boxes: */
@@ -959,7 +963,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const content = el.nextElementSibling;
       if (content) {
         const buttons = el.querySelectorAll('.product-tabbtn');
-          if (buttons.length) {
+        if (buttons.length) {
           buttons.forEach((btn, i) => {
             btn.dataset.id = ind + i;
             btn.addEventListener('click', function () {
@@ -975,19 +979,19 @@ document.addEventListener("DOMContentLoaded", () => {
                   }
                 }
                 content.dataset.foreign = this.dataset.id;
-  
+
                 content.append(...next.children)
 
                 buttons.forEach(button => {
                   button.classList.remove('active');
                 })
                 this.classList.add('active');
-  
+
               }
             })
           })
         }
-  
+
         buttons[0].click()
       }
     })
@@ -1032,6 +1036,79 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   addMask();
 
+  const next = document.querySelector('[data-next]')
+  const basket = document.querySelector('.basket')
+  if (next && basket) {
+    next.addEventListener('click', function () {
+      basket.classList.add('ordered')
+    })
+  }
+
+  function modalHandler() {
+    const modal = document.querySelector(`${this.dataset?.modal}`) || this
+    if (modal.classList.contains('regModal') && modal.hidden) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+    if (modal) {
+      if (modal.hidden) {
+        modal.hidden = !modal.hidden
+        modal.style.setProperty('pointer-events', 'auto');
+        setTimeout(() => {
+          modal.style.opacity = 1
+        }, 10);
+      } else {
+        modal.style.opacity = 0
+        modal.style.setProperty('pointer-events', null);
+        const numb = Number(getComputedStyle(modal).transitionDuration.match(/(\d+\.\d+)|(\d+)/g)[0]);
+        if (numb > 0) {
+          modal.addEventListener('transitionend', hideaftertransition);
+        } else {
+          modal.hidden = true
+        }
+      }
+    }
+  }
+
+  const regModal = document.querySelectorAll('.regModal');
+
+  if (regModal) {
+    regModal.forEach(el => {
+      el.addEventListener('click', function () {
+        if (event.target.classList.contains('regModal')) {
+          modalHandler.apply(this);
+        }
+      });
+      const closeButton = el.querySelectorAll('.close-button');
+      if (closeButton.length) {
+        closeButton.forEach(button => {
+          button.addEventListener('click', () => {
+            modalHandler.apply(el);
+          });
+        })
+      }
+    });
+  }
+
+
+  function hideaftertransition() {
+    this.hidden = true
+    this.removeEventListener('transitionend', hideaftertransition);
+  }
+
+  document.addEventListener('click', () => {
+    const dataModal = event.target.closest('[data-modal]');
+    if (dataModal) {
+      if (dataModal.dataset?.close !== undefined) {
+        const parent = dataModal.closest('.regModal')
+        if (parent) {
+          modalHandler.apply(parent)
+        }
+      }
+      modalHandler.apply(dataModal);
+    }
+  })
 
 });
 

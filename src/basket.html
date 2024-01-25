@@ -1,4 +1,4 @@
-<section class="basket first-margin container">
+<section class="basket first-margin container" id="basket">
   <h1 class="main-title carte-title" id="title">
     <span class="line"><span>Корзина</span></span>
   </h1>
@@ -14,6 +14,17 @@
       </li>
     </ul>
 
+    <div class="basket-fixed">
+      <div class="basket-wrapper">
+        <div class="basket-total">Итого</div>
+        <div class="basket-count"><span data-total>1 100</span> ₽</div>
+      </div>
+      <div class="basket-buttons">
+        <button class="basket-submit" data-next data-scroll="#basket">Оформить заказ</button>
+        <button class="basket-clear">Очистить корзину</button>
+      </div>
+    </div>
+
     <!-- Tabs -->
     <div class="basket-tabs">
       <ul class="product-tabs">
@@ -25,16 +36,18 @@
           <div class="product-inner">
             <form action="#" class="basket-order">
               <div class="basket-subtitle">Доставка</div>
-              <div class="basket-addres">Адрес доставки</div>
-              <input type="tel" name="text" placeholder="Введите ваш адрес" class="basket-input" required>
-              <div class="basket-text">г. Ставрополь</div>
-              <div class="basket-addres">Информация</div>
-              <input type="tel" name="tel" placeholder="Введите ваш номер телефона" class="basket-input" required>
-              <div class="basket-addres">Оплата</div>
-              <div class="basket-text">Картой (на сайте)</div>
+              <div class="basket-info">
+                <div class="basket-addres">Адрес доставки</div>
+                <input type="text" name="adress" placeholder="Введите ваш адрес" class="basket-input" required>
+                <div class="basket-text">г. Ставрополь</div>
+                <div class="basket-addres">Информация</div>
+                <input type="tel" name="tel" placeholder="Введите ваш номер телефона" class="basket-input" required>
+                <div class="basket-addres">Оплата</div>
+                <div class="basket-text">Картой (на сайте)</div>
+              </div>
               <div class="basket-wrapper">
                 <div class="basket-total">Итого</div>
-                <div class="basket-count"><span data-total>1 100</span>₽</div>
+                <div class="basket-count"><span data-total>1 100</span> ₽</div>
               </div>
               <div class="basket-checkboxes">
                 <label class="checkbox-label">
@@ -57,15 +70,17 @@
           <div class="product-inner">
             <form action="#" class="basket-order">
               <div class="basket-subtitle">Самовывоз</div>
-              <div class="basket-addres">Адрес кафе</div>
-              <div class="basket-text">г. Ставрополь, ул. Мира, 332</div>
-              <div class="basket-addres">Информация</div>
-              <input type="tel" name="tel" placeholder="Введите ваш номер телефона" class="basket-input" required>
-              <div class="basket-addres">Оплата</div>
-              <div class="basket-text">Картой (на сайте)</div>
+              <div class="basket-info">
+                <div class="basket-addres">Адрес кафе</div>
+                <div class="basket-text">г. Ставрополь, ул. Мира, 332</div>
+                <div class="basket-addres">Информация</div>
+                <input type="tel" name="tel" placeholder="Введите ваш номер телефона" class="basket-input" required>
+                <div class="basket-addres">Оплата</div>
+                <div class="basket-text">Картой (на сайте)</div>
+              </div>
               <div class="basket-wrapper">
                 <div class="basket-total">Итого</div>
-                <div class="basket-count"><span data-total>1 100</span>₽</div>
+                <div class="basket-count"><span data-total>1 100</span> ₽</div>
               </div>
               <div class="basket-checkboxes">
                 <label class="checkbox-label">
@@ -84,7 +99,7 @@
           </div>
         </li>
       </ul>
-  
+
       <div class="product-content" id="productContent">
         <!-- Copied content -->
       </div>
@@ -93,6 +108,8 @@
   </div>
 </section>
 
+
 {{> mcontacts}}
+
 
 <div class="mt-80"></div>
