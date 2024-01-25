@@ -497,6 +497,18 @@ document.addEventListener("DOMContentLoaded", () => {
           inp.value = inp.dataset.max;
         }
         price.innerHTML = initialPrice * (inp.value || 1)
+
+        const total = document.querySelectorAll('[data-total]');
+        if (total.length) {
+          const prices = document.querySelectorAll('[data-price]')
+          total.forEach(el => {
+            let total = 0;
+            prices.forEach(el => {
+              total +=+el.innerHTML
+            })
+            el.innerHTML = total
+          })
+        }
       }
 
       const plus = el.querySelector('[data-plus]')
