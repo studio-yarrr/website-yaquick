@@ -54,6 +54,8 @@ for (const form of document.forms) {
     const formData = new FormData(this);
     const parent = this.closest('.regModal');
     const feedback = document.querySelector('#feedback');
+    const feedback2 = document.querySelector('#feedback2')
+
     for(const key of formData.entries()) {
       console.log(key);
     }
@@ -74,6 +76,10 @@ for (const form of document.forms) {
     if (parent) {
       modalHandler.apply(parent);
     } 
+    if (this.id === 'rentform' && feedback2) {
+      modalHandler.apply(feedback2)
+      return
+    }
     if (feedback) {
       modalHandler.apply(feedback);
     }

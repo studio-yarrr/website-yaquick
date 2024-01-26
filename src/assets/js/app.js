@@ -341,15 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
               spaceBetween: 0,
               speed: 500,
             })
-            const params = new URL(document.location).searchParams;
-            const category = params.get("category");
-            let slideId = 0
-            if (category) {
-              const buttonCategory = document.querySelector(`[data-category="${category}"]`);
-              if (buttonCategory) {
-                slideId = buttonCategory.dataset.slideid
-              }
-            }
+            let slideId = 0;
             thumbs = new Swiper(swiper, {
               slidesPerView: 3,
               loop: numberOfSlides.length >= 4,
@@ -957,7 +949,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 
-  const kgtTab = document.querySelectorAll('.product-tabs');
+  const kgtTab = document.querySelectorAll('.product-tabs, .catalog-tabs');
   if (kgtTab.length) {
     kgtTab.forEach((el, ind) => {
       const content = el.nextElementSibling;
@@ -1109,6 +1101,15 @@ document.addEventListener("DOMContentLoaded", () => {
       modalHandler.apply(dataModal);
     }
   })
+
+  const params = new URL(document.location).searchParams;
+  const category = params.get("category");
+  if (category) {
+    const buttonCategory = document.querySelector(`[data-category="${category}"]`);
+    if (buttonCategory) {
+      buttonCategory.click()
+    }
+  }
 
 });
 

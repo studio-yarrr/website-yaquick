@@ -6,80 +6,58 @@
     </h1>
 
     <form action="#" class="carte-search search">
-      <button class="search-btn" aria-label="Поиск по меню"><svg><use xlink:href='./assets/images/sprite.svg#search'></use></svg></button>
+      <button class="search-btn" aria-label="Поиск по меню"><svg>
+          <use xlink:href='./assets/images/sprite.svg#search'></use>
+        </svg></button>
       <input type="text" name="search" placeholder="Поиск по меню" class="input carte-input">
     </form>
   </div>
 </section>
 
-<div class="smenu carte-menu" id="smenu">
-  <div class="container carte-head">
-    <button class="smenu-btn arrow-btn" aria-label="Смотреть меню" data-scroll="#smenu">Смотреть меню</button> 
-  </div>
-
-  <div class="smenu-swiper-wrapper">
-    <div class="smenu-sel">Ввыберите категорию</div>
-    <div class="swiper smenu-swiper">
-      <div class="swiper-wrapper">
-      </div>
-    </div>
-    <button class="swiper-arrow prev"></button>
-    <button class="swiper-arrow next"></button>
-  </div>
-
-  <div class="swiper smenu-outer-swiper container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-
-        <div class="smeny-copy-category" data-copycategory="first">
-          <div class="smenu-mimg img-contain">
-            <img src="./assets/images/smenu/1.png" alt="Первое">
-          </div>
-          <div class="smenu-type">Первое</div>
+<section class="catalog mt-160">
+  <!-- Tabs -->
+  <div class="catalog-tabs-wrapper">
+    <ul class="catalog-tabs container">
+      <li class="catalog-tab">
+        <button class="catalog-tabbtn product-tabbtn" data-category="first">Первое</button>
+        <div class="catalog-inner">
+          <ul class="catalog-list">
+            @loop('./partials/catalogItem.html', [1, 2, 3, 4, 5])
+          </ul>
         </div>
-
-        {{> menuOuterSlide}}
-      </div>
-      <div class="swiper-slide">
-
-        <div class="smeny-copy-category" data-copycategory="second">
-          <div class="smenu-mimg img-contain">
-            <img src="./assets/images/smenu/2.png" alt="Второе">
-          </div>
-          <div class="smenu-type">Второе</div>
+      </li>
+      <li class="catalog-tab">
+        <button class="catalog-tabbtn product-tabbtn" data-category="second">Второе</button>
+        <div class="catalog-inner">
+          <ul class="catalog-list">
+            @loop('./partials/catalogItem.html', [1, 2, 3, 4, 5])
+          </ul>
         </div>
-
-        {{> menuOuterSlide}}
-      </div>
-
-      <div class="swiper-slide">
-
-        <div class="smeny-copy-category" data-copycategory="salats">
-          <div class="smenu-mimg img-contain">
-            <img src="./assets/images/smenu/3.png" alt="Салаты">
-          </div>
-          <div class="smenu-type">Салаты</div>
+      </li>
+      <li class="catalog-tab">
+        <button class="catalog-tabbtn product-tabbtn" data-category="salats">Салаты</button>
+        <div class="catalog-inner">
+          <ul class="catalog-list">
+            @loop('./partials/catalogItem.html', [1, 2, 3, 4, 5])
+          </ul>
         </div>
-
-        {{> menuOuterSlide}}
-      </div>
-
-      <div class="swiper-slide">
-
-        <div class="smeny-copy-category" data-copycategory="drinks">
-          <div class="smenu-mimg img-contain">
-            <img src="./assets/images/smenu/4.png" alt="Напитки">
-          </div>
-          <div class="smenu-type">Напитки</div>
+      </li>
+      <li class="catalog-tab">
+        <button class="catalog-tabbtn product-tabbtn" data-category="drinks">Напитки</button>
+        <div class="catalog-inner">
+          <ul class="catalog-list">
+            @loop('./partials/catalogItem.html', [1, 2, 3, 4, 5])
+          </ul>
         </div>
+      </li>
+    </ul>
 
-        {{> menuOuterSlide}}
-      </div>
+    <div class="catalog-content container" id="catalog-content">
+      <!-- Copied content -->
     </div>
   </div>
-</div>
-
-{{> mgallery}}
+  <!-- Tabs -->
+</section>
 
 {{> mcontacts}}
 

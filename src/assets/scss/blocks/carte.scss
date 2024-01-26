@@ -5,6 +5,10 @@
   }
 }
 
+.carte-title {
+  margin-top: 0;
+}
+
 .carte-head {
   @include breakpoint($xl-bp) {
     display: flex;
@@ -68,5 +72,70 @@
   width: 100%;
   @include breakpoint($xl-bp) {
     padding-left: 5.5rem;
+  }
+}
+
+.product-tabbtn.catalog-tabbtn {
+  color: var(--black, #242021);
+  font-family: Gilroy;
+  font-size: 4.2rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  @include breakpoint($xl-bp) {
+    font-size: 1.6rem;
+  }
+}
+
+.catalog-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  @include breakpoint($xl-bp) {
+    display: flex;
+    flex-direction: column;
+
+  }
+}
+
+.catalog-item {
+  background-color: var(--grey);
+  border-radius: 4rem;
+  padding: 4rem 1.8rem;
+  @include breakpoint($xl-bp) {
+    flex-direction: column;
+    padding: 2rem;
+  }
+  .smenu-basket {
+    background-color: var(--orange);
+    color: var(--white);
+    font-weight: 800;
+    border-color: var(--orange);
+  }
+}
+
+.catalog-tabs {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 4rem;
+overflow: auto;
+@include breakpoint($xl-bp) {
+  justify-content: flex-start;
+  gap: 1rem;
+}
+}
+
+.catalog-inner {
+  display: none;
+}
+
+.catalog-content {
+  margin-top: 4rem;
+  @include breakpoint($xl-bp) {
+    margin-top: 0;
+  }
+  & > * {
+    animation: fadeEffect .3s;
   }
 }
