@@ -105,6 +105,7 @@
   @include breakpoint($xl-bp) {
     flex-direction: column;
     padding: 2rem;
+    gap: 1rem;
   }
   .smenu-basket {
     background-color: var(--orange);
