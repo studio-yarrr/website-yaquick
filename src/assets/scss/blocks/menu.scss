@@ -62,9 +62,11 @@
   @include breakpoint($xl-bp) {
     align-items: center;
 
-    &:hover {
-      &:after {
-        transform: rotate(0deg);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        &:after {
+          transform: rotate(0deg);
+        }
       }
     }
 
@@ -105,22 +107,24 @@
 .menu-item {
   position: relative;
 
-  &:hover {
-    .menu-subbtn {
-      opacity: 1;
-
-      &::after {
-        transform: rotate(0);
-
-        @include breakpoint($xl-bp) {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      .menu-subbtn {
+        opacity: 1;
+  
+        &::after {
           transform: rotate(0);
+  
+          @include breakpoint($xl-bp) {
+            transform: rotate(0);
+          }
         }
       }
-    }
-
-    .menu-sublist {
-      opacity: 1;
-      pointer-events: all;
+  
+      .menu-sublist {
+        opacity: 1;
+        pointer-events: all;
+      }
     }
   }
 
@@ -143,6 +147,7 @@
       opacity: 0;
       transition: opacity .3s;
       pointer-events: none;
+      will-change: opacity;
     }
 
     &.opened {
@@ -254,14 +259,16 @@
   }
 
   .menu-item {
-    &:hover {
-      .menu-sublist {
-        opacity: 0;
-        pointer-events: none;
-
-        @include breakpoint($xl-bp) {
-          opacity: 1;
-          pointer-events: all;
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        .menu-sublist {
+          opacity: 0;
+          pointer-events: none;
+  
+          @include breakpoint($xl-bp) {
+            opacity: 1;
+            pointer-events: all;
+          }
         }
       }
     }
