@@ -121,6 +121,9 @@ align-items: center;
 justify-content: center;
 gap: 4rem;
 overflow: auto;
+&::-webkit-scrollbar:horizontal {
+  height: 0;
+}
 @include breakpoint($xl-bp) {
   justify-content: flex-start;
   gap: 1rem;
@@ -134,7 +137,7 @@ overflow: auto;
 .catalog-content {
   margin-top: 4rem;
   @include breakpoint($xl-bp) {
-    margin-top: 0;
+    margin-top: 2rem;
   }
   & > * {
     animation: fadeEffect .3s;

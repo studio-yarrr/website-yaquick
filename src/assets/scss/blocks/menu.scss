@@ -61,7 +61,7 @@
 
   @include breakpoint($xl-bp) {
     align-items: center;
-
+    margin-left: 3rem;
     @media (hover: hover) and (pointer: fine) {
       &:hover {
         &:after {
