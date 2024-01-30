@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Обед и перекус на любой вкус">
+  <title></title>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="assets/images/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="assets/css/style.css?10">
+  <!-- CSS only --></head>
+
+<body>
+  <div class="page">
+    <!-- Header -->
+    <header class="header container">
+      <div class="menu">
+        <nav class="menu-nav">
+          <ul class="menu-list">
+            <li class="menu-item"><a href="about.html">О нас</a></li>
+            <li class="menu-item">
+              <a class="menu-subbtn" href="carte.html">Меню блюд</a>
+              <ul class="menu-sublist">
+                <li class="menu-subitem"><a href="carte.html?category=first">Первое</a></li>
+                <li class="menu-subitem"><a href="carte.html?category=second">Второе</a></li>
+                <li class="menu-subitem"><a href="carte.html?category=salats">Салаты</a></li>
+                <li class="menu-subitem"><a href="carte.html?category=drinks">Напитки</a></li>
+              </ul>
+            </li>
+            <li class="menu-item"><a href="rent.html">Аренда помещений</a></li>
+            <li class="menu-item"><a href="gallery.html">Галерея</a></li>
+            <li class="menu-item"><a href="contacts.html">Контакты</a></li>
+          </ul>
+      
+          <div class="mcontacts-left">
+            <ul class="mcontacts-info">
+              <li class="mcontacts-item">
+                <div class="mcontacts-name">Адрес</div>
+                <div class="mcontacts-link">г. Ставрополь, ул. Мира, 332</div>
+              </li>
+              <li class="mcontacts-item">
+                <div class="mcontacts-name">Телефон</div>
+                <a href="tel:+79999999999" class="mcontacts-link">+7 999 999 99 99</a>
+              </li>
+              <li class="mcontacts-item">
+                <div class="mcontacts-name">Почта</div>
+                <a href="mailto:яква@yandex.ru" class="mcontacts-link">яква@yandex.ru</a>
+              </li>
+            </ul>
+      
+            <ul class="mcontacts-socials">
+              <li class="mcontacts-social whatsapp">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#whatsapp'></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="mcontacts-social telegram">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#telegram'></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="mcontacts-social mailru">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#mailru'></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="mcontacts-social youtube">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#youtube'></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="header-right">
+    
+        <button class="menu-button" aria-label="open menu">
+          <span class="burger-button-close">
+            <span id="first-line-burger"></span>
+            <span id="second-line-burger"></span>
+            <span id="third-line-burger"></span>
+          </span>
+        </button>
+    
+        <div class="header-logoes">
+          <a href="main.html" class="header-logo-1 img-contain">
+            <img src="./assets/images/logo/1.svg" alt="яква">
+          </a>
+      
+          <a href="main.html" class="header-logo-2 img-contain">
+            <img src="./assets/images/logo/2.svg" alt="я quick">
+          </a>
+        </div>
+    
+        <a href="basket.html" class="bag" aria-label="open basket" data-count="4"><svg>
+            <use xlink:href='./assets/images/sprite.svg#bag'></use>
+          </svg></a>
+      </div>
+    </header>    <!-- Header -->
+
+    <!-- Main content -->
+    <main>
+
+      <section class="rent container first-margin">
+        <div class="rent-left">
+          <h1 class="rent-title main-title" id="title"><span class="line">
+              <span>Аренда</span>
+            </span>
+            <span class="line">
+              <span>помещений</span>
+            </span>
+          </h1>
+          <div class="rent-desc">Мы поможем вам подобрать подходящий вариант аренды помещения</div>
+        </div>
+        <div class="rent-right">
+          <!-- <form action="#" class="rent-form">
+            <input type="number" placeholder="Введите количество гостей" name="numberofguests" class="input rent-input">
+            <div class="custom-select w-full rent-select">
+              <select name="type">
+                <option value="none">Выберите формат мероприятия</option>
+                <option value="Банкет">Банкет</option>
+                <option value="Фуршет">Фуршет</option>
+                <option value="Кофе-брейк">Кофе-брейк</option>
+              </select>
+            </div>
+            <button type="submit" class="btn rent-btn">Подобрать</button>
+          </form> -->
+          <div class="rent-bot"><button class="rent-botbtn arrow-btn" aria-label="Смотреть предложения" data-scroll="#pred">Смотреть
+            предложения</button></div>
+        </div>
+      
+      
+        <div class="rent-wrapper" id="pred">
+          <div class="rent-block">
+            <div class="rent-img img-cover">
+              <img src="./assets/images/rent/1.jpg" alt="Банкет с обслуживанием">
+            </div>
+            <div class="rent-col">
+              <h2 class="rent-subtitle">Банкет с обслуживанием</h2>
+              <div class="rent-desc --1">Для официальных и торжественных мероприятий предлагаем организовать банкет с размещением. В столовой Яква банкеты
+                проводятся в будни после 16:00 и до полуночи, в выходные - в любое время.Банкет с обслуживанием. Наши официанты будут следить за переменами
+                блюд, разливать напитки, приносить необходимую посуду и приборы, встречать и провожать гостей.</div>
+            </div>
+          </div>
+      
+          <div class="rent-block-2">
+            <div class="rent-col">
+              <h2 class="rent-subtitle">Организация корпоративного питания</h2>
+              <div class="rent-desc --2">Мы поможем организовать как частный банкет, так и корпоративное застолье любого формата. Предлагаем зал
+                вместимостью (от 15 до 100 человек) в пешей доступности. Наши помещения можно арендовать до полуночи. Алкоголь можно приносить свой без
+                “пробочного взноса”.</div>
+            </div>
+            <div class="rent-numbers">
+              <div class="rent-numb">15-100</div>
+              <div class="rent-op">человек</div>
+            </div>
+          </div>
+      
+          <div class="rent-block-2 --reverse">
+            <div class="rent-col">
+              <h2 class="rent-subtitle">Фуршет</h2>
+              <div class="rent-desc --2">Мы предлагаем организацию фуршетов для компаний или частных лиц в наших уютных залах, которые вмещают до 200
+                человек. Формат фуршета предполагает отдельную зону, где выставляются блюда, а гости сами подходят и выбирают понравившиеся салаты, канапе и
+                выпечку. Все блюда выставляются сразу.</div>
+            </div>
+            <div class="rent-numbers">
+              <div class="rent-op">до</div>
+              <div class="rent-numb">200</div>
+              <div class="rent-op">человек</div>
+            </div>
+          </div>
+      
+          <div class="rent-orange">
+            <div class="rent-img-2 img-cover  ">
+              <img src="./assets/images/rent/2.jpg" alt="Кофе-брейк">
+            </div>
+      
+            <div class="rent-col">
+              <h2 class="rent-subtitle">Кофе-брейк</h2>
+      
+              <div class="rent-desc">Формат кофе-брейка предполагает свободную рассадку гостей и самостоятельный подход к столам с блюдами. В отличие от
+                фуршета, это менее официальное и небольшое по длительности мероприятие, а потому для него не предусмотрено большое разнообразие блюд.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="mt-160 order container">
+        <h2 class="h2 order-title">Нужно помещение?</h2>
+      
+        <div class="order-img-2 img-cover xl-block">
+          <img src="./assets/images/rent/4.jpg" alt="rent">
+        </div>
+      
+        <div class="order-block">
+          <h3 class="order-subtitle">Оставьте вашу заявку и мы свяжемся с вами!</h3>
+      
+          <form action="#" class="order-form" id="rentform">
+            <input type="text" name="name"  class="basket-input order-input" required placeholder="Введите ваше имя">
+            <input type="tel" name="tel"  class="basket-input order-input" required placeholder="Введите ваш номер телефона">
+      
+            <label class="checkbox-label order-checkbox">
+              <input type="checkbox" required="true">
+              <span class="checkbox"></span>
+              Принять условия положения об обработке и защите персональных данных
+            </label>
+      
+            <button type="submit" class="btn order-btn">Оставить заявку</button>
+          </form>
+        </div>
+      
+        <div class="order-img img-cover xl-hidden">
+          <img src="./assets/images/rent/3.jpg" alt="rent">
+        </div>
+      </section>
+      
+      <section class="mcontacts container mt-160">
+        <h2 class="h2 mcontacts-title">Мы <span class="first-letter">З</span>десь</h2>
+      
+        <div class="mcontacts-block">
+          <div class="map mcontacts-map">
+            <a href="https://yandex.by/maps/org/yakva/1708608310/?utm_medium=mapframe&utm_source=maps"
+              style="color:#eee;font-size:12px;position:absolute;top:0px;">Яква</a><a
+              href="https://yandex.by/maps/36/stavropol/category/canteen/184106396/?utm_medium=mapframe&utm_source=maps"
+              style="color:#eee;font-size:12px;position:absolute;top:14px;">Столовая в Ставрополе</a><a
+              href="https://yandex.by/maps/36/stavropol/category/cafe/184106390/?utm_medium=mapframe&utm_source=maps"
+              style="color:#eee;font-size:12px;position:absolute;top:28px;">Кафе в Ставрополе</a><iframe
+              src="https://yandex.by/map-widget/v1/?ll=41.954582%2C45.035112&mode=poi&poi%5Bpoint%5D=41.952071%2C45.035158&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D1708608310&z=17"
+              frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+          </div>
+      
+          <div class="mcontacts-left">
+            <ul class="mcontacts-info">
+              <li class="mcontacts-item">
+                <div class="mcontacts-name">Адрес</div>
+                <div class="mcontacts-link">г. Ставрополь, ул. Мира, 332</div>
+              </li>
+              <li class="mcontacts-item">
+                <div class="mcontacts-name">Телефон</div>
+                <a href="tel:+79999999999" class="mcontacts-link">+7 999 999 99 99</a>
+              </li>
+              <li class="mcontacts-item">
+                <div class="mcontacts-name">Почта</div>
+                <a href="mailto:яква@yandex.ru" class="mcontacts-link">яква@yandex.ru</a>
+              </li>
+            </ul>
+      
+            <ul class="mcontacts-socials">
+              <li class="mcontacts-social whatsapp">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#whatsapp'></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="mcontacts-social telegram">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#telegram'></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="mcontacts-social mailru">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#mailru'></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="mcontacts-social youtube">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#youtube'></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+      
+        </div>
+      </section>
+      <div class="mt-80"></div>
+
+    </main>
+    <!-- Main content -->
+
+    <!-- Footer -->
+    <footer class="footer container">
+      <div class="footer-left">
+        <ul class="footer-list">
+          <li class="footer-item"><a href="about.html">О нас</a></li>
+          <li class="footer-item"><a href="rent.html">Аренда помещений</a></li>
+          <li class="footer-item"><a href="gallery.html">Галерея</a></li>
+          <li class="footer-item"><a href="contacts.html">Контакты</a></li>
+        </ul>
+        <div class="footer-info">
+          <div>© 2022 Все права защищены</div>
+          <button class="footer-politics" data-modal="politics">Политика конфиденциальности</button>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-logo img-contain">
+          <img class="lazyload" data-src="./assets/images/footer/logo.svg" alt="logo">
+        </div>
+        <a href="https://yar-studio.com/" class="footer-company">Разработка сайта Студия ЯР</a>
+      </div>
+    
+    </footer>    <!-- Footer -->
+  </div>
+
+  <!-- Thanks Modal -->
+  <section class="regModal modal-overlay --feedback opacity-0" hidden id="feedback">
+    <div class="modal-block">
+  
+      <div class="feedback-top">
+        <h2 class="h2 modal-title">Спасибо!</h2>
+        <button class="close-button close-button-style"><svg><use xlink:href='./assets/images/sprite.svg#close'></use></svg></button>
+      </div>
+      <h3 class="modal-subtitle">Ваш заказ успешно оформлен</h3>
+      <button class="close-button btn feedback-btn">Ок</button>
+  
+    </div>
+  </section>  <!-- Thanks Modal -->
+
+  <!-- Thanks Modal2 -->
+  <section class="regModal modal-overlay --feedback opacity-0" hidden id="feedback2">
+    <div class="modal-block">
+  
+      <div class="feedback-top">
+        <h2 class="h2 modal-title">Спасибо!</h2>
+        <button class="close-button close-button-style"><svg><use xlink:href='./assets/images/sprite.svg#close'></use></svg></button>
+      </div>
+      <h3 class="modal-subtitle">Ваша заявка успешно отправлена</h3>
+      <button class="close-button btn feedback-btn">Ок</button>
+  
+    </div>
+  </section>  <!-- Thanks Modal2 -->
+
+  <!-- JS -->
+  <script src="assets/js/vendor.js"></script>
+  <script src="assets/js/app.js?5"></script>
+  <script src="assets/js/temp.js"></script>
+  <!-- JS -->
+</body>
+
+</html>

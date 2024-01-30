@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="robots" content="index, follow">
+  <meta name="description" content="Обед и перекус на любой вкус">
+  <title></title>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="assets/images/favicon/site.webmanifest">
+  
+  <link rel="stylesheet" href="assets/css/style.css?10">
+  <!-- CSS only --></head>
+
+<body>
+  <div class="page">
+    <!-- Header -->
+    <header class="header container">
+      <div class="menu">
+        <nav class="menu-nav">
+          <ul class="menu-list">
+            <li class="menu-item"><a href="about.html">О нас</a></li>
+            <li class="menu-item">
+              <a class="menu-subbtn" href="carte.html">Меню блюд</a>
+              <ul class="menu-sublist">
+                <li class="menu-subitem"><a href="carte.html?category=first">Первое</a></li>
+                <li class="menu-subitem"><a href="carte.html?category=second">Второе</a></li>
+                <li class="menu-subitem"><a href="carte.html?category=salats">Салаты</a></li>
+                <li class="menu-subitem"><a href="carte.html?category=drinks">Напитки</a></li>
+              </ul>
+            </li>
+            <li class="menu-item"><a href="rent.html">Аренда помещений</a></li>
+            <li class="menu-item"><a href="gallery.html">Галерея</a></li>
+            <li class="menu-item"><a href="contacts.html">Контакты</a></li>
+          </ul>
+      
+          <div class="mcontacts-left">
+            <ul class="mcontacts-info">
+              <li class="mcontacts-item">
+                <div class="mcontacts-name">Адрес</div>
+                <div class="mcontacts-link">г. Ставрополь, ул. Мира, 332</div>
+              </li>
+              <li class="mcontacts-item">
+                <div class="mcontacts-name">Телефон</div>
+                <a href="tel:+79999999999" class="mcontacts-link">+7 999 999 99 99</a>
+              </li>
+              <li class="mcontacts-item">
+                <div class="mcontacts-name">Почта</div>
+                <a href="mailto:яква@yandex.ru" class="mcontacts-link">яква@yandex.ru</a>
+              </li>
+            </ul>
+      
+            <ul class="mcontacts-socials">
+              <li class="mcontacts-social whatsapp">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#whatsapp'></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="mcontacts-social telegram">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#telegram'></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="mcontacts-social mailru">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#mailru'></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="mcontacts-social youtube">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#youtube'></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <div class="header-right">
+    
+        <button class="menu-button" aria-label="open menu">
+          <span class="burger-button-close">
+            <span id="first-line-burger"></span>
+            <span id="second-line-burger"></span>
+            <span id="third-line-burger"></span>
+          </span>
+        </button>
+    
+        <div class="header-logoes">
+          <a href="main.html" class="header-logo-1 img-contain">
+            <img src="./assets/images/logo/1.svg" alt="яква">
+          </a>
+      
+          <a href="main.html" class="header-logo-2 img-contain">
+            <img src="./assets/images/logo/2.svg" alt="я quick">
+          </a>
+        </div>
+    
+        <a href="basket.html" class="bag" aria-label="open basket" data-count="4"><svg>
+            <use xlink:href='./assets/images/sprite.svg#bag'></use>
+          </svg></a>
+      </div>
+    </header>    <!-- Header -->
+
+    <!-- Main content -->
+    <main>
+
+      <section class="basket first-margin container" id="basket">
+        <h1 class="main-title carte-title" id="title">
+          <span class="line"><span>Корзина</span></span>
+        </h1>
+      
+        <div class="basket-block">
+          <ul class="basket-list">
+            <li class="basket-item">
+              <div class="smenu-item">
+                <button class="basket-close"><svg><use xlink:href='./assets/images/sprite.svg#close'></use></svg></button>
+                <div class="smenu-img img-contain">
+                  <img class="swiper-lazy" src="./assets/images/products/1.png" loading="lazy" alt="Спагетти">
+                </div>
+                <div class="smenu-info">
+                  <div class="smenu-name">Спагетти</div>
+                  <div class="smenu-composition">Состав: зеленый салат, помидоры, куриное филе, белый хлеб, соус “Цезарь”, сливочное масло, чеснок,
+                    сыр
+                    пармезан</div>
+              
+                  <div class="smenu-bot">
+                    <div class="basket-numbers">
+                      <div class="smenu-price"><span data-price>550</span> ₽</div>
+              
+                      <div class="smenu-wrap">
+                        <button type="button" class="plusminus-btn" data-minus>-</button>
+                        <input type="number" class="plusminus-input" value="1" data-min="1" data-max="100" data-step="1" aria-label="number of dishes">
+                        <button type="button" class="plusminus-btn" data-plus>+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>      </li>
+      
+            <li class="basket-item">
+              <div class="smenu-item">
+                <button class="basket-close"><svg><use xlink:href='./assets/images/sprite.svg#close'></use></svg></button>
+                <div class="smenu-img img-contain">
+                  <img class="swiper-lazy" src="./assets/images/products/2.png" loading="lazy" alt="Спагетти">
+                </div>
+                <div class="smenu-info">
+                  <div class="smenu-name">Спагетти Болоньезе</div>
+                  <div class="smenu-composition">Состав: зеленый салат, помидоры, куриное филе, белый хлеб, сосус “Цезарь”, сливочное масло, чеснок, сыр пармезан</div>
+              
+                  <div class="smenu-bot">
+                    <div class="basket-numbers">
+                      <div class="smenu-price"><span data-price>550</span> ₽</div>
+              
+                      <div class="smenu-wrap">
+                        <button type="button" class="plusminus-btn" data-minus>-</button>
+                        <input type="number" class="plusminus-input" value="1" data-min="1" data-max="100" data-step="1" aria-label="number of dishes">
+                        <button type="button" class="plusminus-btn" data-plus>+</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>      </li>
+          </ul>
+      
+          <div class="basket-fixed">
+            <div class="basket-wrapper">
+              <div class="basket-total">Итого</div>
+              <div class="basket-count"><span data-total>1 100</span> ₽</div>
+            </div>
+            <div class="basket-buttons">
+              <button class="basket-submit" data-next data-scroll="#basket">Оформить заказ</button>
+              <button class="basket-clear">Очистить корзину</button>
+            </div>
+          </div>
+      
+          <!-- Tabs -->
+          <div class="basket-tabs">
+            <ul class="product-tabs">
+              <li class="first-name">
+                Оформление заказа:
+              </li>
+              <li class="product-tab">
+                <button class="product-tabbtn">Доставка</button>
+                <div class="product-inner">
+                  <form action="#" class="basket-order">
+                    <div class="basket-subtitle">Доставка</div>
+                    <div class="basket-info">
+                      <div class="basket-addres">Адрес доставки</div>
+                      <input type="text" name="adress" placeholder="Введите ваш адрес" class="basket-input" required>
+                      <div class="basket-text">г. Ставрополь</div>
+                      <div class="basket-addres">Информация</div>
+                      <input type="tel" name="tel" placeholder="Введите ваш номер телефона" class="basket-input" required>
+                      <div class="basket-addres">Оплата</div>
+                      <div class="basket-text">Картой (на сайте)</div>
+                    </div>
+                    <div class="basket-wrapper">
+                      <div class="basket-total">Итого</div>
+                      <div class="basket-count"><span data-total>1 100</span> ₽</div>
+                    </div>
+                    <div class="basket-checkboxes">
+                      <label class="checkbox-label">
+                        <input type="checkbox" required="true">
+                        <span class="checkbox"></span>
+                        Принять условия публичной оферты
+                      </label>
+                      <label class="checkbox-label">
+                        <input type="checkbox" required="true">
+                        <span class="checkbox"></span>
+                        Принять условия положения об обработке и защите персональных данных
+                      </label>
+                    </div>
+                    <button class="basket-submit" type="submit">Заказать</button>
+                  </form>
+                </div>
+              </li>
+              <li class="product-tab">
+                <button class="product-tabbtn">Самовывоз</button>
+                <div class="product-inner">
+                  <form action="#" class="basket-order">
+                    <div class="basket-subtitle">Самовывоз</div>
+                    <div class="basket-info">
+                      <div class="basket-addres">Адрес кафе</div>
+                      <div class="basket-text">г. Ставрополь, ул. Мира, 332</div>
+                      <div class="basket-addres">Информация</div>
+                      <input type="tel" name="tel" placeholder="Введите ваш номер телефона" class="basket-input" required>
+                      <div class="basket-addres">Оплата</div>
+                      <div class="basket-text">Картой (на сайте)</div>
+                    </div>
+                    <div class="basket-wrapper">
+                      <div class="basket-total">Итого</div>
+                      <div class="basket-count"><span data-total>1 100</span> ₽</div>
+                    </div>
+                    <div class="basket-checkboxes">
+                      <label class="checkbox-label">
+                        <input type="checkbox" required="true">
+                        <span class="checkbox"></span>
+                        Принять условия публичной оферты
+                      </label>
+                      <label class="checkbox-label">
+                        <input type="checkbox" required="true">
+                        <span class="checkbox"></span>
+                        Принять условия положения об обработке и защите персональных данных
+                      </label>
+                    </div>
+                    <button class="basket-submit" type="submit">Заказать</button>
+                  </form>
+                </div>
+              </li>
+            </ul>
+      
+            <div class="product-content" id="productContent">
+              <!-- Copied content -->
+            </div>
+          </div>
+          <!-- Tabs -->
+        </div>
+      </section>
+      
+      
+      <section class="mcontacts container mt-160">
+        <h2 class="h2 mcontacts-title">Мы <span class="first-letter">З</span>десь</h2>
+      
+        <div class="mcontacts-block">
+          <div class="map mcontacts-map">
+            <a href="https://yandex.by/maps/org/yakva/1708608310/?utm_medium=mapframe&utm_source=maps"
+              style="color:#eee;font-size:12px;position:absolute;top:0px;">Яква</a><a
+              href="https://yandex.by/maps/36/stavropol/category/canteen/184106396/?utm_medium=mapframe&utm_source=maps"
+              style="color:#eee;font-size:12px;position:absolute;top:14px;">Столовая в Ставрополе</a><a
+              href="https://yandex.by/maps/36/stavropol/category/cafe/184106390/?utm_medium=mapframe&utm_source=maps"
+              style="color:#eee;font-size:12px;position:absolute;top:28px;">Кафе в Ставрополе</a><iframe
+              src="https://yandex.by/map-widget/v1/?ll=41.954582%2C45.035112&mode=poi&poi%5Bpoint%5D=41.952071%2C45.035158&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D1708608310&z=17"
+              frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+          </div>
+      
+          <div class="mcontacts-left">
+            <ul class="mcontacts-info">
+              <li class="mcontacts-item">
+                <div class="mcontacts-name">Адрес</div>
+                <div class="mcontacts-link">г. Ставрополь, ул. Мира, 332</div>
+              </li>
+              <li class="mcontacts-item">
+                <div class="mcontacts-name">Телефон</div>
+                <a href="tel:+79999999999" class="mcontacts-link">+7 999 999 99 99</a>
+              </li>
+              <li class="mcontacts-item">
+                <div class="mcontacts-name">Почта</div>
+                <a href="mailto:яква@yandex.ru" class="mcontacts-link">яква@yandex.ru</a>
+              </li>
+            </ul>
+      
+            <ul class="mcontacts-socials">
+              <li class="mcontacts-social whatsapp">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#whatsapp'></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="mcontacts-social telegram">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#telegram'></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="mcontacts-social mailru">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#mailru'></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="mcontacts-social youtube">
+                <a href="#">
+                  <svg>
+                    <use xlink:href='./assets/images/sprite.svg#youtube'></use>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+      
+        </div>
+      </section>
+      
+      <div class="mt-80"></div>
+
+    </main>
+    <!-- Main content -->
+
+    <!-- Footer -->
+    <footer class="footer container">
+      <div class="footer-left">
+        <ul class="footer-list">
+          <li class="footer-item"><a href="about.html">О нас</a></li>
+          <li class="footer-item"><a href="rent.html">Аренда помещений</a></li>
+          <li class="footer-item"><a href="gallery.html">Галерея</a></li>
+          <li class="footer-item"><a href="contacts.html">Контакты</a></li>
+        </ul>
+        <div class="footer-info">
+          <div>© 2022 Все права защищены</div>
+          <button class="footer-politics" data-modal="politics">Политика конфиденциальности</button>
+        </div>
+      </div>
+      <div class="footer-right">
+        <div class="footer-logo img-contain">
+          <img class="lazyload" data-src="./assets/images/footer/logo.svg" alt="logo">
+        </div>
+        <a href="https://yar-studio.com/" class="footer-company">Разработка сайта Студия ЯР</a>
+      </div>
+    
+    </footer>    <!-- Footer -->
+  </div>
+
+  <!-- Thanks Modal -->
+  <section class="regModal modal-overlay --feedback opacity-0" hidden id="feedback">
+    <div class="modal-block">
+  
+      <div class="feedback-top">
+        <h2 class="h2 modal-title">Спасибо!</h2>
+        <button class="close-button close-button-style"><svg><use xlink:href='./assets/images/sprite.svg#close'></use></svg></button>
+      </div>
+      <h3 class="modal-subtitle">Ваш заказ успешно оформлен</h3>
+      <button class="close-button btn feedback-btn">Ок</button>
+  
+    </div>
+  </section>  <!-- Thanks Modal -->
+
+  <!-- Thanks Modal2 -->
+  <section class="regModal modal-overlay --feedback opacity-0" hidden id="feedback2">
+    <div class="modal-block">
+  
+      <div class="feedback-top">
+        <h2 class="h2 modal-title">Спасибо!</h2>
+        <button class="close-button close-button-style"><svg><use xlink:href='./assets/images/sprite.svg#close'></use></svg></button>
+      </div>
+      <h3 class="modal-subtitle">Ваша заявка успешно отправлена</h3>
+      <button class="close-button btn feedback-btn">Ок</button>
+  
+    </div>
+  </section>  <!-- Thanks Modal2 -->
+
+  <!-- JS -->
+  <script src="assets/js/vendor.js"></script>
+  <script src="assets/js/app.js?5"></script>
+  <script src="assets/js/temp.js"></script>
+  <!-- JS -->
+</body>
+
+</html>
